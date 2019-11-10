@@ -364,7 +364,7 @@
             </objects>
             <point key="canvasLocation" x="2846" y="1048"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Gallery-->
         <scene sceneID="HuH-gB-t59">
             <objects>
                 <viewController id="Qsf-8q-nls" customClass="MainViewController" customModule="Phyzmo" customModuleProvider="target" sceneMemberID="viewController">
@@ -372,9 +372,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xS4-1H-jit">
-                                <rect key="frame" x="182" y="433" width="51" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xS4-1H-jit">
+                                <rect key="frame" x="181.5" y="406" width="51" height="30"/>
                                 <state key="normal" title="CHART"/>
                                 <connections>
                                     <action selector="chartButtonPressed:" destination="Qsf-8q-nls" eventType="touchUpInside" id="m5R-D2-hxe"/>
@@ -382,44 +381,29 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xS4-1H-jit" firstAttribute="centerX" secondItem="lZE-HU-zsw" secondAttribute="centerX" id="GUF-wu-EyY"/>
+                            <constraint firstItem="xS4-1H-jit" firstAttribute="centerY" secondItem="lZE-HU-zsw" secondAttribute="centerY" id="te3-QZ-uSp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hdQ-ZI-aNz"/>
                     </view>
-                    <navigationItem key="navigationItem" id="udK-Ne-giS">
-                        <leftBarButtonItems>
-                            <barButtonItem image="camera" catalog="system" style="plain" id="7C3-TW-sQb">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pNW-ZQ-X2Z">
-                                    <rect key="frame" x="20" y="12" width="32" height="32"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" image="camera" catalog="system"/>
-                                    <connections>
-                                        <action selector="cameraButtonPressed:" destination="Qsf-8q-nls" eventType="touchUpInside" id="J5n-wO-MIO"/>
-                                    </connections>
-                                </button>
-                                <connections>
-                                    <action selector="cameraButtonPressed:" destination="Qsf-8q-nls" id="O1I-KQ-PKI"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem style="plain" id="Dbh-bl-83V">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Pwf-NT-sh3">
-                                    <rect key="frame" x="60" y="13" width="92" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Log Out">
-                                        <color key="titleColor" red="0.1819814891" green="0.69426733259999995" blue="0.53024792669999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="logOutButtonPressed:" destination="Qsf-8q-nls" eventType="touchUpInside" id="hvP-sz-YB6"/>
-                                    </connections>
-                                </button>
-                                <connections>
-                                    <action selector="logOutButtonPressed:" destination="Qsf-8q-nls" id="Yeo-Oc-6ub"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
+                    <navigationItem key="navigationItem" title="Gallery" id="udK-Ne-giS">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="camera" catalog="system" id="6bj-ga-V93">
+                            <connections>
+                                <action selector="cameraButtonPressed:" destination="Qsf-8q-nls" id="TyB-fi-1r7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="H92-l8-7jr">
+                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="logOutButtonPressed:" destination="Qsf-8q-nls" id="Yse-RN-O1x"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="cameraButton" destination="7C3-TW-sQb" id="y1K-MC-Vqm"/>
+                        <outlet property="cameraButton" destination="6bj-ga-V93" id="zv8-6Q-s4W"/>
                         <outlet property="chartButton" destination="xS4-1H-jit" id="Di5-We-mKo"/>
-                        <outlet property="logOutButton" destination="Dbh-bl-83V" id="LoW-xy-qZr"/>
+                        <outlet property="logOutButton" destination="H92-l8-7jr" id="MZl-HL-zoG"/>
                         <segue destination="a5u-s9-a2B" kind="show" identifier="MainToVideo" id="E8Q-ua-Ldo"/>
                     </connections>
                 </viewController>
