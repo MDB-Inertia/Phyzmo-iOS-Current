@@ -1,0 +1,6 @@
+framework module Pods_Phyzmo {
+  umbrella header "Pods-Phyzmo-umbrella.h"
+
+  export *
+  module * { export * }
+}

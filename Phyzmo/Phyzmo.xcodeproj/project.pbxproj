@@ -1,0 +1,853 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19A50DB1B91E900DE08A9742 /* Pods_Phyzmo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EE68B3C5E205949F4AB4A8 /* Pods_Phyzmo.framework */; };
+		97845B742377C6D600153871 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97845B732377C6D600153871 /* APIClient.swift */; };
+		97845B7C2377F01A00153871 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97845B7B2377F01A00153871 /* Video.swift */; };
+		ACCBBD6C2377549D00863F24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBD6B2377549D00863F24 /* AppDelegate.swift */; };
+		ACCBBD712377549D00863F24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACCBBD6F2377549D00863F24 /* Main.storyboard */; };
+		ACCBBD732377549E00863F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACCBBD722377549E00863F24 /* Assets.xcassets */; };
+		ACCBBD762377549E00863F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACCBBD742377549E00863F24 /* LaunchScreen.storyboard */; };
+		ACCBBD812377549E00863F24 /* PhyzmoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBD802377549E00863F24 /* PhyzmoTests.swift */; };
+		ACCBBD8C2377549E00863F24 /* PhyzmoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBD8B2377549E00863F24 /* PhyzmoUITests.swift */; };
+		ACCBBD9C237755B700863F24 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBD9B237755B700863F24 /* SignInViewController.swift */; };
+		ACCBBDA1237756AA00863F24 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDA0237756AA00863F24 /* SignUpViewController.swift */; };
+		ACCBBDA32377575200863F24 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDA22377575200863F24 /* MainViewController.swift */; };
+		ACCBBDA5237757DD00863F24 /* DistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDA4237757DD00863F24 /* DistanceViewController.swift */; };
+		ACCBBDA7237757F400863F24 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDA6237757F400863F24 /* VideoViewController.swift */; };
+		ACCBBDA92377580100863F24 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDA82377580100863F24 /* GraphViewController.swift */; };
+		ACCBBDAB2377581800863F24 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDAA2377581800863F24 /* ChartViewController.swift */; };
+		ACCBBDAD2377584700863F24 /* ObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDAC2377584700863F24 /* ObjectViewController.swift */; };
+		ACCBBDAF23775D3500863F24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACCBBDAE23775D3500863F24 /* GoogleService-Info.plist */; };
+		ACCBBDB023775D3500863F24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACCBBDAE23775D3500863F24 /* GoogleService-Info.plist */; };
+		ACCBBDB123775D3500863F24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACCBBDAE23775D3500863F24 /* GoogleService-Info.plist */; };
+		ACCBBDB52377798A00863F24 /* RecordVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDB42377798A00863F24 /* RecordVideoViewController.swift */; };
+		ACCBBDB62377798A00863F24 /* RecordVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDB42377798A00863F24 /* RecordVideoViewController.swift */; };
+		ACCBBDB72377798A00863F24 /* RecordVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDB42377798A00863F24 /* RecordVideoViewController.swift */; };
+		ACCBBDB82377798D00863F24 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDA22377575200863F24 /* MainViewController.swift */; };
+		ACCBBDB92377798D00863F24 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDA22377575200863F24 /* MainViewController.swift */; };
+		ACCBBDBB23777CEE00863F24 /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDBA23777CEE00863F24 /* VideoHelper.swift */; };
+		ACCBBDBC23777CEE00863F24 /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDBA23777CEE00863F24 /* VideoHelper.swift */; };
+		ACCBBDBD23777CEE00863F24 /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBDBA23777CEE00863F24 /* VideoHelper.swift */; };
+		CCDB90DB4198BCDCC9A629D4 /* Pods_Phyzmo_PhyzmoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1985290ECB3BCB8150F14082 /* Pods_Phyzmo_PhyzmoUITests.framework */; };
+		EC189BB4015ACCF617E07E0F /* Pods_PhyzmoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34512714BAB335736C6D835 /* Pods_PhyzmoTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ACCBBD7D2377549E00863F24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACCBBD602377549D00863F24 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ACCBBD672377549D00863F24;
+			remoteInfo = Phyzmo;
+		};
+		ACCBBD882377549E00863F24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACCBBD602377549D00863F24 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ACCBBD672377549D00863F24;
+			remoteInfo = Phyzmo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1985290ECB3BCB8150F14082 /* Pods_Phyzmo_PhyzmoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Phyzmo_PhyzmoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CB3728C54478249F2EC9553 /* Pods-Phyzmo-PhyzmoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phyzmo-PhyzmoUITests.release.xcconfig"; path = "Target Support Files/Pods-Phyzmo-PhyzmoUITests/Pods-Phyzmo-PhyzmoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5D3E87A7D8CDF161D4946A4E /* Pods-PhyzmoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhyzmoTests.debug.xcconfig"; path = "Target Support Files/Pods-PhyzmoTests/Pods-PhyzmoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		61EE68B3C5E205949F4AB4A8 /* Pods_Phyzmo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Phyzmo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7309BE097651644DE2FDA382 /* Pods-PhyzmoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhyzmoTests.release.xcconfig"; path = "Target Support Files/Pods-PhyzmoTests/Pods-PhyzmoTests.release.xcconfig"; sourceTree = "<group>"; };
+		97845B732377C6D600153871 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		97845B7B2377F01A00153871 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		ACCBBD682377549D00863F24 /* Phyzmo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phyzmo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACCBBD6B2377549D00863F24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ACCBBD702377549D00863F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ACCBBD722377549E00863F24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ACCBBD752377549E00863F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ACCBBD772377549E00863F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACCBBD7C2377549E00863F24 /* PhyzmoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhyzmoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACCBBD802377549E00863F24 /* PhyzmoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhyzmoTests.swift; sourceTree = "<group>"; };
+		ACCBBD822377549E00863F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACCBBD872377549E00863F24 /* PhyzmoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhyzmoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACCBBD8B2377549E00863F24 /* PhyzmoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhyzmoUITests.swift; sourceTree = "<group>"; };
+		ACCBBD8D2377549E00863F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACCBBD9B237755B700863F24 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		ACCBBDA0237756AA00863F24 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		ACCBBDA22377575200863F24 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		ACCBBDA4237757DD00863F24 /* DistanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewController.swift; sourceTree = "<group>"; };
+		ACCBBDA6237757F400863F24 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		ACCBBDA82377580100863F24 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		ACCBBDAA2377581800863F24 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		ACCBBDAC2377584700863F24 /* ObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectViewController.swift; sourceTree = "<group>"; };
+		ACCBBDAE23775D3500863F24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ACCBBDB42377798A00863F24 /* RecordVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVideoViewController.swift; sourceTree = "<group>"; };
+		ACCBBDBA23777CEE00863F24 /* VideoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
+		B34512714BAB335736C6D835 /* Pods_PhyzmoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhyzmoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDE977E0DC04656B9D6C3729 /* Pods-Phyzmo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phyzmo.release.xcconfig"; path = "Target Support Files/Pods-Phyzmo/Pods-Phyzmo.release.xcconfig"; sourceTree = "<group>"; };
+		D83B6E2325079A44AAC0672B /* Pods-Phyzmo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phyzmo.debug.xcconfig"; path = "Target Support Files/Pods-Phyzmo/Pods-Phyzmo.debug.xcconfig"; sourceTree = "<group>"; };
+		E82909224E19793A93A4E492 /* Pods-Phyzmo-PhyzmoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phyzmo-PhyzmoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Phyzmo-PhyzmoUITests/Pods-Phyzmo-PhyzmoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ACCBBD652377549D00863F24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19A50DB1B91E900DE08A9742 /* Pods_Phyzmo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACCBBD792377549E00863F24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC189BB4015ACCF617E07E0F /* Pods_PhyzmoTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACCBBD842377549E00863F24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCDB90DB4198BCDCC9A629D4 /* Pods_Phyzmo_PhyzmoUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2278A85A55A9EF76AB6E1FAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61EE68B3C5E205949F4AB4A8 /* Pods_Phyzmo.framework */,
+				1985290ECB3BCB8150F14082 /* Pods_Phyzmo_PhyzmoUITests.framework */,
+				B34512714BAB335736C6D835 /* Pods_PhyzmoTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9436EE9297A66B0B22C3F8D0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D83B6E2325079A44AAC0672B /* Pods-Phyzmo.debug.xcconfig */,
+				BDE977E0DC04656B9D6C3729 /* Pods-Phyzmo.release.xcconfig */,
+				E82909224E19793A93A4E492 /* Pods-Phyzmo-PhyzmoUITests.debug.xcconfig */,
+				1CB3728C54478249F2EC9553 /* Pods-Phyzmo-PhyzmoUITests.release.xcconfig */,
+				5D3E87A7D8CDF161D4946A4E /* Pods-PhyzmoTests.debug.xcconfig */,
+				7309BE097651644DE2FDA382 /* Pods-PhyzmoTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		97845B722377C66C00153871 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				97845B732377C6D600153871 /* APIClient.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		ACCBBD5F2377549D00863F24 = {
+			isa = PBXGroup;
+			children = (
+				ACCBBD6A2377549D00863F24 /* Phyzmo */,
+				ACCBBD7F2377549E00863F24 /* PhyzmoTests */,
+				ACCBBD8A2377549E00863F24 /* PhyzmoUITests */,
+				ACCBBD692377549D00863F24 /* Products */,
+				9436EE9297A66B0B22C3F8D0 /* Pods */,
+				2278A85A55A9EF76AB6E1FAE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		ACCBBD692377549D00863F24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACCBBD682377549D00863F24 /* Phyzmo.app */,
+				ACCBBD7C2377549E00863F24 /* PhyzmoTests.xctest */,
+				ACCBBD872377549E00863F24 /* PhyzmoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACCBBD6A2377549D00863F24 /* Phyzmo */ = {
+			isa = PBXGroup;
+			children = (
+				97845B722377C66C00153871 /* Helpers */,
+				ACCBBD9F2377569500863F24 /* Controller */,
+				ACCBBD9E2377568900863F24 /* Model */,
+				ACCBBD9D2377566C00863F24 /* View */,
+				ACCBBD6B2377549D00863F24 /* AppDelegate.swift */,
+				ACCBBD722377549E00863F24 /* Assets.xcassets */,
+				ACCBBD742377549E00863F24 /* LaunchScreen.storyboard */,
+				ACCBBD772377549E00863F24 /* Info.plist */,
+				ACCBBDAE23775D3500863F24 /* GoogleService-Info.plist */,
+			);
+			path = Phyzmo;
+			sourceTree = "<group>";
+		};
+		ACCBBD7F2377549E00863F24 /* PhyzmoTests */ = {
+			isa = PBXGroup;
+			children = (
+				ACCBBD802377549E00863F24 /* PhyzmoTests.swift */,
+				ACCBBD822377549E00863F24 /* Info.plist */,
+			);
+			path = PhyzmoTests;
+			sourceTree = "<group>";
+		};
+		ACCBBD8A2377549E00863F24 /* PhyzmoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ACCBBD8B2377549E00863F24 /* PhyzmoUITests.swift */,
+				ACCBBD8D2377549E00863F24 /* Info.plist */,
+			);
+			path = PhyzmoUITests;
+			sourceTree = "<group>";
+		};
+		ACCBBD9D2377566C00863F24 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ACCBBD6F2377549D00863F24 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ACCBBD9E2377568900863F24 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				97845B7B2377F01A00153871 /* Video.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ACCBBD9F2377569500863F24 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ACCBBDB32377795000863F24 /* Main */,
+				ACCBBDB22377602500863F24 /* SignIn */,
+				ACCBBDA0237756AA00863F24 /* SignUpViewController.swift */,
+				ACCBBDA4237757DD00863F24 /* DistanceViewController.swift */,
+				ACCBBDA6237757F400863F24 /* VideoViewController.swift */,
+				ACCBBDA82377580100863F24 /* GraphViewController.swift */,
+				ACCBBDAA2377581800863F24 /* ChartViewController.swift */,
+				ACCBBDAC2377584700863F24 /* ObjectViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		ACCBBDB22377602500863F24 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				ACCBBD9B237755B700863F24 /* SignInViewController.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		ACCBBDB32377795000863F24 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				ACCBBDB42377798A00863F24 /* RecordVideoViewController.swift */,
+				ACCBBDA22377575200863F24 /* MainViewController.swift */,
+				ACCBBDBA23777CEE00863F24 /* VideoHelper.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ACCBBD672377549D00863F24 /* Phyzmo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACCBBD902377549E00863F24 /* Build configuration list for PBXNativeTarget "Phyzmo" */;
+			buildPhases = (
+				CC74071B3EB96607710E8B0E /* [CP] Check Pods Manifest.lock */,
+				ACCBBD642377549D00863F24 /* Sources */,
+				ACCBBD652377549D00863F24 /* Frameworks */,
+				ACCBBD662377549D00863F24 /* Resources */,
+				26FC5F0DEB0974EEFD15A81F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Phyzmo;
+			productName = Phyzmo;
+			productReference = ACCBBD682377549D00863F24 /* Phyzmo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ACCBBD7B2377549E00863F24 /* PhyzmoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACCBBD932377549E00863F24 /* Build configuration list for PBXNativeTarget "PhyzmoTests" */;
+			buildPhases = (
+				3E67C2583998874CCDB4DFB7 /* [CP] Check Pods Manifest.lock */,
+				ACCBBD782377549E00863F24 /* Sources */,
+				ACCBBD792377549E00863F24 /* Frameworks */,
+				ACCBBD7A2377549E00863F24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ACCBBD7E2377549E00863F24 /* PBXTargetDependency */,
+			);
+			name = PhyzmoTests;
+			productName = PhyzmoTests;
+			productReference = ACCBBD7C2377549E00863F24 /* PhyzmoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ACCBBD862377549E00863F24 /* PhyzmoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACCBBD962377549E00863F24 /* Build configuration list for PBXNativeTarget "PhyzmoUITests" */;
+			buildPhases = (
+				279C06D44C135C707BF823A1 /* [CP] Check Pods Manifest.lock */,
+				ACCBBD832377549E00863F24 /* Sources */,
+				ACCBBD842377549E00863F24 /* Frameworks */,
+				ACCBBD852377549E00863F24 /* Resources */,
+				498A6043548358F36AD29BE0 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ACCBBD892377549E00863F24 /* PBXTargetDependency */,
+			);
+			name = PhyzmoUITests;
+			productName = PhyzmoUITests;
+			productReference = ACCBBD872377549E00863F24 /* PhyzmoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ACCBBD602377549D00863F24 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1030;
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = Athena;
+				TargetAttributes = {
+					ACCBBD672377549D00863F24 = {
+						CreatedOnToolsVersion = 10.3;
+					};
+					ACCBBD7B2377549E00863F24 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = ACCBBD672377549D00863F24;
+					};
+					ACCBBD862377549E00863F24 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = ACCBBD672377549D00863F24;
+					};
+				};
+			};
+			buildConfigurationList = ACCBBD632377549D00863F24 /* Build configuration list for PBXProject "Phyzmo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ACCBBD5F2377549D00863F24;
+			productRefGroup = ACCBBD692377549D00863F24 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ACCBBD672377549D00863F24 /* Phyzmo */,
+				ACCBBD7B2377549E00863F24 /* PhyzmoTests */,
+				ACCBBD862377549E00863F24 /* PhyzmoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ACCBBD662377549D00863F24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACCBBD762377549E00863F24 /* LaunchScreen.storyboard in Resources */,
+				ACCBBDAF23775D3500863F24 /* GoogleService-Info.plist in Resources */,
+				ACCBBD732377549E00863F24 /* Assets.xcassets in Resources */,
+				ACCBBD712377549D00863F24 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACCBBD7A2377549E00863F24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACCBBDB023775D3500863F24 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACCBBD852377549E00863F24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACCBBDB123775D3500863F24 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26FC5F0DEB0974EEFD15A81F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Phyzmo/Pods-Phyzmo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Phyzmo/Pods-Phyzmo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Phyzmo/Pods-Phyzmo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		279C06D44C135C707BF823A1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Phyzmo-PhyzmoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E67C2583998874CCDB4DFB7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PhyzmoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		498A6043548358F36AD29BE0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Phyzmo-PhyzmoUITests/Pods-Phyzmo-PhyzmoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Phyzmo-PhyzmoUITests/Pods-Phyzmo-PhyzmoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Phyzmo-PhyzmoUITests/Pods-Phyzmo-PhyzmoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC74071B3EB96607710E8B0E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Phyzmo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ACCBBD642377549D00863F24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACCBBDA1237756AA00863F24 /* SignUpViewController.swift in Sources */,
+				ACCBBDB52377798A00863F24 /* RecordVideoViewController.swift in Sources */,
+				ACCBBD9C237755B700863F24 /* SignInViewController.swift in Sources */,
+				ACCBBDAD2377584700863F24 /* ObjectViewController.swift in Sources */,
+				ACCBBDA92377580100863F24 /* GraphViewController.swift in Sources */,
+				ACCBBDA7237757F400863F24 /* VideoViewController.swift in Sources */,
+				ACCBBD6C2377549D00863F24 /* AppDelegate.swift in Sources */,
+				ACCBBDBB23777CEE00863F24 /* VideoHelper.swift in Sources */,
+				ACCBBDAB2377581800863F24 /* ChartViewController.swift in Sources */,
+				97845B7C2377F01A00153871 /* Video.swift in Sources */,
+				ACCBBDA5237757DD00863F24 /* DistanceViewController.swift in Sources */,
+				ACCBBDA32377575200863F24 /* MainViewController.swift in Sources */,
+				97845B742377C6D600153871 /* APIClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACCBBD782377549E00863F24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACCBBDB82377798D00863F24 /* MainViewController.swift in Sources */,
+				ACCBBD812377549E00863F24 /* PhyzmoTests.swift in Sources */,
+				ACCBBDB62377798A00863F24 /* RecordVideoViewController.swift in Sources */,
+				ACCBBDBC23777CEE00863F24 /* VideoHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACCBBD832377549E00863F24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACCBBDB92377798D00863F24 /* MainViewController.swift in Sources */,
+				ACCBBD8C2377549E00863F24 /* PhyzmoUITests.swift in Sources */,
+				ACCBBDB72377798A00863F24 /* RecordVideoViewController.swift in Sources */,
+				ACCBBDBD23777CEE00863F24 /* VideoHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ACCBBD7E2377549E00863F24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ACCBBD672377549D00863F24 /* Phyzmo */;
+			targetProxy = ACCBBD7D2377549E00863F24 /* PBXContainerItemProxy */;
+		};
+		ACCBBD892377549E00863F24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ACCBBD672377549D00863F24 /* Phyzmo */;
+			targetProxy = ACCBBD882377549E00863F24 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ACCBBD6F2377549D00863F24 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACCBBD702377549D00863F24 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ACCBBD742377549E00863F24 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACCBBD752377549E00863F24 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ACCBBD8E2377549E00863F24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ACCBBD8F2377549E00863F24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ACCBBD912377549E00863F24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D83B6E2325079A44AAC0672B /* Pods-Phyzmo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A5W579KMV7;
+				INFOPLIST_FILE = Phyzmo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MDB.Phyzmo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ACCBBD922377549E00863F24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDE977E0DC04656B9D6C3729 /* Pods-Phyzmo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A5W579KMV7;
+				INFOPLIST_FILE = Phyzmo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MDB.Phyzmo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ACCBBD942377549E00863F24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D3E87A7D8CDF161D4946A4E /* Pods-PhyzmoTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PhyzmoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MDB.PhyzmoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phyzmo.app/Phyzmo";
+			};
+			name = Debug;
+		};
+		ACCBBD952377549E00863F24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7309BE097651644DE2FDA382 /* Pods-PhyzmoTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PhyzmoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MDB.PhyzmoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phyzmo.app/Phyzmo";
+			};
+			name = Release;
+		};
+		ACCBBD972377549E00863F24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E82909224E19793A93A4E492 /* Pods-Phyzmo-PhyzmoUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PhyzmoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MDB.PhyzmoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Phyzmo;
+			};
+			name = Debug;
+		};
+		ACCBBD982377549E00863F24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CB3728C54478249F2EC9553 /* Pods-Phyzmo-PhyzmoUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PhyzmoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MDB.PhyzmoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Phyzmo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ACCBBD632377549D00863F24 /* Build configuration list for PBXProject "Phyzmo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACCBBD8E2377549E00863F24 /* Debug */,
+				ACCBBD8F2377549E00863F24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACCBBD902377549E00863F24 /* Build configuration list for PBXNativeTarget "Phyzmo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACCBBD912377549E00863F24 /* Debug */,
+				ACCBBD922377549E00863F24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACCBBD932377549E00863F24 /* Build configuration list for PBXNativeTarget "PhyzmoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACCBBD942377549E00863F24 /* Debug */,
+				ACCBBD952377549E00863F24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACCBBD962377549E00863F24 /* Build configuration list for PBXNativeTarget "PhyzmoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACCBBD972377549E00863F24 /* Debug */,
+				ACCBBD982377549E00863F24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ACCBBD602377549D00863F24 /* Project object */;
+}
