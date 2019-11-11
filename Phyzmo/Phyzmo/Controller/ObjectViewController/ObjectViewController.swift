@@ -26,64 +26,22 @@ class ObjectViewController: UIViewController {
         tableView.reloadData()
     }
     
-    /*func updateTable(){
-        events.removeAll()
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        let ref = Database.database().reference()
-        let eventRef = ref.child("events")
-        eventRef.observe(DataEventType.value, with: { (snapshot) in
-          let eventDict = snapshot.value as? [String : AnyObject] ?? [:]
-            self.events.removeAll()
-            let group = DispatchGroup()
-            // Try using a Dispatch Queue --> .sync
-            for id in eventDict.keys {
-                //group.enter()
-                ref.child("users").child(eventDict[id]!["creator"]!! as! String).observeSingleEvent(of: .value) { (snapshot) in
-                    let user = snapshot.value as? [String : AnyObject] ?? [:]
-                    let creator = user["name"]
-                    let date = Date(timeIntervalSince1970: TimeInterval((eventDict[id]!["date"]!! as! Double)))
-                    let description = eventDict[id]!["description"]!!
-                    let title = eventDict[id]!["title"]!!
-                    var interested = eventDict[id]!["interested"]!
-                    if interested == nil {
-                        interested = []
-                    }
-                    else {
-                        interested = interested!
-                    }
-                    
-                    let storage = Storage.storage().reference()
-                    storage.child("images").child(id).getData(maxSize: 1 * 1024 * 1024){ (data, error) in
-                        if data == nil {
-                            return
-                        }
-                        guard let image = UIImage(data: data!) else {
-                            return
-                        }
-                        print("Appending")
-                        self.events.append(Event(title: title as! String, description: description as! String, image: image, date: date, creator: creator as! String, interested: interested as! [String], id: id))
-                        //group.leave()
-                        self.events.sort { (a, b) -> Bool in
-                            a.date > b.date
-                        }
-                        self.tableView.reloadData()
-                    }
+    @IBAction func objectSelectionPressed(_ sender: Any) {
+        
+        APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\(video!.id).json", obj_descriptions: video!.objects_selected) { (data) in
+            
+            self.video!.data = data as? [String:[Double]]
+            
+            DispatchQueue.main.async {
+                (self.tabBarController as! DataViewController).video?.data = data as? [String : [Double]]
+                for button in self.tabBarController!.tabBar.items!{
+                    button.isEnabled = true
                 }
             }
             
             
-            /*group.notify(queue: DispatchQueue.main, execute: {
-                print(self.events)
-                self.events.sort { (a, b) -> Bool in
-                    a.date > b.date
-                }
-                self.tableView.reloadData()
-            })*/
-        })
+        }
     }
-    */
     override func viewWillAppear(_ animated: Bool) {
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
         
@@ -93,5 +51,10 @@ class ObjectViewController: UIViewController {
         return true
     }
     
-
+    // TO ensure that check boxes are always on the right side of the screen
+    
+    override func viewWillTransition(to: CGSize, with: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: to, with: with)
+        tableView.reloadData()
+    }
 }

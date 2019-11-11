@@ -373,6 +373,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="enterButtonPressed:" destination="MW4-rP-Rud" eventType="touchUpInside" id="8fM-5S-RGP"/>
+                                    <action selector="objectSelectionPressed:" destination="TMz-Ev-sNd" eventType="touchUpInside" id="P2Z-1I-QFL"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bYD-r3-UBn">

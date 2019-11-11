@@ -2,6 +2,7 @@ PODS:
   - Charts (3.4.0):
     - Charts/Core (= 3.4.0)
   - Charts/Core (3.4.0)
+  - CheckMarkView (0.4.3)
   - Firebase/Analytics (6.12.0):
     - Firebase/Core
   - Firebase/Core (6.12.0):
@@ -90,6 +91,7 @@ PODS:
 
 DEPENDENCIES:
   - Charts
+  - CheckMarkView
   - Firebase/Analytics
   - Firebase/Storage
   - FirebaseAuth
@@ -98,6 +100,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Charts
+    - CheckMarkView
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -118,6 +121,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  CheckMarkView: 8bcac176673ed40d05f220d335de92f6a2702404
   Firebase: da031bc7012374e3bed17a6731b89327b29863b9
   FirebaseAnalytics: 4e53a7eb7b76bc703c4d9239bc964545e9b23361
   FirebaseAuth: b401a012cc33b04df3b52bb308b04e8766f2693e
@@ -136,6 +140,6 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
 
-PODFILE CHECKSUM: 9b5b433946d6486e98dd06a4bd3b4967f92b8723
+PODFILE CHECKSUM: dfc1d22daf77928616f457c01d48b97cf0883688
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.8.0

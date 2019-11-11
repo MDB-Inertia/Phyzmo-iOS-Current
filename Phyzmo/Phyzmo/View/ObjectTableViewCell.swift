@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CheckMarkView
 
-class ObjectTableViewCell: UITableViewCell {
+class ObjectTableViewCell: UITableViewCell{
     
     var object: String? {
         didSet {
@@ -17,15 +18,24 @@ class ObjectTableViewCell: UITableViewCell {
             }
         }
     }
-    
+    var objects_selected : [String]? {
+        didSet {
+            if let objects_selected = objects_selected {
+                checkMark.checked = objects_selected.contains(object!)
+            }
+        }
+    }
+    var objects_detected : [String]?
     var objectName: UILabel!
+    var checkMark : CheckMarkView!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    /*override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
+        
+    }*/
     
     func initCellFrom(size: CGSize) {
         
@@ -47,10 +57,18 @@ class ObjectTableViewCell: UITableViewCell {
         objectName.numberOfLines = 0
         objectName.adjustsFontSizeToFitWidth = true
         objectName.minimumScaleFactor = 0.3
-        objectName.font = UIFont(name: "Helvetica", size: 20)
+        objectName.font = UIFont(name: "System", size: 20)
         objectName.textColor = .black
         objectName.textAlignment = .left
         contentView.addSubview(objectName)
+        
+        checkMark = CheckMarkView(frame: CGRect(x: size.width-50, y: size.height-45, width: 30, height: 30))
+        checkMark.checked = true
+        checkMark.style = .openCircle
+        checkMark.contentMode = .scaleAspectFit
+        checkMark.backgroundColor = .clear
+        //checkMark.style = .openCircle
+        contentView.addSubview(checkMark)
         
         /*eventCreator = UILabel(frame: CGRect(x: 20, y: eventTitle.frame.maxY-70, width: size.width-20, height: 30))
         eventCreator.text = ""
@@ -77,5 +95,24 @@ class ObjectTableViewCell: UITableViewCell {
         attendeeNumber.textAlignment = .center
         contentView.addSubview(attendeeNumber)*/
     }
+    /*override public func delete(_ sender: Any?) {
+        checkMark.removeFromSuperview()
+        checkMark.style = .nothing
+        checkMark = nil
+    }*/
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        checkMark.removeFromSuperview()
+    }
 
 }
+
+/**** MUST FIND WAY TO DEINIT THE CHECKMARK SO WHEN TABLE IS RELOADED IT DOESNT FORM LAYERS*/
+/*extension CheckMarkView{
+    override public func delete(_ sender: Any?) {
+        self.removeFromSuperview()
+        self.style = .nothing
+        //
+        
+    }
+}*/

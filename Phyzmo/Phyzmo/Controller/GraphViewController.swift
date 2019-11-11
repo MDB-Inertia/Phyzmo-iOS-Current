@@ -125,6 +125,16 @@ class GraphViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+        let data = (self.tabBarController as! DataViewController).video?.data!
+        time = data!["time"]!
+        pre_distance = data!["total_distance"]!
+        pre_velocity = data!["normalized_velocity"]!
+        pre_acce = data!["normalized_acce"]!
+        print("\n\(data)")
+        print("\n\(pre_distance)")
+        print("\n\(pre_velocity)")
+        print("\n\(pre_acce)")
+        setUpGraph()
     }
 
     override var shouldAutorotate: Bool {
@@ -152,6 +162,9 @@ class GraphViewController: UIViewController {
     
 
     func setUpGraph(){
+        displacement.removeAll()
+        velocity.removeAll()
+        acceleration.removeAll()
         for i in 0..<time.count {
             let displacementValue = ChartDataEntry(x: time[i], y: pre_distance[i])
             let velocityValue = ChartDataEntry(x: time[i], y: pre_velocity[i])
