@@ -231,10 +231,10 @@
             </objects>
             <point key="canvasLocation" x="798.55072463768124" y="548.4375"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Data View Controller-->
         <scene sceneID="KrR-3N-iQN">
             <objects>
-                <tabBarController id="a5u-s9-a2B" sceneMemberID="viewController">
+                <tabBarController id="a5u-s9-a2B" customClass="DataViewController" customModule="Phyzmo" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d1W-eC-9oO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -348,7 +348,7 @@
             </objects>
             <point key="canvasLocation" x="2845.9821428571427" y="192.75362318840581"/>
         </scene>
-        <!--Object-->
+        <!--Objects-->
         <scene sceneID="ctT-VV-WeX">
             <objects>
                 <viewController id="TMz-Ev-sNd" customClass="ObjectViewController" customModule="Phyzmo" customModuleProvider="target" sceneMemberID="viewController">
@@ -356,18 +356,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkO-65-8Lb">
-                                <rect key="frame" x="186" y="334" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkO-65-8Lb">
+                                <rect key="frame" x="20" y="76" width="374" height="663"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fkO-65-8Lb" firstAttribute="top" secondItem="CUS-NS-9sr" secondAttribute="top" constant="20" id="FSV-eh-8Ne"/>
+                            <constraint firstItem="CUS-NS-9sr" firstAttribute="bottom" secondItem="fkO-65-8Lb" secondAttribute="bottom" constant="20" id="NhE-K6-mM6"/>
+                            <constraint firstItem="CUS-NS-9sr" firstAttribute="trailing" secondItem="fkO-65-8Lb" secondAttribute="trailing" constant="20" id="QCK-PI-jy5"/>
+                            <constraint firstItem="fkO-65-8Lb" firstAttribute="leading" secondItem="CUS-NS-9sr" secondAttribute="leading" constant="20" id="ygQ-Rs-Q6b"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="CUS-NS-9sr"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Object" image="tag" catalog="system" id="PSD-Aa-NXg"/>
+                    <tabBarItem key="tabBarItem" title="Objects" image="tag" catalog="system" id="PSD-Aa-NXg"/>
                     <navigationItem key="navigationItem" id="kyt-q3-exA"/>
                     <connections>
                         <outlet property="objects" destination="fkO-65-8Lb" id="lCc-DD-ubE"/>
@@ -375,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccy-yY-Bh5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2846" y="1048"/>
+            <point key="canvasLocation" x="2844.9275362318845" y="1047.9910714285713"/>
         </scene>
         <!--Gallery-->
         <scene sceneID="HuH-gB-t59">
@@ -424,7 +429,6 @@
                         <outlet property="loading" destination="cWO-ho-EgF" id="VsY-Om-h0y"/>
                         <outlet property="logOutButton" destination="H92-l8-7jr" id="MZl-HL-zoG"/>
                         <segue destination="a5u-s9-a2B" kind="show" identifier="MainToVideo" id="E8Q-ua-Ldo"/>
-                        <segue destination="TMz-Ev-sNd" kind="show" identifier="videoToObject" id="EZH-T3-kCw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u5U-8j-3xz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -455,7 +459,4 @@
         <image name="tag" catalog="system" width="64" height="58"/>
         <image name="video" catalog="system" width="64" height="40"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="EZH-T3-kCw"/>
-    </inferredMetricsTieBreakers>
 </document>

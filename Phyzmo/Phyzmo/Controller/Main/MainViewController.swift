@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     
     
     var videoId : String?
-    var objectsData: [String: Any]?
+    var video: Video?
     override func viewDidLoad() {
         super.viewDidLoad()
         loading.isHidden = true

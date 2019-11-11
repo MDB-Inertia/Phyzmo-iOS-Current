@@ -135,8 +135,14 @@ extension MainViewController: UIImagePickerControllerDelegate {
                 DispatchQueue.main.async {
                     self.loading.isHidden = true
                     self.loading.stopAnimating()
-                    self.objectsData = objectsData
-                    self.performSegue(withIdentifier: "videoToObject", sender: self)
+                    //self.objectsData = objectsData
+                    self.video = Video(id: self.videoId!, thumbnail: UIImage(), objects_selected: [])
+                    self.video?.contruct(completion: {
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "MainToVideo", sender: self)
+                        }
+                    })
+                    
                 }
             }
         })
@@ -145,9 +151,25 @@ extension MainViewController: UIImagePickerControllerDelegate {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //segue to detailed view
-        if segue.identifier != "videoToObject" {
-            let controller =  segue.destination as! ObjectViewController
-            controller.video = Video(id: videoId!, thumbnail: UIImage(), objects: Array(objectsData!.keys))
+        if segue.identifier == "MainToVideo" {
+            let controller =  segue.destination as! DataViewController
+            /*var vid = Video(id: self.videoId!, thumbnail: UIImage(), objects_selected: [])
+            vid.contruct()*/
+            controller.video = self.video
+            var count = 0
+            for button in controller.tabBar.items!{
+                if button.title != "Objects" {
+                    button.isEnabled = false
+                }
+                else{
+                    controller.selectedIndex = count
+                }
+                count += 1
+            }
+            //controller.selectedIndex = controller.index(ofAccessibilityElement: ObjectViewController.self)
+            //controller.selectedViewController = ObjectViewController.init()
+            
+            
         }
     }
     @objc func video(_ videoPath: String, didFinishSavingWithError error: Error?, contextInfo info: AnyObject) {

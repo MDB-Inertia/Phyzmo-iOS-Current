@@ -70,4 +70,30 @@ class APIClient {
         }
         task.resume()
     }
+    static func getExistingVidData(id: String, completion: @escaping ([String:Any]) -> ()){
+        let requestURL = "https://storage.googleapis.com/phyzmo-videos/\(id).json"
+        guard let url = URL(string: requestURL) else {return}
+
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            print("data", data)
+            print("response", response)
+            print("error", error)
+            guard let dataResponse = data, error == nil else {
+                print(error?.localizedDescription ?? "Response Error")
+                return
+            }
+            do{
+                //here dataResponse received from a network request
+                let jsonResponse = try JSONSerialization.jsonObject(with:
+                                       dataResponse, options: [])
+                let result = jsonResponse as! [String : Any]
+                print("result", result)
+
+                completion(result)
+             } catch let parsingError {
+                print("Error", parsingError)
+           }
+        }
+        task.resume()
+   }
 }
