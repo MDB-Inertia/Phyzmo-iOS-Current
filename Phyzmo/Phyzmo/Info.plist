@@ -23,13 +23,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Using camera man</string>
+	<string>Camera access needed to take video</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>We listen to everything you say</string>
+	<string>Microphone access needed to take video</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>We will go through all your pics</string>
+	<string>Photo Library access needed to save video</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We must look at your pics</string>
+	<string>Photo Library access needed to save video</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
