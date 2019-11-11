@@ -27,13 +27,13 @@ class ObjectViewController: UIViewController {
     }
     
     @IBAction func objectSelectionPressed(_ sender: Any) {
-        
+        print(video!.id)
         APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\(video!.id).json", obj_descriptions: video!.objects_selected) { (data) in
             
-            self.video!.data = data as? [String:[Double]]
-            
+            self.video!.data = data as? [String:Any]
+            print(self.video!.data)
             DispatchQueue.main.async {
-                (self.tabBarController as! DataViewController).video?.data = data as? [String : [Double]]
+                (self.tabBarController as! DataViewController).video?.data = data as? [String : Any]
                 for button in self.tabBarController!.tabBar.items!{
                     button.isEnabled = true
                 }

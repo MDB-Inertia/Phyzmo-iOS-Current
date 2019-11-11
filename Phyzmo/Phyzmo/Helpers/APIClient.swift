@@ -46,8 +46,8 @@ class APIClient {
         requestURL = requestURL.replacingOccurrences(of: "\"", with: "\'")
         requestURL = requestURL.replacingOccurrences(of: "[", with: "%5B")
         requestURL = requestURL.replacingOccurrences(of: "]", with: "%5D")
-        requestURL = requestURL.replacingOccurrences(of: " ", with: "")
-
+        requestURL = requestURL.replacingOccurrences(of: " ", with: "%20")
+        print(requestURL)
         guard let url = URL(string: requestURL) else {
             return
         }
@@ -69,6 +69,7 @@ class APIClient {
            }
         }
         task.resume()
+        print("function end")
     }
     static func getExistingVidData(id: String, completion: @escaping ([String:Any]) -> ()){
         let requestURL = "https://storage.googleapis.com/phyzmo-videos/\(id).json"

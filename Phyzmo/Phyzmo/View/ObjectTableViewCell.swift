@@ -103,6 +103,7 @@ class ObjectTableViewCell: UITableViewCell{
     override func prepareForReuse() {
         super.prepareForReuse()
         checkMark.removeFromSuperview()
+        objectName.removeFromSuperview()
     }
 
 }

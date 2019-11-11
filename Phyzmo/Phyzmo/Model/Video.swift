@@ -14,7 +14,7 @@ class Video{
     var id : String
     var thumbnail : UIImage
     var video : AVPlayer? // stays null until collection view is clicked
-    var data : [String: [Double]]? // stays null until collection view is clicked or objects is set
+    var data : [String: Any]? // stays null until collection view is clicked or objects is set
     var objects_selected : [String] // The objects to be detected (will be read from firebase)
     var objects_detected : [String]? // The objects in the video
 
@@ -48,7 +48,7 @@ class Video{
     
     func getData(){
         APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\(id).json", obj_descriptions: objects_selected) { (data) in
-            self.data = data as! [String : [Double]]
+            self.data = data as! [String : Any]
         }
     }
     
