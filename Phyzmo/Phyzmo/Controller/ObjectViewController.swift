@@ -10,9 +10,13 @@ import UIKit
 
 class ObjectViewController: UIViewController {
 
+    var video : Video?
+    @IBOutlet weak var objects: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if video != nil{
+            objects.text = "\(video!.objects)"
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")

@@ -10,7 +10,7 @@ import UIKit
 
 class APIClient {
     static func getAllPositionCV(videoPath: String, completion: @escaping ([String:Any]) -> ()) {
-        let requestURL = "https://us-central1-phyzmo.cloudfunctions.net/position-cv-all?uri=" + videoPath
+        let requestURL = "https://us-central1-phyzmo.cloudfunctions.net/position-cv-all-saver?uri=" + videoPath
         guard let url = URL(string: requestURL) else {return}
 
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in

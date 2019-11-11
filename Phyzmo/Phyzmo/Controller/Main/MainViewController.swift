@@ -12,13 +12,17 @@ import Firebase
 class MainViewController: UIViewController {
     
     //UIElements
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var logOutButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var chartButton: UIButton!
     
+    
+    var videoId : String?
+    var objectsData: [String: Any]?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loading.isHidden = true
         // Do any additional setup after loading the view.
     }
     

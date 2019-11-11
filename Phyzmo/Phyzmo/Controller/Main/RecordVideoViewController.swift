@@ -34,9 +34,14 @@ extension MainViewController: UIImagePickerControllerDelegate {
           self,
           #selector(video(_:didFinishSavingWithError:contextInfo:)),
           nil)
+        loading.isHidden = false
+        loading.startAnimating()
+
         encodeVideo(at: url, completionHandler: uploadToFirebase)
         
     }
+    
+    /* CONVERT TO MP4 */
     func encodeVideo(at videoURL: URL, completionHandler: ((URL?, Error?) -> Void)?)  {
         let avAsset = AVURLAsset(url: videoURL, options: nil)
             
@@ -99,7 +104,7 @@ extension MainViewController: UIImagePickerControllerDelegate {
         print("currentUserId", currentUserId)
         let databaseReference = Database.database().reference().child("Users").child(currentUserId)
         print("databaseReference", databaseReference)
-        let videoId = databaseReference.childByAutoId().key
+        videoId = databaseReference.childByAutoId().key
         print("videoId", videoId)
         let storageReference = Storage.storage().reference().child("\(videoId!).mp4")
 
@@ -113,10 +118,10 @@ extension MainViewController: UIImagePickerControllerDelegate {
                     print("value", snapshot.value)
                     if snapshot.value is [AnyObject] {
                         print("not nil", snapshot.value)
-                        databaseReference.updateChildValues(["videoId":(snapshot.value as! [String]) + [videoId!]])
+                        databaseReference.updateChildValues(["videoId":(snapshot.value as! [String]) + [self.videoId!]])
                     } else {
                         print("nil")
-                        databaseReference.updateChildValues(["videoId":[videoId!]])
+                        databaseReference.updateChildValues(["videoId":[self.videoId!]])
                     }
                   }) { (error) in
                     print(error.localizedDescription)
@@ -124,9 +129,27 @@ extension MainViewController: UIImagePickerControllerDelegate {
             } else {
                 print(error?.localizedDescription)
             }
+            print("api call starting")
+            APIClient.getAllPositionCV(videoPath: "gs://phyzmo.appspot.com/\(self.videoId!).mp4") { (objectsData) in
+                print("api call done")
+                DispatchQueue.main.async {
+                    self.loading.isHidden = true
+                    self.loading.stopAnimating()
+                    self.objectsData = objectsData
+                    self.performSegue(withIdentifier: "videoToObject", sender: self)
+                }
+            }
         })
+        
+        
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //segue to detailed view
+        if segue.identifier != "videoToObject" {
+            let controller =  segue.destination as! ObjectViewController
+            controller.video = Video(id: videoId!, thumbnail: UIImage(), objects: Array(objectsData!.keys))
+        }
+    }
     @objc func video(_ videoPath: String, didFinishSavingWithError error: Error?, contextInfo info: AnyObject) {
       let title = (error == nil) ? "Success" : "Error"
       let message = (error == nil) ? "Video was saved" : "Video failed to save"
