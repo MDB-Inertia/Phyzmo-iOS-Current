@@ -11,7 +11,7 @@ import UIKit
 class ObjectViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var video : Video?
+    var video : Video? // MAY WANT TO CHANGE THIS SO THAT ONLY THE DATAVIEWCONTROLLER HAS VIDEO OBJECT
     override func viewDidLoad() {
         super.viewDidLoad()
         let tabController = self.tabBarController as! DataViewController

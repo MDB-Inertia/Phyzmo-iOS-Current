@@ -58,7 +58,7 @@ class ObjectTableViewCell: UITableViewCell{
         objectName.adjustsFontSizeToFitWidth = true
         objectName.minimumScaleFactor = 0.3
         objectName.font = UIFont(name: "System", size: 20)
-        objectName.textColor = .black
+        //objectName.textColor = .black
         objectName.textAlignment = .left
         contentView.addSubview(objectName)
         

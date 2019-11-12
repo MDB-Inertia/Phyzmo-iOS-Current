@@ -14,6 +14,11 @@ class DataViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("hi")
+        if video != nil{
+            if video?.objects_selected == []{
+                disableAllButObjects()
+            }
+        }
         // Do any additional setup after loading the view.
     }
     func disableAllButObjects(){
