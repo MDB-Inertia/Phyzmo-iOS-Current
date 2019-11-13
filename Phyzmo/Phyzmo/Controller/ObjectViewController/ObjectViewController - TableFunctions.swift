@@ -11,7 +11,7 @@ import UIKit
 
 extension ObjectViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return video!.objects_detected!.count
+        return (self.tabBarController as! DataViewController).video!.objects_detected!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -21,9 +21,9 @@ extension ObjectViewController: UITableViewDelegate, UITableViewDataSource{
         cell.awakeFromNib()
         let size = CGSize(width: tableView.frame.width, height: height(for: indexPath))
         cell.initCellFrom(size: size)
-        cell.object = video!.objects_detected![indexPath.row]
-        cell.objects_detected = video!.objects_detected!
-        cell.objects_selected = video!.objects_selected
+        cell.object = (self.tabBarController as! DataViewController).video!.objects_detected![indexPath.row]
+        cell.objects_detected = (self.tabBarController as! DataViewController).video!.objects_detected!
+        cell.objects_selected = (self.tabBarController as! DataViewController).video!.objects_selected
         
         cell.selectionStyle = .none
         
@@ -47,14 +47,14 @@ extension ObjectViewController: UITableViewDelegate, UITableViewDataSource{
     func checkPressed(cell: ObjectTableViewCell){
         if cell.checkMark != nil {
             cell.checkMark.checked = !cell.checkMark.checked
-            if video!.objects_selected.contains(cell.object!) {
-                video!.objects_selected.remove(at: video!.objects_selected.firstIndex(of: cell.object!)!)
+            if (self.tabBarController as! DataViewController).video!.objects_selected.contains(cell.object!) {
+                (self.tabBarController as! DataViewController).video!.objects_selected.remove(at: (self.tabBarController as! DataViewController).video!.objects_selected.firstIndex(of: cell.object!)!)
             }
             else{
-                video!.objects_selected.append(cell.object!)
+                (self.tabBarController as! DataViewController).video!.objects_selected.append(cell.object!)
             }
         }
-        print(video!.objects_selected)
+        print((self.tabBarController as! DataViewController).video!.objects_selected)
     }
     
 }
