@@ -103,9 +103,10 @@ extension MainViewController: UIImagePickerControllerDelegate {
         let currentUserId = Auth.auth().currentUser!.uid
         print("currentUserId", currentUserId)
         let databaseReference = Database.database().reference().child("Users").child(currentUserId)
-        let videoReference = Database.database().reference().child("Videos")
+        
         print("databaseReference", databaseReference)
         videoId = databaseReference.childByAutoId().key
+        let videoReference = Database.database().reference().child("Videos").child("\(self.videoId!)")
         print("videoId", videoId)
         let storageReference = Storage.storage().reference().child("\(videoId!).mp4")
 
@@ -121,7 +122,7 @@ extension MainViewController: UIImagePickerControllerDelegate {
                         print("not nil", snapshot.value)
                         databaseReference.updateChildValues(["videoId":(snapshot.value as! [String]) + [self.videoId!]])
                         //videoReference.updateChildValues()
-                        videoReference.setValue(["\(self.videoId!)": []])
+                        videoReference.setValue(["objects_selected": []])
 
                     } else {
                         print("nil")

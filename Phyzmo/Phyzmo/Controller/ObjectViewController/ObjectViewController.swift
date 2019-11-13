@@ -28,8 +28,8 @@ class ObjectViewController: UIViewController {
     }
     
     @IBAction func objectSelectionPressed(_ sender: Any) {
-        let videoReference = Database.database().reference().child("Videos")
-        videoReference.setValue(["\((self.tabBarController as! DataViewController).video!.id)": (self.tabBarController as! DataViewController).video!.objects_selected])
+        let videoReference = Database.database().reference().child("Videos").child("\((self.tabBarController as! DataViewController).video!.id)")
+        videoReference.setValue(["objects_selected": (self.tabBarController as! DataViewController).video!.objects_selected])
         print((self.tabBarController as! DataViewController).video!.id)
         APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\((self.tabBarController as! DataViewController).video!.id).json", obj_descriptions: (self.tabBarController as! DataViewController).video!.objects_selected) { (data) in
             
