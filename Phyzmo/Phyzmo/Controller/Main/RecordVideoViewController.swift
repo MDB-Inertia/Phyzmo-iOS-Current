@@ -103,6 +103,7 @@ extension MainViewController: UIImagePickerControllerDelegate {
         let currentUserId = Auth.auth().currentUser!.uid
         print("currentUserId", currentUserId)
         let databaseReference = Database.database().reference().child("Users").child(currentUserId)
+        let videoReference = Database.database().reference().child("Videos")
         print("databaseReference", databaseReference)
         videoId = databaseReference.childByAutoId().key
         print("videoId", videoId)
@@ -119,6 +120,9 @@ extension MainViewController: UIImagePickerControllerDelegate {
                     if snapshot.value is [AnyObject] {
                         print("not nil", snapshot.value)
                         databaseReference.updateChildValues(["videoId":(snapshot.value as! [String]) + [self.videoId!]])
+                        //videoReference.updateChildValues()
+                        videoReference.setValue(["\(self.videoId!)": []])
+
                     } else {
                         print("nil")
                         databaseReference.updateChildValues(["videoId":[self.videoId!]])
