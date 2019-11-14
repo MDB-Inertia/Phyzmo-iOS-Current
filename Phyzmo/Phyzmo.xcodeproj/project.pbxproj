@@ -15,6 +15,8 @@
 		97FC58E023790B1D0038BBD8 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC58DF23790B1D0038BBD8 /* DataViewController.swift */; };
 		97FC58E32379354D0038BBD8 /* ObjectViewController - TableFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC58E22379354D0038BBD8 /* ObjectViewController - TableFunctions.swift */; };
 		97FC58E5237935CD0038BBD8 /* ObjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC58E4237935CD0038BBD8 /* ObjectTableViewCell.swift */; };
+		AC4EFA58237DB71A001677A0 /* ChartExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4EFA57237DB71A001677A0 /* ChartExtension.swift */; };
+		AC4EFA5A237DBA43001677A0 /* ChartCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4EFA59237DBA43001677A0 /* ChartCells.swift */; };
 		ACCBBD6C2377549D00863F24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBD6B2377549D00863F24 /* AppDelegate.swift */; };
 		ACCBBD712377549D00863F24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACCBBD6F2377549D00863F24 /* Main.storyboard */; };
 		ACCBBD732377549E00863F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACCBBD722377549E00863F24 /* Assets.xcassets */; };
@@ -74,6 +76,8 @@
 		97FC58DF23790B1D0038BBD8 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		97FC58E22379354D0038BBD8 /* ObjectViewController - TableFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObjectViewController - TableFunctions.swift"; sourceTree = "<group>"; };
 		97FC58E4237935CD0038BBD8 /* ObjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewCell.swift; sourceTree = "<group>"; };
+		AC4EFA57237DB71A001677A0 /* ChartExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartExtension.swift; sourceTree = "<group>"; };
+		AC4EFA59237DBA43001677A0 /* ChartCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCells.swift; sourceTree = "<group>"; };
 		ACCBBD682377549D00863F24 /* Phyzmo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phyzmo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACCBBD6B2377549D00863F24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACCBBD702377549D00863F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -171,6 +175,16 @@
 			path = ObjectViewController;
 			sourceTree = "<group>";
 		};
+		AC4EFA56237DB6D6001677A0 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				ACCBBDAA2377581800863F24 /* ChartViewController.swift */,
+				AC4EFA57237DB71A001677A0 /* ChartExtension.swift */,
+				AC4EFA59237DBA43001677A0 /* ChartCells.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
 		ACCBBD5F2377549D00863F24 = {
 			isa = PBXGroup;
 			children = (
@@ -248,13 +262,13 @@
 		ACCBBD9F2377569500863F24 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				ACCBBDB32377795000863F24 /* Main */,
 				ACCBBDB22377602500863F24 /* SignIn */,
+				ACCBBDB32377795000863F24 /* Main */,
+				AC4EFA56237DB6D6001677A0 /* Chart */,
 				ACCBBDA0237756AA00863F24 /* SignUpViewController.swift */,
 				ACCBBDA4237757DD00863F24 /* DistanceViewController.swift */,
 				ACCBBDA6237757F400863F24 /* VideoViewController.swift */,
 				ACCBBDA82377580100863F24 /* GraphViewController.swift */,
-				ACCBBDAA2377581800863F24 /* ChartViewController.swift */,
 				97FC58E1237935130038BBD8 /* ObjectViewController */,
 				97FC58DF23790B1D0038BBD8 /* DataViewController.swift */,
 			);
@@ -522,6 +536,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC4EFA5A237DBA43001677A0 /* ChartCells.swift in Sources */,
 				ACCBBDA1237756AA00863F24 /* SignUpViewController.swift in Sources */,
 				ACCBBDB52377798A00863F24 /* RecordVideoViewController.swift in Sources */,
 				ACCBBD9C237755B700863F24 /* SignInViewController.swift in Sources */,
@@ -530,6 +545,7 @@
 				ACCBBDA7237757F400863F24 /* VideoViewController.swift in Sources */,
 				ACCBBD6C2377549D00863F24 /* AppDelegate.swift in Sources */,
 				977C102C237C9ACE005B29D4 /* GalleryCollectionViewCell.swift in Sources */,
+				AC4EFA58237DB71A001677A0 /* ChartExtension.swift in Sources */,
 				ACCBBDBB23777CEE00863F24 /* VideoHelper.swift in Sources */,
 				97FC58E32379354D0038BBD8 /* ObjectViewController - TableFunctions.swift in Sources */,
 				97FC58E023790B1D0038BBD8 /* DataViewController.swift in Sources */,
@@ -722,13 +738,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XGGT2MG2FH;
+				DEVELOPMENT_TEAM = A5W579KMV7;
 				INFOPLIST_FILE = Phyzmo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MDB.Phyzmo.;
+				PRODUCT_BUNDLE_IDENTIFIER = MDB.Phyzmo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -741,13 +757,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XGGT2MG2FH;
+				DEVELOPMENT_TEAM = A5W579KMV7;
 				INFOPLIST_FILE = Phyzmo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MDB.Phyzmo.;
+				PRODUCT_BUNDLE_IDENTIFIER = MDB.Phyzmo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

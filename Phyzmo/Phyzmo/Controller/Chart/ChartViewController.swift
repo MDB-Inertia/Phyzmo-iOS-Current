@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpreadsheetView
 
 class ChartViewController: UIViewController {
     
@@ -16,14 +17,37 @@ class ChartViewController: UIViewController {
     var rawAcceleration : [Double]?
 
     @IBOutlet weak var exportButton: UIButton!
+    @IBOutlet weak var chartSpreadsheetView: SpreadsheetView!
+    
+    let colors = [UIColor(red: 0.314, green: 0.698, blue: 0.337, alpha: 1),
+    UIColor(red: 1.000, green: 0.718, blue: 0.298, alpha: 1),
+    UIColor(red: 0.180, green: 0.671, blue: 0.796, alpha: 1)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        readVals()
+        
+        
+        
+        chartSpreadsheetView.dataSource = self
+        chartSpreadsheetView.delegate = self
+        
+        let hairline = 1 / UIScreen.main.scale
+               chartSpreadsheetView.intercellSpacing = CGSize(width: hairline, height: hairline)
+               chartSpreadsheetView.gridStyle = .solid(width: hairline, color: .lightGray)
+
+        chartSpreadsheetView.register(HeaderCell.self, forCellWithReuseIdentifier: String(describing: HeaderCell.self))
+        chartSpreadsheetView.register(TextCell.self, forCellWithReuseIdentifier: String(describing: TextCell.self))
         
         
     }
     override func viewWillAppear(_ animated: Bool) {
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+    }
+    
+    override func viewDidAppear(_ animated: Bool){
+        chartSpreadsheetView.flashScrollIndicators()
+        
     }
     
     override var shouldAutorotate: Bool {
@@ -33,7 +57,6 @@ class ChartViewController: UIViewController {
     //EXPORT
     
     @IBAction func exportButtonPressed(_ sender: Any) {
-        readVals()
         let fileName = "\((self.tabBarController as! DataViewController).video?.id)"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         var csvText = "Time,Displacement,Velocity,Acceleration\n" //FIXME

@@ -374,8 +374,8 @@
                                     <action selector="exportButtonPressed:" destination="nsN-Cr-bJm" eventType="touchUpInside" id="7ku-fn-g9T"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mu5-bP-Xzk">
-                                <rect key="frame" x="50" y="44" width="827" height="300"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mu5-bP-Xzk" customClass="SpreadsheetView" customModule="SpreadsheetView">
+                                <rect key="frame" x="64" y="44" width="801" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -385,6 +385,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Chart" image="table" catalog="system" id="mRj-kH-D3K"/>
                     <connections>
+                        <outlet property="chartSpreadsheetView" destination="mu5-bP-Xzk" id="kGr-SR-hZA"/>
                         <outlet property="exportButton" destination="GoD-lh-o8r" id="xCp-Uh-ScT"/>
                     </connections>
                 </viewController>
