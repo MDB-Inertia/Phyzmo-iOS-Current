@@ -13,6 +13,9 @@ class ObjectViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     //var video : Video? // MAY WANT TO CHANGE THIS SO THAT ONLY THE DATAVIEWCONTROLLER HAS VIDEO OBJECT
+    
+    
+    @IBOutlet weak var selectButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         //let tabController = self.tabBarController as! DataViewController
@@ -24,10 +27,26 @@ class ObjectViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 60
         //updateTable()
+        if (self.tabBarController as! DataViewController).video!.objects_selected == []{
+            selectButton.isHighlighted = true
+            selectButton.isEnabled = false
+            (self.tabBarController as! DataViewController).disableAllButObjects()
+            
+        }
         tableView.reloadData()
     }
     
     @IBAction func objectSelectionPressed(_ sender: Any) {
+        /*if (self.tabBarController as! DataViewController).video!.objects_selected == []{
+            let title = "Error"
+            let message = "Please select at least one object"
+            
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }*/
+        print("updating object selection")
         let videoReference = Database.database().reference().child("Videos").child("\((self.tabBarController as! DataViewController).video!.id)")
         videoReference.setValue(["objects_selected": (self.tabBarController as! DataViewController).video!.objects_selected])
         print((self.tabBarController as! DataViewController).video!.id)
@@ -37,9 +56,7 @@ class ObjectViewController: UIViewController {
             //print((self.tabBarController as! DataViewController).video!.data)
             DispatchQueue.main.async {
                 (self.tabBarController as! DataViewController).video?.data = data as? [String : Any]
-                for button in self.tabBarController!.tabBar.items!{
-                    button.isEnabled = true
-                }
+                (self.tabBarController as! DataViewController).enableAll()
                 (self.tabBarController as! DataViewController).selectedIndex = 1
             }
             

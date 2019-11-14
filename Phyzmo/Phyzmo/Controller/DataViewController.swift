@@ -33,6 +33,11 @@ class DataViewController: UITabBarController {
             count += 1
         }
     }
+    func enableAll(){
+        for button in self.tabBar.items!{
+            button.isEnabled = true
+        }
+    }
 
     /*
     // MARK: - Navigation
