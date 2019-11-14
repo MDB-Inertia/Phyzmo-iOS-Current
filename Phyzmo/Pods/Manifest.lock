@@ -88,6 +88,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - SpreadsheetView (0.8.4)
 
 DEPENDENCIES:
   - Charts
@@ -96,6 +97,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseAuth
   - FirebaseDatabase
+  - SpreadsheetView
 
 SPEC REPOS:
   trunk:
@@ -118,6 +120,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - SpreadsheetView
 
 SPEC CHECKSUMS:
   Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
@@ -139,7 +142,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  SpreadsheetView: 17c55b6dc82099993cc2ceb818248d19f3220998
 
-PODFILE CHECKSUM: dfc1d22daf77928616f457c01d48b97cf0883688
+PODFILE CHECKSUM: 1d6fb180face8527d57c52257bba1eb78d160ec4
 
-COCOAPODS: 1.8.0
+COCOAPODS: 1.8.4
