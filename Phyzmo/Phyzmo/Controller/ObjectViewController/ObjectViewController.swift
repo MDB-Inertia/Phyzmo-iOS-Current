@@ -40,24 +40,28 @@ class ObjectViewController: UIViewController {
                 for button in self.tabBarController!.tabBar.items!{
                     button.isEnabled = true
                 }
+                (self.tabBarController as! DataViewController).selectedIndex = 1
             }
             
             
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+    /*override func viewWillAppear(_ animated: Bool) {
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         
     }
     
     override var shouldAutorotate: Bool {
-        return true
-    }
+        return false
+        
+    }*/
     
     // TO ensure that check boxes are always on the right side of the screen
     
     override func viewWillTransition(to: CGSize, with: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: to, with: with)
-        tableView.reloadData()
+        if tableView != nil {
+            tableView.reloadData()
+        }
     }
 }

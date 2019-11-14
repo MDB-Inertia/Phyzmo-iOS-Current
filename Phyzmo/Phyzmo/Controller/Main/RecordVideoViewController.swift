@@ -141,12 +141,29 @@ extension MainViewController: UIImagePickerControllerDelegate {
                     self.loading.isHidden = true
                     self.loading.stopAnimating()
                     //self.objectsData = objectsData
-                    self.video = Video(id: self.videoId!, thumbnail: UIImage(), objects_selected: [])
-                    self.video?.contruct(completion: {
-                        DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "MainToVideo", sender: self)
+                    Storage.storage().reference().child("\(self.videoId!).jpg").getData(maxSize: 1 * 1024 * 1024) { data, error in
+                        if let error = error {
+                          // Uh-oh, an error occurred!
+                          //print("\(vidId).jpg not found")
+                            self.video = Video(id: self.videoId!, thumbnail: UIImage(), objects_selected: [])
+                            self.video?.contruct(completion: {
+                                DispatchQueue.main.async {
+                                    self.performSegue(withIdentifier: "MainToVideo", sender: self)
+                                }
+                            })
+                        } else {
+                          // Data for "images/island.jpg" is returned
+                          let image = UIImage(data: data!)
+                            self.video = Video(id: self.videoId!, thumbnail: image!, objects_selected: [])
+                            self.video?.contruct(completion: {
+                                DispatchQueue.main.async {
+                                    self.performSegue(withIdentifier: "MainToVideo", sender: self)
+                                }
+                            })
+                          
                         }
-                    })
+                    }
+                    
                     
                 }
             }
@@ -161,16 +178,6 @@ extension MainViewController: UIImagePickerControllerDelegate {
             /*var vid = Video(id: self.videoId!, thumbnail: UIImage(), objects_selected: [])
             vid.contruct()*/
             controller.video = self.video
-            var count = 0
-            for button in controller.tabBar.items!{
-                if button.title != "Objects" {
-                    button.isEnabled = false
-                }
-                else{
-                    controller.selectedIndex = count
-                }
-                count += 1
-            }
             //controller.selectedIndex = controller.index(ofAccessibilityElement: ObjectViewController.self)
             //controller.selectedViewController = ObjectViewController.init()
             

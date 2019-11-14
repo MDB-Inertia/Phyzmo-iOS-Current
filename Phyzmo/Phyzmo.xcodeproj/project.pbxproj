@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		19A50DB1B91E900DE08A9742 /* Pods_Phyzmo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EE68B3C5E205949F4AB4A8 /* Pods_Phyzmo.framework */; };
+		977C102A237C8F3B005B29D4 /* MainViewController-functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977C1029237C8F3B005B29D4 /* MainViewController-functions.swift */; };
+		977C102C237C9ACE005B29D4 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977C102B237C9ACE005B29D4 /* GalleryCollectionViewCell.swift */; };
 		97845B742377C6D600153871 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97845B732377C6D600153871 /* APIClient.swift */; };
 		97845B7C2377F01A00153871 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97845B7B2377F01A00153871 /* Video.swift */; };
 		97FC58E023790B1D0038BBD8 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC58DF23790B1D0038BBD8 /* DataViewController.swift */; };
@@ -65,6 +67,8 @@
 		5D3E87A7D8CDF161D4946A4E /* Pods-PhyzmoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhyzmoTests.debug.xcconfig"; path = "Target Support Files/Pods-PhyzmoTests/Pods-PhyzmoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		61EE68B3C5E205949F4AB4A8 /* Pods_Phyzmo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Phyzmo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7309BE097651644DE2FDA382 /* Pods-PhyzmoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhyzmoTests.release.xcconfig"; path = "Target Support Files/Pods-PhyzmoTests/Pods-PhyzmoTests.release.xcconfig"; sourceTree = "<group>"; };
+		977C1029237C8F3B005B29D4 /* MainViewController-functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController-functions.swift"; sourceTree = "<group>"; };
+		977C102B237C9ACE005B29D4 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		97845B732377C6D600153871 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		97845B7B2377F01A00153871 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		97FC58DF23790B1D0038BBD8 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 			children = (
 				ACCBBD6F2377549D00863F24 /* Main.storyboard */,
 				97FC58E4237935CD0038BBD8 /* ObjectTableViewCell.swift */,
+				977C102B237C9ACE005B29D4 /* GalleryCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 				ACCBBDB42377798A00863F24 /* RecordVideoViewController.swift */,
 				ACCBBDA22377575200863F24 /* MainViewController.swift */,
 				ACCBBDBA23777CEE00863F24 /* VideoHelper.swift */,
+				977C1029237C8F3B005B29D4 /* MainViewController-functions.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -523,6 +529,7 @@
 				ACCBBDA92377580100863F24 /* GraphViewController.swift in Sources */,
 				ACCBBDA7237757F400863F24 /* VideoViewController.swift in Sources */,
 				ACCBBD6C2377549D00863F24 /* AppDelegate.swift in Sources */,
+				977C102C237C9ACE005B29D4 /* GalleryCollectionViewCell.swift in Sources */,
 				ACCBBDBB23777CEE00863F24 /* VideoHelper.swift in Sources */,
 				97FC58E32379354D0038BBD8 /* ObjectViewController - TableFunctions.swift in Sources */,
 				97FC58E023790B1D0038BBD8 /* DataViewController.swift in Sources */,
@@ -530,6 +537,7 @@
 				97845B7C2377F01A00153871 /* Video.swift in Sources */,
 				ACCBBDA5237757DD00863F24 /* DistanceViewController.swift in Sources */,
 				ACCBBDA32377575200863F24 /* MainViewController.swift in Sources */,
+				977C102A237C8F3B005B29D4 /* MainViewController-functions.swift in Sources */,
 				97FC58E5237935CD0038BBD8 /* ObjectTableViewCell.swift in Sources */,
 				97845B742377C6D600153871 /* APIClient.swift in Sources */,
 			);

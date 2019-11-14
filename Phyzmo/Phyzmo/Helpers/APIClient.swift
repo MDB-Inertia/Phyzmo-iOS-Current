@@ -41,12 +41,13 @@ class APIClient {
         print("function started")
         let ref_list = [[0.121,0.215],[0.9645,0.446], 0.60] as [Any]
 
-        let request = "objectsDataUri=\(objectsDataUri)&obj_descriptions=\(obj_descriptions)&ref_list=\(ref_list)"
+        let request = "objectsDataUri=\(objectsDataUri)&obj_descriptions=\("\(obj_descriptions)".replacingOccurrences(of: "&", with: "%26"))&ref_list=\(ref_list)"
         var requestURL = "https://us-central1-phyzmo.cloudfunctions.net/data-computation?\(request)"
         requestURL = requestURL.replacingOccurrences(of: "\"", with: "\'")
         requestURL = requestURL.replacingOccurrences(of: "[", with: "%5B")
         requestURL = requestURL.replacingOccurrences(of: "]", with: "%5D")
         requestURL = requestURL.replacingOccurrences(of: " ", with: "%20")
+        //requestURL = requestURL.replacingOccurrences(of: "&", with: "%26")
         print(requestURL)
         guard let url = URL(string: requestURL) else {
             return

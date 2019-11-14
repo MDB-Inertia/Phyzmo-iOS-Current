@@ -264,14 +264,47 @@
                     <view key="view" contentMode="scaleToFill" id="CJi-OE-g7d">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3tS-nA-6jD">
+                                <rect key="frame" x="20" y="76" width="374" height="690"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycF-uy-T0d">
+                                <rect key="frame" x="20" y="76" width="374" height="690"/>
+                                <color key="tintColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="0.79693001760563376" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="play.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="large" weight="heavy">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                    </preferredSymbolConfiguration>
+                                </state>
+                                <connections>
+                                    <action selector="playPressed:" destination="DeN-Aa-WJZ" eventType="touchUpInside" id="aqh-nY-yIX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ycF-uy-T0d" firstAttribute="centerY" secondItem="CJi-OE-g7d" secondAttribute="centerY" id="GfO-k4-yHV"/>
+                            <constraint firstItem="3tS-nA-6jD" firstAttribute="centerY" secondItem="CJi-OE-g7d" secondAttribute="centerY" id="MYz-U2-lLF"/>
+                            <constraint firstItem="e4p-d7-0mR" firstAttribute="trailing" secondItem="ycF-uy-T0d" secondAttribute="trailing" constant="20" id="QkQ-qT-YpN"/>
+                            <constraint firstItem="3tS-nA-6jD" firstAttribute="top" secondItem="e4p-d7-0mR" secondAttribute="top" constant="20" id="Tms-vr-Ood"/>
+                            <constraint firstItem="3tS-nA-6jD" firstAttribute="leading" secondItem="e4p-d7-0mR" secondAttribute="leading" constant="20" id="bzB-HX-FwE"/>
+                            <constraint firstItem="ycF-uy-T0d" firstAttribute="centerX" secondItem="CJi-OE-g7d" secondAttribute="centerX" id="ckJ-yS-43h"/>
+                            <constraint firstItem="ycF-uy-T0d" firstAttribute="leading" secondItem="e4p-d7-0mR" secondAttribute="leading" constant="20" id="imv-h9-DqB"/>
+                            <constraint firstItem="e4p-d7-0mR" firstAttribute="trailing" secondItem="3tS-nA-6jD" secondAttribute="trailing" constant="20" id="mJl-33-qgb"/>
+                            <constraint firstItem="ycF-uy-T0d" firstAttribute="top" secondItem="e4p-d7-0mR" secondAttribute="top" constant="20" id="pE8-cG-vv8"/>
+                            <constraint firstItem="3tS-nA-6jD" firstAttribute="centerX" secondItem="CJi-OE-g7d" secondAttribute="centerX" id="wWf-Ub-cKW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="e4p-d7-0mR"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Video" image="video" catalog="system" id="Mqo-xV-xkz"/>
+                    <connections>
+                        <outlet property="image" destination="3tS-nA-6jD" id="yJC-dv-E8F"/>
+                        <outlet property="playButton" destination="ycF-uy-T0d" id="TbD-Ob-Czi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPW-sl-7ZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2846" y="-1426"/>
+            <point key="canvasLocation" x="2844.9275362318845" y="-1426.3392857142856"/>
         </scene>
         <!--Graph-->
         <scene sceneID="KTn-JH-NOO">
@@ -429,7 +462,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LOe-qh-9qE">
-                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="106" width="414" height="702"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ths-B7-JD2">
                                     <size key="itemSize" width="50" height="50"/>
@@ -438,7 +471,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gqf-kz-bud">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="gqf-kz-bud">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sR5-hm-rAd">
@@ -448,7 +481,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xS4-1H-jit">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xS4-1H-jit">
                                 <rect key="frame" x="181.5" y="406" width="51" height="30"/>
                                 <state key="normal" title="CHART"/>
                                 <connections>
@@ -458,16 +491,35 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="cWO-ho-EgF">
                                 <rect key="frame" x="197" y="411" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zpl-iS-rb5">
+                                <rect key="frame" x="20" y="66" width="374" height="0.0"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading your datasets!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Z6-i6-sdz">
+                                <rect key="frame" x="20" y="371" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Zpl-iS-rb5" secondAttribute="trailing" constant="20" id="0ey-ie-Jd2"/>
                             <constraint firstItem="cWO-ho-EgF" firstAttribute="centerX" secondItem="lZE-HU-zsw" secondAttribute="centerX" id="3pX-Hd-BRj"/>
                             <constraint firstItem="cWO-ho-EgF" firstAttribute="centerY" secondItem="lZE-HU-zsw" secondAttribute="centerY" id="7pB-b5-LVs"/>
+                            <constraint firstItem="6Z6-i6-sdz" firstAttribute="centerY" secondItem="lZE-HU-zsw" secondAttribute="centerY" constant="-40" id="BBc-lQ-umy"/>
                             <constraint firstItem="xS4-1H-jit" firstAttribute="centerX" secondItem="lZE-HU-zsw" secondAttribute="centerX" id="GUF-wu-EyY"/>
                             <constraint firstItem="LOe-qh-9qE" firstAttribute="leading" secondItem="hdQ-ZI-aNz" secondAttribute="leading" id="PxB-g6-gIp"/>
                             <constraint firstItem="hdQ-ZI-aNz" firstAttribute="trailing" secondItem="LOe-qh-9qE" secondAttribute="trailing" id="Pys-IU-gVF"/>
-                            <constraint firstItem="LOe-qh-9qE" firstAttribute="top" secondItem="hdQ-ZI-aNz" secondAttribute="top" id="lwj-Ha-YOq"/>
+                            <constraint firstItem="Zpl-iS-rb5" firstAttribute="leading" secondItem="lZE-HU-zsw" secondAttribute="leading" constant="20" id="SLa-RN-x8I"/>
+                            <constraint firstAttribute="trailing" secondItem="6Z6-i6-sdz" secondAttribute="trailing" constant="20" id="YbA-JY-7go"/>
+                            <constraint firstItem="6Z6-i6-sdz" firstAttribute="centerX" secondItem="lZE-HU-zsw" secondAttribute="centerX" id="eqv-OM-7Y0"/>
+                            <constraint firstItem="6Z6-i6-sdz" firstAttribute="leading" secondItem="lZE-HU-zsw" secondAttribute="leading" constant="20" id="fBB-wd-fSA"/>
+                            <constraint firstItem="LOe-qh-9qE" firstAttribute="top" secondItem="hdQ-ZI-aNz" secondAttribute="top" constant="50" id="lwj-Ha-YOq"/>
                             <constraint firstItem="hdQ-ZI-aNz" firstAttribute="bottom" secondItem="LOe-qh-9qE" secondAttribute="bottom" id="phC-bt-IXB"/>
+                            <constraint firstItem="Zpl-iS-rb5" firstAttribute="top" secondItem="hdQ-ZI-aNz" secondAttribute="top" constant="10" id="qcL-zw-5vC"/>
                             <constraint firstItem="xS4-1H-jit" firstAttribute="centerY" secondItem="lZE-HU-zsw" secondAttribute="centerY" id="te3-QZ-uSp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hdQ-ZI-aNz"/>
@@ -488,8 +540,11 @@
                     <connections>
                         <outlet property="cameraButton" destination="6bj-ga-V93" id="zv8-6Q-s4W"/>
                         <outlet property="chartButton" destination="xS4-1H-jit" id="Di5-We-mKo"/>
+                        <outlet property="collectionView" destination="LOe-qh-9qE" id="hJv-x7-gYF"/>
                         <outlet property="loading" destination="cWO-ho-EgF" id="VsY-Om-h0y"/>
                         <outlet property="logOutButton" destination="H92-l8-7jr" id="MZl-HL-zoG"/>
+                        <outlet property="statusLabel" destination="6Z6-i6-sdz" id="Wwl-EL-OBe"/>
+                        <outlet property="welcomeLabel" destination="Zpl-iS-rb5" id="IUP-TW-vzZ"/>
                         <segue destination="a5u-s9-a2B" kind="show" identifier="MainToVideo" id="E8Q-ua-Ldo"/>
                     </connections>
                 </viewController>
@@ -517,6 +572,7 @@
     <resources>
         <image name="camera" catalog="system" width="64" height="48"/>
         <image name="chart.bar" catalog="system" width="64" height="44"/>
+        <image name="play.circle.fill" catalog="system" width="64" height="62"/>
         <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
         <image name="table" catalog="system" width="64" height="48"/>
         <image name="tag" catalog="system" width="64" height="58"/>
