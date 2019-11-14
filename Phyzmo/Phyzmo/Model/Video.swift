@@ -33,15 +33,16 @@ class Video{
             // Handle any errors
           } else {
             self.video = AVPlayer(url: url!)
+            self.getData()
+            
+            APIClient.getExistingVidData(id: self.id, completion: { (objectsData) in
+                print("keys\(objectsData.keys)")
+                self.objects_detected = Array(objectsData.keys)
+                completion()
+            })
           }
         }
-        getData()
         
-        APIClient.getExistingVidData(id: id, completion: { (objectsData) in
-            print("keys\(objectsData.keys)")
-            self.objects_detected = Array(objectsData.keys)
-            completion()
-        })
         
        
     }
