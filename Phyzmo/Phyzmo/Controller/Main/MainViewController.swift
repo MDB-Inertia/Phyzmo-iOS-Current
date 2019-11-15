@@ -63,6 +63,11 @@ class MainViewController: UIViewController {
             print(error.localizedDescription)
             self.welcomeLabel.text = "Welcome"
         }
+        /*databaseReference.observe(.value) { (snapshot) in
+            print("changedCollection")
+            self.updateCollection()
+            self.collectionView.reloadData()
+        }*/
         //tableView.rowHeight = 60
         
         
@@ -145,14 +150,68 @@ class MainViewController: UIViewController {
     @IBAction func deletePressed(_ sender: Any) {
         
         //TODO - delete all references in Firebase, GCP, etc. with the id's in videosSelected
-        for id in videosSelected {
-            videos.removeAll { (vid) -> Bool in
-                return vid.id == id
+        let ref = Database.database().reference()
+        let storageRef = Storage.storage().reference()
+        let gcpRef = Storage.storage(url:"gs://phyzmo-videos").reference()
+
+        ref.child("Users").child(Auth.auth().currentUser!.uid).child("videoId").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.value is [AnyObject] {
+                var arr = snapshot.value as! [String]
+                arr.removeAll { (s) -> Bool in
+                    return self.videosSelected.contains(s)
+                }
+                print(arr)
+                print(self.videosSelected)
+                ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["videoId": arr])
+
             }
-            //DELETE FROM DATABASE
-        }
-        collectionView.reloadData()
-        selectPressed(self)
+            
+            for id in self.videosSelected {
+                //DELETE FROM DATABASE
+                
+                ref.child("Videos").child(id).setValue([])
+                // Create a reference to the file to delete
+               
+                
+                // Delete the file
+                storageRef.child("\(id).mp4").delete { error in
+                  if let error = error {
+                    // Uh-oh, an error occurred!
+                  } else {
+                    // File deleted successfully
+                  }
+                }
+                
+                storageRef.child("\(id).jpg").delete { error in
+                  if let error = error {
+                    // Uh-oh, an error occurred!
+                    print(error)
+                  } else {
+                    // File deleted successfully
+                  }
+                }
+                
+                
+                print(gcpRef.child("\(id).json"))
+                gcpRef.child("\(id).json").delete { (error) in
+                    if let error = error {
+                      // Uh-oh, an error occurred!
+                      print(error)
+                    } else {
+                      // File deleted successfully
+                    }
+                }
+                
+
+                //Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).child("videoId").child(id).removeValue()
+            }
+            self.selectPressed(self)
+            
+        })
+        
+        
+        //updateCollection()
+        
     }
     @IBAction func logOutButtonPressed(_ sender: Any) {
         try! Auth.auth().signOut()

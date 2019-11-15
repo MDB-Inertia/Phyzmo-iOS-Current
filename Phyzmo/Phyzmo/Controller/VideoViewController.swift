@@ -35,12 +35,12 @@ class VideoViewController: UIViewController {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-         UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+         //UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
     }
     
-    override var shouldAutorotate: Bool {
+    /*override var shouldAutorotate: Bool {
         return true
-    }
+    }*/
     
     
 

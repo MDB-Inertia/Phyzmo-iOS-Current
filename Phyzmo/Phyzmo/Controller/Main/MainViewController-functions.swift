@@ -96,6 +96,7 @@ extension MainViewController: UICollectionViewDelegate {
             else{
                 videosSelected.append(videos[indexPath.row].id)
             }
+            print(videosSelected)
             
         }
         else{
