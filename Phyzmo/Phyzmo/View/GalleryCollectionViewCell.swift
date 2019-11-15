@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CheckMarkView
 class GalleryCollectionViewCell : UICollectionViewCell {
     var thumbnail: UIImage? {
         didSet {
@@ -16,7 +17,30 @@ class GalleryCollectionViewCell : UICollectionViewCell {
             }
         }
     }
+    var isSelectionMode : Bool? {
+        didSet {
+            if let isSelection = isSelectionMode {
+                if isSelection {
+                    checkMark.style = .openCircle
+                    
+                }
+            }
+            else{
+                checkMark.style = .nothing
+            }
+        }
+    }
+    var isSelectedCell: Bool? {
+        didSet {
+            if let selected = isSelectedCell {
+                checkMark.checked = selected
+                imageTint.isHidden = !selected
+            }
+        }
+    }
     var videoThumbnail: UIImageView!
+    var checkMark : CheckMarkView!
+    var imageTint : UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -33,24 +57,26 @@ class GalleryCollectionViewCell : UICollectionViewCell {
         eventImage.layer.cornerRadius = 10
         eventImage.layer.masksToBounds = true
         eventImage.alpha = 1.0
-        contentView.addSubview(eventImage)
+        contentView.addSubview(eventImage)*/
 
         
-        let imageTint = UIView()
-        imageTint.backgroundColor = UIColor(white: 0, alpha: 0.4)
-        imageTint.frame = eventImage.frame
-        imageTint.layer.cornerRadius = 10
-        contentView.addSubview(imageTint)*/
+        
         videoThumbnail = UIImageView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         contentView.addSubview(videoThumbnail)
         
-        /*checkMark = CheckMarkView(frame: CGRect(x: size.width-50, y: size.height-45, width: 30, height: 30))
-        checkMark.checked = true
-        checkMark.style = .openCircle
+        imageTint = UIView()
+        imageTint.backgroundColor = UIColor(white: 0, alpha: 0.4)
+        imageTint.frame = videoThumbnail.frame
+        imageTint.isHidden = true
+        contentView.addSubview(imageTint)
+        
+        checkMark = CheckMarkView(frame: CGRect(x: size.width-30, y: size.height-30, width: 30, height: 30))
+        checkMark.checked = false
+        checkMark.style = .nothing
         checkMark.contentMode = .scaleAspectFit
         checkMark.backgroundColor = .clear
         //checkMark.style = .openCircle
-        contentView.addSubview(checkMark)*/
+        contentView.addSubview(checkMark)
         
         /*eventCreator = UILabel(frame: CGRect(x: 20, y: eventTitle.frame.maxY-70, width: size.width-20, height: 30))
         eventCreator.text = ""
@@ -84,7 +110,7 @@ class GalleryCollectionViewCell : UICollectionViewCell {
     }*/
     override func prepareForReuse() {
         super.prepareForReuse()
-        //checkMark.removeFromSuperview()
+        checkMark.removeFromSuperview()
         videoThumbnail.removeFromSuperview()
     }
 }

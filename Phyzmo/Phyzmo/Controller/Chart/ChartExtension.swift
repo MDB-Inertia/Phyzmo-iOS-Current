@@ -52,14 +52,14 @@ extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegat
         case (2, 0):
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: HeaderCell.self), for: indexPath) as! HeaderCell
             cell.label.text = "Velocity"
-            cell.label.textColor = .gray
+            //cell.label.textColor = .gray
             cell.gridlines.left = .none
             cell.gridlines.right = .default
             return cell
         case (3, 0):
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: HeaderCell.self), for: indexPath) as! HeaderCell
             cell.label.text = "Acceleration"
-            cell.label.textColor = .gray
+            //cell.label.textColor = .gray
             cell.gridlines.left = .none
             cell.gridlines.right = .default
             return cell

@@ -16,7 +16,7 @@ class HeaderCell: Cell{
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-
+        
         label.frame = bounds
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         label.font = UIFont.boldSystemFont(ofSize: 10)
@@ -41,7 +41,7 @@ class TextCell: Cell {
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textAlignment = .center
-
+        label.textColor = .black
         contentView.addSubview(label)
     }
 

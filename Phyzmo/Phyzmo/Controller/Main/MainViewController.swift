@@ -12,6 +12,8 @@ import CheckMarkView
 class MainViewController: UIViewController {
     
     //UIElements
+    @IBOutlet weak var trashButton: UIButton!
+    @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -25,14 +27,19 @@ class MainViewController: UIViewController {
     left: 10.0,
     bottom: 50.0,
     right:10.0)
-    let itemsPerRow: CGFloat = 3
-    
-    
+    var itemsPerRow: CGFloat = 3
     var videos: [Video] = []
     var videoId : String?
     var video: Video?
+    var videosSelected: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        selectButton.setTitle("Cancel", for: .selected)
+        selectButton.backgroundColor = .clear
+        selectButton.setTitle("Select", for: .normal)
+        trashButton.addConstraint(trashButton.heightAnchor.constraint(equalToConstant: 0))
+        
         loading.isHidden = true
         //loading.startAnimating()
         collectionView.register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -57,13 +64,16 @@ class MainViewController: UIViewController {
             self.welcomeLabel.text = "Welcome"
         }
         //tableView.rowHeight = 60
-        updateCollection()
-        collectionView.reloadData()
+        
         
         
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        updateCollection() //Could make more efficient by only calling it when Users/currentUserId values have changed (ie: only when database has been changed -- observe)
+        collectionView.reloadData()
+    }
     func updateCollection(){
         videos.removeAll()
         
@@ -132,11 +142,66 @@ class MainViewController: UIViewController {
         return true
     }
 
+    @IBAction func deletePressed(_ sender: Any) {
+        
+        //TODO - delete all references in Firebase, GCP, etc. with the id's in videosSelected
+        for id in videosSelected {
+            videos.removeAll { (vid) -> Bool in
+                return vid.id == id
+            }
+            //DELETE FROM DATABASE
+        }
+        collectionView.reloadData()
+        selectPressed(self)
+    }
     @IBAction func logOutButtonPressed(_ sender: Any) {
         try! Auth.auth().signOut()
         self.dismiss(animated: false, completion: nil)
     }
     
+    @IBAction func selectPressed(_ sender: Any) {
+        selectButton.isSelected = !selectButton.isSelected
+        
+        if videosSelected.count == 0 {
+            trashButton.isEnabled = false
+        }
+        else{
+            trashButton.isEnabled = true
+        }
+        
+        print(selectButton.isSelected)
+        if selectButton.isSelected {
+            
+            for cell in collectionView.visibleCells {
+                (cell as! GalleryCollectionViewCell).checkMark.style = .openCircle
+            }
+            trashButton.isHidden = false
+            for c in trashButton.constraints {
+                print(c)
+                if c.constant == 0{
+                    trashButton.removeConstraint(c)
+                }
+            }
+            trashButton.addConstraint(trashButton.heightAnchor.constraint(equalToConstant: 50))
+        }
+        else{
+            videosSelected.removeAll()
+            for cell in collectionView.visibleCells {
+                (cell as! GalleryCollectionViewCell).checkMark.style = .nothing
+                (cell as! GalleryCollectionViewCell).checkMark.checked = false
+                (cell as! GalleryCollectionViewCell).imageTint.isHidden = true
+            }
+            for c in trashButton.constraints {
+               if c.constant == 50{
+                   trashButton.removeConstraint(c)
+               }
+            }
+            trashButton.addConstraint(trashButton.heightAnchor.constraint(equalToConstant: 0))
+            
+            
+            
+        }
+    }
     @IBAction func cameraButtonPressed(_ sender: Any) {
         print("working")
         VideoHelper.startMediaBrowser(delegate: self, sourceType: .camera)

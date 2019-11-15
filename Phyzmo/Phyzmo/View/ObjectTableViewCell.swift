@@ -25,6 +25,7 @@ class ObjectTableViewCell: UITableViewCell{
             }
         }
     }
+    
     var objects_detected : [String]?
     var objectName: UILabel!
     var checkMark : CheckMarkView!
