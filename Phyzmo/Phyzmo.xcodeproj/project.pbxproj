@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19A50DB1B91E900DE08A9742 /* Pods_Phyzmo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EE68B3C5E205949F4AB4A8 /* Pods_Phyzmo.framework */; };
+		54EE30352380A43900A80F54 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EE30342380A43900A80F54 /* Canvas.swift */; };
 		977C102A237C8F3B005B29D4 /* MainViewController-functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977C1029237C8F3B005B29D4 /* MainViewController-functions.swift */; };
 		977C102C237C9ACE005B29D4 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977C102B237C9ACE005B29D4 /* GalleryCollectionViewCell.swift */; };
 		97845B742377C6D600153871 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97845B732377C6D600153871 /* APIClient.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		1985290ECB3BCB8150F14082 /* Pods_Phyzmo_PhyzmoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Phyzmo_PhyzmoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CB3728C54478249F2EC9553 /* Pods-Phyzmo-PhyzmoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Phyzmo-PhyzmoUITests.release.xcconfig"; path = "Target Support Files/Pods-Phyzmo-PhyzmoUITests/Pods-Phyzmo-PhyzmoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		54EE30342380A43900A80F54 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		5D3E87A7D8CDF161D4946A4E /* Pods-PhyzmoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhyzmoTests.debug.xcconfig"; path = "Target Support Files/Pods-PhyzmoTests/Pods-PhyzmoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		61EE68B3C5E205949F4AB4A8 /* Pods_Phyzmo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Phyzmo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7309BE097651644DE2FDA382 /* Pods-PhyzmoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhyzmoTests.release.xcconfig"; path = "Target Support Files/Pods-PhyzmoTests/Pods-PhyzmoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				97845B7B2377F01A00153871 /* Video.swift */,
+				54EE30342380A43900A80F54 /* Canvas.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC4EFA5A237DBA43001677A0 /* ChartCells.swift in Sources */,
+				54EE30352380A43900A80F54 /* Canvas.swift in Sources */,
 				ACCBBDA1237756AA00863F24 /* SignUpViewController.swift in Sources */,
 				ACCBBDB52377798A00863F24 /* RecordVideoViewController.swift in Sources */,
 				ACCBBD9C237755B700863F24 /* SignInViewController.swift in Sources */,
