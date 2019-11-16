@@ -67,9 +67,9 @@ class GraphViewController: UIViewController {
         print("\n\(rawVelocity)")
         print("\n\(rawAcceleration)")
     }
-    override var shouldAutorotate: Bool {
+    /***override var shouldAutorotate: Bool {
         return true
-    }
+    }***/
 
     override func viewWillDisappear(_ animated: Bool) {
         //UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")

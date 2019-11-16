@@ -49,10 +49,10 @@ class ChartViewController: UIViewController {
         chartSpreadsheetView.flashScrollIndicators()
         
     }
-    
+    /**
     override var shouldAutorotate: Bool {
         return true
-    }
+    }**/
     
     //EXPORT
     
