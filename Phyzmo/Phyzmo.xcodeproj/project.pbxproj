@@ -265,7 +265,6 @@
 				ACCBBDB22377602500863F24 /* SignIn */,
 				ACCBBDB32377795000863F24 /* Main */,
 				AC4EFA56237DB6D6001677A0 /* Chart */,
-				ACCBBDA0237756AA00863F24 /* SignUpViewController.swift */,
 				ACCBBDA4237757DD00863F24 /* DistanceViewController.swift */,
 				ACCBBDA6237757F400863F24 /* VideoViewController.swift */,
 				ACCBBDA82377580100863F24 /* GraphViewController.swift */,
@@ -279,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				ACCBBD9B237755B700863F24 /* SignInViewController.swift */,
+				ACCBBDA0237756AA00863F24 /* SignUpViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
