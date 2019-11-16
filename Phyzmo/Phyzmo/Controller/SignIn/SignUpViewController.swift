@@ -49,11 +49,13 @@ class SignUpViewController: UIViewController {
             }
             else {
                 self.displayAlert(title: "Error", message : "Error creating user. Please try again." )
-                
             }
         }
+         
+        
     }
     
+
     func sendVerificationMail(){
         Auth.auth().currentUser!.sendEmailVerification(completion: { (error) in
             self.displayAlert(title: "Verification", message : "Error Sending Verification Email. Please try again." )
@@ -67,6 +69,7 @@ class SignUpViewController: UIViewController {
         alert.addAction(defaultAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }

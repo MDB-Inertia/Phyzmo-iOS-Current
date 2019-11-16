@@ -47,7 +47,7 @@ class SignInViewController: UIViewController {
         guard let password = passwordTextField.text else { return }
         
         Auth.auth().signIn(withEmail: userEmail, password: password) { user, error in
-            if error  != nil || user == nil{
+            if error != nil || user == nil{
                 self.displayAlert(type : "nil" , title: "Incorrect Login", message : "The login details you entered is incorrect. Please try again." )
             }
             else if !Auth.auth().currentUser!.isEmailVerified{
@@ -61,7 +61,9 @@ class SignInViewController: UIViewController {
             }
         }
     }
-    
+            
+            
+            
     func displayAlert(type: String, title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         switch type{
@@ -87,6 +89,7 @@ class SignInViewController: UIViewController {
             self.displayAlert(type: "nil", title: "Verification", message : "Verification Email Send" )
             })
     }
+    
     
     @IBAction func enterButtonPressed(_ sender: Any) {
         handleSignIn()
