@@ -12,6 +12,7 @@
 		977C102C237C9ACE005B29D4 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977C102B237C9ACE005B29D4 /* GalleryCollectionViewCell.swift */; };
 		97845B742377C6D600153871 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97845B732377C6D600153871 /* APIClient.swift */; };
 		97845B7C2377F01A00153871 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97845B7B2377F01A00153871 /* Video.swift */; };
+		97DB7E622380812F00E55F5C /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB7E612380812F00E55F5C /* InitialViewController.swift */; };
 		97FC58E023790B1D0038BBD8 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC58DF23790B1D0038BBD8 /* DataViewController.swift */; };
 		97FC58E32379354D0038BBD8 /* ObjectViewController - TableFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC58E22379354D0038BBD8 /* ObjectViewController - TableFunctions.swift */; };
 		97FC58E5237935CD0038BBD8 /* ObjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC58E4237935CD0038BBD8 /* ObjectTableViewCell.swift */; };
@@ -73,6 +74,7 @@
 		977C102B237C9ACE005B29D4 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		97845B732377C6D600153871 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		97845B7B2377F01A00153871 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		97DB7E612380812F00E55F5C /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		97FC58DF23790B1D0038BBD8 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		97FC58E22379354D0038BBD8 /* ObjectViewController - TableFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObjectViewController - TableFunctions.swift"; sourceTree = "<group>"; };
 		97FC58E4237935CD0038BBD8 /* ObjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -265,12 +267,12 @@
 				ACCBBDB22377602500863F24 /* SignIn */,
 				ACCBBDB32377795000863F24 /* Main */,
 				AC4EFA56237DB6D6001677A0 /* Chart */,
-				ACCBBDA0237756AA00863F24 /* SignUpViewController.swift */,
 				ACCBBDA4237757DD00863F24 /* DistanceViewController.swift */,
 				ACCBBDA6237757F400863F24 /* VideoViewController.swift */,
 				ACCBBDA82377580100863F24 /* GraphViewController.swift */,
 				97FC58E1237935130038BBD8 /* ObjectViewController */,
 				97FC58DF23790B1D0038BBD8 /* DataViewController.swift */,
+				97DB7E612380812F00E55F5C /* InitialViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -279,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				ACCBBD9B237755B700863F24 /* SignInViewController.swift */,
+				ACCBBDA0237756AA00863F24 /* SignUpViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				97FC58E023790B1D0038BBD8 /* DataViewController.swift in Sources */,
 				ACCBBDAB2377581800863F24 /* ChartViewController.swift in Sources */,
 				97845B7C2377F01A00153871 /* Video.swift in Sources */,
+				97DB7E622380812F00E55F5C /* InitialViewController.swift in Sources */,
 				ACCBBDA5237757DD00863F24 /* DistanceViewController.swift in Sources */,
 				ACCBBDA32377575200863F24 /* MainViewController.swift in Sources */,
 				977C102A237C8F3B005B29D4 /* MainViewController-functions.swift in Sources */,

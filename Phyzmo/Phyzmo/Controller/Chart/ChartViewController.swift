@@ -16,7 +16,6 @@ class ChartViewController: UIViewController {
     var rawVelocity : [Double]?
     var rawAcceleration : [Double]?
 
-    @IBOutlet weak var exportButton: UIButton!
     @IBOutlet weak var chartSpreadsheetView: SpreadsheetView!
     
     let colors = [UIColor(red: 0.314, green: 0.698, blue: 0.337, alpha: 1),
@@ -28,6 +27,7 @@ class ChartViewController: UIViewController {
         readVals()
         
         
+
         
         chartSpreadsheetView.dataSource = self
         chartSpreadsheetView.delegate = self
@@ -41,12 +41,13 @@ class ChartViewController: UIViewController {
         
         
     }
-    override func viewWillAppear(_ animated: Bool) {
+    /*override func viewWillAppear(_ animated: Bool) {
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
-    }
+    }*/
     
     override func viewDidAppear(_ animated: Bool){
         chartSpreadsheetView.flashScrollIndicators()
+        tabBarController!.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(export))
         
     }
     /**
@@ -55,8 +56,7 @@ class ChartViewController: UIViewController {
     }**/
     
     //EXPORT
-    
-    @IBAction func exportButtonPressed(_ sender: Any) {
+    @objc func export(sender: UIButton) {
         let fileName = "\((self.tabBarController as! DataViewController).video?.id)"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         var csvText = "Time,Displacement,Velocity,Acceleration\n" //FIXME
@@ -87,6 +87,7 @@ class ChartViewController: UIViewController {
             print("\(error)")
         }
     }
+    
     
     func readVals(){
         guard let data = (self.tabBarController as! DataViewController).video?.data else{

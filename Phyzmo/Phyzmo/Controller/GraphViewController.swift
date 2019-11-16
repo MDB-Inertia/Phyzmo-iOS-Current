@@ -20,8 +20,6 @@ class GraphViewController: UIViewController {
 
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var chartButton: UIButton!
-    @IBOutlet weak var exportButton: UIButton!
-    
     
     var chatStatus = 0
 
@@ -41,17 +39,18 @@ class GraphViewController: UIViewController {
         super.viewDidLoad()
         setUpGraph()
         updateGraph()
-
+        
 
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    /*override func viewWillAppear(_ animated: Bool) {
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
         
-    }
+    }*/
     override func viewDidAppear(_ animated: Bool) {
         setUpGraph()
         updateGraph()
+        tabBarController!.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(export))
     }
 
     func readVals(){
@@ -85,7 +84,7 @@ class GraphViewController: UIViewController {
 
     }
     
-    @IBAction func exportButtonPressed(_ sender: Any) {
+    @objc func export(sender: UIButton) {
         let image = chartView.getChartImage(transparent: false)
         UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
     }

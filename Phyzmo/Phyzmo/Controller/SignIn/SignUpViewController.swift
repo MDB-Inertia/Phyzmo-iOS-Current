@@ -44,14 +44,29 @@ class SignUpViewController: UIViewController {
                 let userNode = usersNode.child(currentID)
                 userNode.updateChildValues(["fullname": fullname, "email": email])
                 UserDefaults.standard.set(currentID, forKey: "user")
-                self.dismiss(animated: false, completion: nil)
+                self.sendVerificationMail()
+                //self.dismiss(animated: false, completion: nil)
             }
             else {
-                print("Error creating user: \(error!.localizedDescription)")
+                self.displayAlert(title: "Error", message : "Error creating user. Please try again." )
+                
             }
         }
     }
     
+    func sendVerificationMail(){
+        Auth.auth().currentUser!.sendEmailVerification(completion: { (error) in
+            self.displayAlert(title: "Verification", message : "Error Sending Verification Email. Please try again." )
+            })
+        self.displayAlert(title: "Verification", message : "Verification Email Send" )
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }

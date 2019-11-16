@@ -22,11 +22,11 @@ class VideoViewController: UIViewController {
         playButton.frame = image.frame
         //playButton.imageView?.frame(forAlignmentRect: CGRect(x: 0, y: 0, width: 50, height: 50))
         playerViewController.player = (self.tabBarController as! DataViewController).video?.video
-
+        
         
     }
     override func viewDidAppear(_ animated: Bool) {
-        
+        tabBarController!.navigationItem.rightBarButtonItem = nil
     }
     
     @IBAction func playPressed(_ sender: Any) {

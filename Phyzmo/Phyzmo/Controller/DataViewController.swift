@@ -21,6 +21,7 @@ class DataViewController: UITabBarController {
         }
         // Do any additional setup after loading the view.
     }
+    
     func disableAllButObjects(){
         var count = 0
         for button in self.tabBar.items!{

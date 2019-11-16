@@ -21,7 +21,6 @@ class ObjectViewController: UIViewController {
         //let tabController = self.tabBarController as! DataViewController
         //self.video = tabController.video
         
-        
         tableView.register(ObjectTableViewCell.self, forCellReuseIdentifier: "objectCell")
         tableView.delegate = self
         tableView.dataSource = self
@@ -34,6 +33,10 @@ class ObjectViewController: UIViewController {
             
         }
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tabBarController!.navigationItem.rightBarButtonItem = nil
     }
     
     @IBAction func objectSelectionPressed(_ sender: Any) {
