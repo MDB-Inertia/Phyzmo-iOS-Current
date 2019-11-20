@@ -115,6 +115,13 @@ extension MainViewController: UIImagePickerControllerDelegate {
             if error == nil {
                 print("Successful video upload")
                 
+                
+            } else {
+                print(error?.localizedDescription)
+            }
+            print("api call starting")
+            APIClient.getAllPositionCV(videoPath: "gs://phyzmo.appspot.com/\(self.videoId!).mp4") { (objectsData) in
+                print("api call done")
                 databaseReference.child("videoId").observeSingleEvent(of: .value, with: { (snapshot) in
                     print("key", snapshot.key)
                     print("value", snapshot.value)
@@ -128,15 +135,9 @@ extension MainViewController: UIImagePickerControllerDelegate {
                         print("nil")
                         databaseReference.updateChildValues(["videoId":[self.videoId!]])
                     }
-                  }) { (error) in
+                }) { (error) in
                     print(error.localizedDescription)
                 }
-            } else {
-                print(error?.localizedDescription)
-            }
-            print("api call starting")
-            APIClient.getAllPositionCV(videoPath: "gs://phyzmo.appspot.com/\(self.videoId!).mp4") { (objectsData) in
-                print("api call done")
                 DispatchQueue.main.async {
                     self.loading.isHidden = true
                     self.loading.stopAnimating()

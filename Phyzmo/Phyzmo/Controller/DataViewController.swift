@@ -21,7 +21,12 @@ class DataViewController: UITabBarController {
         }
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParent{
+            video?.deconstruct()
+        }
+    }
     func disableAllButObjects(){
         var count = 0
         for button in self.tabBar.items!{

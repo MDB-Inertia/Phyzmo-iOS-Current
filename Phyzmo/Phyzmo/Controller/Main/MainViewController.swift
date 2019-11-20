@@ -71,17 +71,21 @@ class MainViewController: UIViewController {
         //tableView.rowHeight = 60
         
         
+        //TODO - CHECK IF CAMERA WORKS WITH THIS
+        databaseReference.observe(.value) { (snapshot) in
+            self.updateCollection()
+        }
         
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateCollection() //Could make more efficient by only calling it when Users/currentUserId values have changed (ie: only when database has been changed -- observe)
-        collectionView.reloadData()
+        //updateCollection() //Could make more efficient by only calling it when Users/currentUserId values have changed (ie: only when database has been changed -- observe)
+        //collectionView.reloadData()
     }
     func updateCollection(){
         videos.removeAll()
-        
+        let group = DispatchGroup()
         let currentUserId = Auth.auth().currentUser!.uid
         print("currentUserId", currentUserId)
         let databaseReference = Database.database().reference().child("Users").child(currentUserId)
@@ -98,8 +102,8 @@ class MainViewController: UIViewController {
                     RECENT DATA ON THE TOP */
                 
                 /*Also must find a way to say when all thumbnails are loaded*/
-                
-                for vidId in videoIds.reversed() {
+                for (index,vidId) in videoIds.reversed().enumerated() {
+                    group.enter()
                     storageReference.child("\(vidId).jpg").getData(maxSize: 1 * 1024 * 1024) { data, error in
                       if let error = error {
                         // Uh-oh, an error occurred!
@@ -108,6 +112,7 @@ class MainViewController: UIViewController {
                         // Data for "images/island.jpg" is returned
                         let image = UIImage(data: data!)
                         let ref = Database.database().reference().child("Videos").child(vidId).child("objects_selected")
+                        group.enter()
                         ref.observeSingleEvent(of: .value) { (snapshot) in
                             if snapshot.value is [AnyObject] {
                                 let objects_selected = snapshot.value as! [String]
@@ -117,7 +122,8 @@ class MainViewController: UIViewController {
                             else{
                                 self.videos.append(Video(id: vidId, thumbnail: image!, objects_selected: []))
                             }
-                            self.collectionView.reloadData()
+                            group.leave()
+                            
                         }
                         
                         
@@ -125,7 +131,23 @@ class MainViewController: UIViewController {
                         
                         print("\(vidId).jpg found")
                       }
+                      group.leave()
                     }
+                }
+                group.notify(queue: DispatchQueue.main) {
+                    // MAKE SURE THE SORTING WORKS WITH ADDING VIDEOS
+                    self.videos.sort { (a, b) -> Bool in
+                        for i in 0...videoIds.reversed().count {
+                            if a.id == videoIds.reversed()[i] {
+                                return true
+                            }
+                            else if b.id == videoIds.reversed()[i] {
+                                return false
+                            }
+                        }
+                        return false
+                    }
+                    self.collectionView.reloadData()
                 }
                     
                 
@@ -139,6 +161,7 @@ class MainViewController: UIViewController {
         
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
     }

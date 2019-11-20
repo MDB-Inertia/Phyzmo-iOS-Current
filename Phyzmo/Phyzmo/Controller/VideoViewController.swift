@@ -31,6 +31,7 @@ class VideoViewController: UIViewController {
     
     @IBAction func playPressed(_ sender: Any) {
         present(playerViewController, animated: true) {
+            (self.tabBarController as! DataViewController).video?.video!.seek(to: .zero)
             (self.tabBarController as! DataViewController).video?.video!.play()
         }
     }

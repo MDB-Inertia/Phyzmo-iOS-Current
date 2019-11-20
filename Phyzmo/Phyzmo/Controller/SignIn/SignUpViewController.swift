@@ -15,7 +15,6 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +69,7 @@ class SignUpViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func backButtonPressed(_ sender: Any) {
+    @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
     
