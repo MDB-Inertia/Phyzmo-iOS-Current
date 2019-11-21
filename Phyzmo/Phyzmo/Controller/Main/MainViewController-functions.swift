@@ -80,6 +80,12 @@ extension MainViewController : UICollectionViewDelegateFlowLayout {
                       minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return sectionInsets.left
   }
+
+    private func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      maximumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return sectionInsets.left
+    }
 }
 extension MainViewController: UICollectionViewDelegate {
 

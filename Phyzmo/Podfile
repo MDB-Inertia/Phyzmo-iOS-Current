@@ -14,6 +14,7 @@ pod 'Firebase/Storage'
 pod 'Charts'
 pod 'CheckMarkView'
 pod 'SpreadsheetView'
+pod 'SkyFloatingLabelTextField', '~> 3.0'
 
   target 'PhyzmoTests' do
     inherit! :search_paths

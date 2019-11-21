@@ -88,6 +88,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - SkyFloatingLabelTextField (3.7.0)
   - SpreadsheetView (0.8.4)
 
 DEPENDENCIES:
@@ -97,6 +98,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseAuth
   - FirebaseDatabase
+  - SkyFloatingLabelTextField (~> 3.0)
   - SpreadsheetView
 
 SPEC REPOS:
@@ -120,6 +122,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - SkyFloatingLabelTextField
     - SpreadsheetView
 
 SPEC CHECKSUMS:
@@ -142,8 +145,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
   SpreadsheetView: 17c55b6dc82099993cc2ceb818248d19f3220998
 
-PODFILE CHECKSUM: 1d6fb180face8527d57c52257bba1eb78d160ec4
+PODFILE CHECKSUM: c392ab5005c88cb14531d79c911df3b35b367f6d
 
 COCOAPODS: 1.8.4

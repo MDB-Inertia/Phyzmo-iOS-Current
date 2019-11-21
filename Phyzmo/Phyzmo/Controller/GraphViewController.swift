@@ -99,6 +99,7 @@ class GraphViewController: UIViewController {
             chartVelocity.append(velocityValue)
             chartAcceleration.append(accelerationValue)
         }
+        
     }
     func updateGraph(){
 
@@ -116,8 +117,10 @@ class GraphViewController: UIViewController {
         }
         
 
-        currentLine.colors = [NSUIColor.blue]
-
+        currentLine.colors = [UIColor(red:0.01, green:0.38, blue:0.93, alpha:1.0)]
+        currentLine.lineWidth = 2.0
+        //currentLine.circleColors = [UIColor(red:0.93, green:0.66, blue:0.01, alpha:1.0)]
+        currentLine.circleRadius = 4.0
         let data = LineChartData()
         data.addDataSet(currentLine)
         chartView.data = data

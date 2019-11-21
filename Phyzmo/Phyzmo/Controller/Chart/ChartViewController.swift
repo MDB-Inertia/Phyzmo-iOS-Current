@@ -82,7 +82,6 @@ class ChartViewController: UIViewController {
             present(vc, animated: true, completion: nil)
             
         } catch {
-            
             print("Failed to create file")
             print("\(error)")
         }
