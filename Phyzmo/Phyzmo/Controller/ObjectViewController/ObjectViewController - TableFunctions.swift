@@ -36,13 +36,15 @@ extension ObjectViewController: UITableViewDelegate, UITableViewDataSource{
         if (self.tabBarController as! DataViewController).video!.objects_selected == []{
             selectButton.isHighlighted = true
             selectButton.isEnabled = false
-            (self.tabBarController as! DataViewController).disableAllButObjects()
-            
         }
         else{
             selectButton.isHighlighted = false
             selectButton.isEnabled = true
         }
+        if selectedObjects == []{
+            (self.tabBarController as! DataViewController).disableAllButObjects()
+        }
+
         //selectedEvent = events[index]
         //performSegue(withIdentifier: "showDetails", sender: self)
     }

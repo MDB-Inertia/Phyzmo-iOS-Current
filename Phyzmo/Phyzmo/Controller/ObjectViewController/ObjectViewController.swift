@@ -14,6 +14,8 @@ class ObjectViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var selectButton: UIButton!
+    var selectedObjects: [String]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //let tabController = self.tabBarController as! DataViewController
@@ -24,17 +26,25 @@ class ObjectViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 60
         //updateTable()
+        load()
+        
+    }
+    func load(){
+        selectedObjects = (self.tabBarController as! DataViewController).video!.objects_selected
         if (self.tabBarController as! DataViewController).video!.objects_selected == []{
             selectButton.isHighlighted = true
             selectButton.isEnabled = false
-            (self.tabBarController as! DataViewController).disableAllButObjects()
             
+            
+        }
+        if selectedObjects == []{
+            (self.tabBarController as! DataViewController).disableAllButObjects()
         }
         tableView.reloadData()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         tabBarController!.navigationItem.rightBarButtonItem = nil
+        load()
     }
     
     @IBAction func objectSelectionPressed(_ sender: Any) {
@@ -48,6 +58,7 @@ class ObjectViewController: UIViewController {
             return
         }*/
         print("updating object selection")
+        selectedObjects = (self.tabBarController as! DataViewController).video!.objects_selected
         let videoReference = Database.database().reference().child("Videos").child("\((self.tabBarController as! DataViewController).video!.id)")
         videoReference.setValue(["objects_selected": (self.tabBarController as! DataViewController).video!.objects_selected])
         print((self.tabBarController as! DataViewController).video!.id)
@@ -75,7 +86,10 @@ class ObjectViewController: UIViewController {
     }*/
     
     // TO ensure that check boxes are always on the right side of the screen
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        (self.tabBarController as! DataViewController).video!.objects_selected = selectedObjects!
+    }
     override func viewWillTransition(to: CGSize, with: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: to, with: with)
         if tableView != nil {
