@@ -162,7 +162,6 @@ class MainViewController: UIViewController {
                     self.collectionView.isUserInteractionEnabled = true
                     self.cameraButton.isEnabled = true
                     //self.updateGroup.leave()
-                    print(self.videos[0].objects_selected)
                     if self.shouldSegue {
                         self.shouldSegue = false
                         self.video = self.videos[0]
