@@ -331,7 +331,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-bO-FSJ" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="159" width="414" height="654"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUk-dc-QUc">
                                         <rect key="frame" x="184" y="0.0" width="46" height="30"/>
@@ -344,6 +344,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.86852464490000003" blue="0.89411805099999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5CX-z1-ISe">
+                                <rect key="frame" x="51.5" y="108" width="311" height="32"/>
+                                <segments>
+                                    <segment title="Displacement"/>
+                                    <segment title="Velocity"/>
+                                    <segment title="Acceleration"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -351,7 +359,9 @@
                             <constraint firstItem="VqB-dv-C9E" firstAttribute="trailing" secondItem="Cxb-bO-FSJ" secondAttribute="trailing" id="2rR-b3-Lsz"/>
                             <constraint firstItem="Cxb-bO-FSJ" firstAttribute="centerX" secondItem="YOe-2a-TH0" secondAttribute="centerX" id="4xw-yd-n6x"/>
                             <constraint firstItem="VqB-dv-C9E" firstAttribute="bottom" secondItem="Cxb-bO-FSJ" secondAttribute="bottom" id="EhW-18-6qj"/>
-                            <constraint firstItem="Cxb-bO-FSJ" firstAttribute="top" secondItem="VqB-dv-C9E" secondAttribute="top" id="MGA-ZB-48e"/>
+                            <constraint firstItem="5CX-z1-ISe" firstAttribute="centerX" secondItem="YOe-2a-TH0" secondAttribute="centerX" id="M31-36-BSh"/>
+                            <constraint firstItem="Cxb-bO-FSJ" firstAttribute="top" secondItem="5CX-z1-ISe" secondAttribute="bottom" constant="20" id="MGA-ZB-48e"/>
+                            <constraint firstItem="5CX-z1-ISe" firstAttribute="top" secondItem="VqB-dv-C9E" secondAttribute="top" constant="20" id="S8X-4q-def"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VqB-dv-C9E"/>
                     </view>
