@@ -19,7 +19,7 @@ class GraphViewController: UIViewController {
 
 
     @IBOutlet weak var chartView: LineChartView!
-    @IBOutlet weak var chartButton: UIButton!
+    @IBOutlet weak var segmentedView: UISegmentedControl!
     
     var chatStatus = 0
 
@@ -74,19 +74,14 @@ class GraphViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         //UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
     }
-
-    @IBAction func chartButtonPressed(_ sender: Any) {
-        if chatStatus == 2{
-            chatStatus = 0}
-        else{
-            chatStatus += 1}
-
+    
+    @IBAction func segmentedViewPressed(_ sender: Any) {
         updateGraph()
-
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     @objc func export(sender: UIButton) {
         let image = chartView.getChartImage(transparent: false)
@@ -114,12 +109,17 @@ class GraphViewController: UIViewController {
 
         var currentLine = LineChartDataSet(entries: chartDisplacement, label: "Displacement" )
     
-        if chatStatus == 1 {
+        if segmentedView.selectedSegmentIndex == 0 {
+            var currentLine = LineChartDataSet(entries: chartDisplacement, label: "Displacement" )
+        }
+        else if segmentedView.selectedSegmentIndex == 1 {
             currentLine = LineChartDataSet(entries: chartVelocity, label: "Velocity" )
         }
-        else if chatStatus == 2 {
-            currentLine = LineChartDataSet(entries: chartAcceleration, label: "Acceleration" )
+        
+        else if segmentedView.selectedSegmentIndex == 2 {
+              currentLine = LineChartDataSet(entries: chartAcceleration, label: "Acceleration" )
         }
+        
 
         currentLine.colors = [NSUIColor.blue]
 
