@@ -15,6 +15,12 @@ class ObjectViewController: UIViewController {
     
     @IBOutlet weak var selectButton: UIButton!
     var selectedObjects: [String]?
+    let canvas = Canvas()
+    var imageView: UIImageView!
+    var imageWidth : CGFloat?
+    var imageHeight : CGFloat?
+    
+    @IBOutlet weak var segmented: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +33,56 @@ class ObjectViewController: UIViewController {
         tableView.rowHeight = 60
         //updateTable()
         load()
+    
+        view.addSubview(canvas)
+        canvas.backgroundColor = UIColor(white: 1, alpha: 0.1)
+        canvas.frame = view.frame
         
+        let image = (self.tabBarController as! DataViewController).video!.thumbnail
+        imageView = UIImageView(image: image)
+        //Format ImageView
+//        imageView.frame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.contentSize.width, height: tableView.contentSize.height)
+//        let midX = self.view.bounds.midX
+//        let midY = self.view.bounds.midY
+//        let size: CGFloat = 64
+//        imageView.frame = CGRect(x: view.bounds.width/2, y: view.bounds.height/2, width: 500, height: 500)
+        
+        imageWidth = 15*view.frame.width/16
+        imageHeight = 10*view.frame.height/16
+        imageView.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageWidth!, height: imageHeight!)
+        imageView.contentMode = .scaleAspectFit
+        view.addSubview(imageView)
+        canvas.tag = 100
+        imageView.tag = 101
+//        canvas.frame = imageView.frame
+        canvas.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageView.image!.size.width, height: imageView.image!.size.height)
+        imageView.backgroundColor = UIColor.purple.withAlphaComponent(0.3)
+        
+        
+        //Imageview on Top of View
+        self.view.bringSubviewToFront(canvas)
+        print("view success")
+        
+        view.viewWithTag(100)!.isHidden = true
+        view.viewWithTag(101)!.isHidden = true
     }
+    
+    @IBAction func segmented(_ sender: Any) {
+        switch segmented.selectedSegmentIndex
+        {
+        case 0:
+            view.viewWithTag(100)!.isHidden = true
+            view.viewWithTag(101)!.isHidden = true
+            tableView.isHidden = false
+        case 1:
+            view.viewWithTag(100)!.isHidden = false
+            view.viewWithTag(101)!.isHidden = false
+            tableView.isHidden = true
+        default:
+            break
+        }
+    }
+    
     func load(){
         selectedObjects = (self.tabBarController as! DataViewController).video!.objects_selected
         if (self.tabBarController as! DataViewController).video!.objects_selected == []{
@@ -95,5 +149,11 @@ class ObjectViewController: UIViewController {
         if tableView != nil {
             tableView.reloadData()
         }
+        imageWidth = 15*to.width/16
+        imageHeight = 10*to.height/16
+        imageView.frame = CGRect(x: to.width/2-imageWidth!/2, y: to.height/2-imageHeight!/2, width: imageWidth!, height: imageHeight!)
+        imageView.contentMode = .scaleAspectFit
+        //canvas.frame = imageView.frame
+        canvas.frame = CGRect(x: to.width/2-imageWidth!/2, y: to.height/2-imageHeight!/2, width: imageView.image!.size.width, height: imageView.image!.size.height)
     }
 }
