@@ -12,8 +12,6 @@ import Firebase
 class ObjectViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    //var video : Video? // MAY WANT TO CHANGE THIS SO THAT ONLY THE DATAVIEWCONTROLLER HAS VIDEO OBJECT
-    
     
     @IBOutlet weak var selectButton: UIButton!
     override func viewDidLoad() {

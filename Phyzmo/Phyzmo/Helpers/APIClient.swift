@@ -12,8 +12,9 @@ class APIClient {
     static func getAllPositionCV(videoPath: String, completion: @escaping ([String:Any]) -> ()) {
         let requestURL = "https://us-central1-phyzmo.cloudfunctions.net/position-cv-all-saver?uri=" + videoPath
         guard let url = URL(string: requestURL) else {return}
-
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 540.0
+        let task = URLSession(configuration: sessionConfig).dataTask(with: url) { (data, response, error) in
         print("data", data)
         print("response", response)
         print("error", error)

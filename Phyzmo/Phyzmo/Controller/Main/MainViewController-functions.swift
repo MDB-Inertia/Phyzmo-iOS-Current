@@ -101,8 +101,12 @@ extension MainViewController: UICollectionViewDelegate {
         }
         else{
             self.video = videos[indexPath.item]
-            self.video?.contruct(completion: {
+            self.loading.isHidden = false
+            self.loading.startAnimating()
+            self.video?.construct(completion: {
                 DispatchQueue.main.async {
+                    self.loading.isHidden = true
+                    self.loading.stopAnimating()
                     self.performSegue(withIdentifier: "MainToVideo", sender: self)
                 }
             })

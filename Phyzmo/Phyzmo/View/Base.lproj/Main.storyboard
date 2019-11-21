@@ -475,7 +475,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LOe-qh-9qE">
-                                <rect key="frame" x="0.0" y="138" width="414" height="698"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="728"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ths-B7-JD2">
                                     <size key="itemSize" width="50" height="50"/>
@@ -494,15 +494,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xS4-1H-jit">
-                                <rect key="frame" x="181.5" y="433" width="51" height="30"/>
-                                <state key="normal" title="CHART"/>
-                                <connections>
-                                    <action selector="chartButtonPressed:" destination="Qsf-8q-nls" eventType="touchUpInside" id="m5R-D2-hxe"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="cWO-ho-EgF">
-                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="cWO-ho-EgF">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zpl-iS-rb5">
                                 <rect key="frame" x="20" y="98" width="374" height="0.0"/>
@@ -511,16 +504,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading your datasets!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Z6-i6-sdz">
-                                <rect key="frame" x="20" y="398" width="374" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="20" y="398" width="374" height="20"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyG-67-sWR">
-                                <rect key="frame" x="345" y="98" width="49" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyG-67-sWR">
+                                <rect key="frame" x="343" y="98" width="51" height="34"/>
                                 <state key="normal" title="Select">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="selectPressed:" destination="Qsf-8q-nls" eventType="touchUpInside" id="6Wi-P9-fSL"/>
@@ -541,7 +537,7 @@
                             <constraint firstItem="cWO-ho-EgF" firstAttribute="centerX" secondItem="lZE-HU-zsw" secondAttribute="centerX" id="3pX-Hd-BRj"/>
                             <constraint firstItem="cWO-ho-EgF" firstAttribute="centerY" secondItem="lZE-HU-zsw" secondAttribute="centerY" id="7pB-b5-LVs"/>
                             <constraint firstItem="6Z6-i6-sdz" firstAttribute="centerY" secondItem="lZE-HU-zsw" secondAttribute="centerY" constant="-40" id="BBc-lQ-umy"/>
-                            <constraint firstItem="xS4-1H-jit" firstAttribute="centerX" secondItem="lZE-HU-zsw" secondAttribute="centerX" id="GUF-wu-EyY"/>
+                            <constraint firstItem="6Z6-i6-sdz" firstAttribute="top" secondItem="lZE-HU-zsw" secondAttribute="bottom" constant="-498" id="JRP-FC-kdY"/>
                             <constraint firstItem="hdQ-ZI-aNz" firstAttribute="trailing" secondItem="POO-DV-Yll" secondAttribute="trailing" constant="20" id="KpJ-os-LTQ"/>
                             <constraint firstItem="LOe-qh-9qE" firstAttribute="leading" secondItem="hdQ-ZI-aNz" secondAttribute="leading" id="PxB-g6-gIp"/>
                             <constraint firstItem="hdQ-ZI-aNz" firstAttribute="trailing" secondItem="LOe-qh-9qE" secondAttribute="trailing" id="Pys-IU-gVF"/>
@@ -551,10 +547,9 @@
                             <constraint firstItem="6Z6-i6-sdz" firstAttribute="centerX" secondItem="lZE-HU-zsw" secondAttribute="centerX" id="eqv-OM-7Y0"/>
                             <constraint firstItem="6Z6-i6-sdz" firstAttribute="leading" secondItem="lZE-HU-zsw" secondAttribute="leading" constant="20" id="fBB-wd-fSA"/>
                             <constraint firstItem="hdQ-ZI-aNz" firstAttribute="trailing" secondItem="WyG-67-sWR" secondAttribute="trailing" constant="20" id="ikA-GS-eep"/>
-                            <constraint firstItem="LOe-qh-9qE" firstAttribute="top" secondItem="hdQ-ZI-aNz" secondAttribute="top" constant="50" id="lwj-Ha-YOq"/>
+                            <constraint firstItem="LOe-qh-9qE" firstAttribute="top" secondItem="Zpl-iS-rb5" secondAttribute="bottom" constant="10" id="lwj-Ha-YOq"/>
                             <constraint firstItem="Zpl-iS-rb5" firstAttribute="top" secondItem="hdQ-ZI-aNz" secondAttribute="top" constant="10" id="qcL-zw-5vC"/>
                             <constraint firstItem="POO-DV-Yll" firstAttribute="bottom" secondItem="hdQ-ZI-aNz" secondAttribute="bottom" id="t04-HT-dqw"/>
-                            <constraint firstItem="xS4-1H-jit" firstAttribute="centerY" secondItem="lZE-HU-zsw" secondAttribute="centerY" id="te3-QZ-uSp"/>
                             <constraint firstItem="POO-DV-Yll" firstAttribute="top" secondItem="LOe-qh-9qE" secondAttribute="bottom" id="yU5-Fk-3Yg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hdQ-ZI-aNz"/>
@@ -574,7 +569,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraButton" destination="6bj-ga-V93" id="zv8-6Q-s4W"/>
-                        <outlet property="chartButton" destination="xS4-1H-jit" id="Di5-We-mKo"/>
                         <outlet property="collectionView" destination="LOe-qh-9qE" id="hJv-x7-gYF"/>
                         <outlet property="loading" destination="cWO-ho-EgF" id="VsY-Om-h0y"/>
                         <outlet property="logOutButton" destination="H92-l8-7jr" id="MZl-HL-zoG"/>

@@ -97,6 +97,16 @@ extension MainViewController: UIImagePickerControllerDelegate {
         })
     }
     func uploadToFirebase(url: URL?, error: Error?) {
+        //updateGroup.enter()
+        DispatchQueue.main.async {
+            self.logOutButton.isEnabled = false
+            self.selectButton.isEnabled = false
+            self.collectionView.isUserInteractionEnabled = false
+            self.cameraButton.isEnabled = false
+            self.statusLabel.isHidden = false
+            self.statusLabel.text = "Uploading video"
+        }
+        
         if error != nil {
             return
         }
@@ -120,6 +130,14 @@ extension MainViewController: UIImagePickerControllerDelegate {
                 print(error?.localizedDescription)
             }
             print("api call starting")
+            
+            /*DispatchQueue.main.async {
+            
+                print("detecting objects")
+            }*/
+            self.statusLabel.text = "Detecting Objects"
+            //self.updateGroup.enter()
+            print("detecting objects")
             APIClient.getAllPositionCV(videoPath: "gs://phyzmo.appspot.com/\(self.videoId!).mp4") { (objectsData) in
                 print("api call done")
                 databaseReference.child("videoId").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -130,25 +148,28 @@ extension MainViewController: UIImagePickerControllerDelegate {
                         databaseReference.updateChildValues(["videoId":(snapshot.value as! [String]) + [self.videoId!]])
                         //videoReference.updateChildValues()
                         videoReference.setValue(["objects_selected": []])
-
+                        
                     } else {
                         print("nil")
                         databaseReference.updateChildValues(["videoId":[self.videoId!]])
                     }
+                    self.shouldSegue = true
                 }) { (error) in
                     print(error.localizedDescription)
                 }
-                DispatchQueue.main.async {
-                    self.loading.isHidden = true
-                    self.loading.stopAnimating()
+                
+                //DispatchQueue.main.async {
+                    //self.loading.isHidden = true
+                    //self.loading.stopAnimating()
                     //self.objectsData = objectsData
-                    Storage.storage().reference().child("\(self.videoId!).jpg").getData(maxSize: 1 * 1024 * 1024) { data, error in
+                    /*Storage.storage().reference().child("\(self.videoId!).jpg").getData(maxSize: 1 * 1024 * 1024) { data, error in
                         if let error = error {
                           // Uh-oh, an error occurred!
                           //print("\(vidId).jpg not found")
                             self.video = Video(id: self.videoId!, thumbnail: UIImage(), objects_selected: [])
                             self.video?.contruct(completion: {
                                 DispatchQueue.main.async {
+                                    print("\(self.video!.objects_detected!) \(self.video?.objects_selected)")
                                     self.performSegue(withIdentifier: "MainToVideo", sender: self)
                                 }
                             })
@@ -163,10 +184,11 @@ extension MainViewController: UIImagePickerControllerDelegate {
                             })
                           
                         }
-                    }
+                    }*/
                     
                     
-                }
+                    
+                
             }
         })
         
@@ -191,7 +213,7 @@ extension MainViewController: UIImagePickerControllerDelegate {
       
       let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
-      present(alert, animated: true, completion: nil)
+      //present(alert, animated: true, completion: nil)
     }
     
     

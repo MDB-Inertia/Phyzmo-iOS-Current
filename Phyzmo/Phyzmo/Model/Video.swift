@@ -17,15 +17,14 @@ class Video{
     var data : [String: Any]? // stays null until collection view is clicked or objects is set
     var objects_selected : [String] // The objects to be detected (will be read from firebase)
     var objects_detected : [String]? // The objects in the video
-
     
-    init(id: String, thumbnail: UIImage, objects_selected: [String]) {
+    init(id: String, thumbnail: UIImage){//}, objects_selected: [String]) {
         self.id = id
         self.thumbnail = thumbnail
-        self.objects_selected = objects_selected
+        self.objects_selected = []
     }
     
-    func contruct(completion: @escaping () -> ()) {
+    func construct(completion: @escaping () -> ()) {
         // Create a reference to the file you want to download
         let videoRef = Storage.storage().reference().child("\(id).mp4")
         videoRef.downloadURL { url, error in
@@ -33,13 +32,28 @@ class Video{
             // Handle any errors
           } else {
             self.video = AVPlayer(url: url!)
-            self.getData()
             
-            APIClient.getExistingVidData(id: self.id, completion: { (objectsData) in
-                print("keys\(objectsData.keys)")
-                self.objects_detected = Array(objectsData.keys)
-                completion()
-            })
+            let ref = Database.database().reference().child("Videos").child(self.id).child("objects_selected")
+            ref.observeSingleEvent(of: .value) { (snapshot) in
+                if snapshot.value is [AnyObject] {
+                    let objects_selected = snapshot.value as! [String]
+                    self.objects_selected = objects_selected
+                }
+                else{
+                    self.objects_selected = []
+                }
+                APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\(self.id).json", obj_descriptions: self.objects_selected ?? []) { (data) in
+                    self.data = data as! [String : Any]
+                    APIClient.getExistingVidData(id: self.id, completion: { (objectsData) in
+                        print("keys\(objectsData.keys)")
+                        self.objects_detected = Array(objectsData.keys)
+                        completion()
+                    })
+                }
+                
+            }
+            
+            
           }
         }
         
@@ -48,14 +62,13 @@ class Video{
     }
     
     func getData(){
-        APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\(id).json", obj_descriptions: objects_selected) { (data) in
-            self.data = data as! [String : Any]
-        }
+        
     }
     
     func deconstruct(){
         self.video = nil
         self.data = nil
         self.objects_detected = nil
+        
     }
 }

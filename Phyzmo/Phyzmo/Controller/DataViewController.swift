@@ -25,6 +25,7 @@ class DataViewController: UITabBarController {
         super.viewWillDisappear(animated)
         if self.isMovingFromParent{
             video?.deconstruct()
+            print(video?.objects_selected)
         }
     }
     func disableAllButObjects(){

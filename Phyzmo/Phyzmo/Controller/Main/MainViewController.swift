@@ -20,7 +20,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var logOutButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var chartButton: UIButton!
     
     let reuseIdentifier = "GalleryCell"
     let sectionInsets = UIEdgeInsets(top: 10.0,
@@ -32,6 +31,10 @@ class MainViewController: UIViewController {
     var videoId : String?
     var video: Video?
     var videosSelected: [String] = []
+    var group = DispatchGroup()
+    //var updateGroup = DispatchGroup()
+    var shouldSegue = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,12 +43,12 @@ class MainViewController: UIViewController {
         selectButton.setTitle("Select", for: .normal)
         trashButton.addConstraint(trashButton.heightAnchor.constraint(equalToConstant: 0))
         
-        loading.isHidden = true
-        //loading.startAnimating()
+        loading.isHidden = false
+        loading.startAnimating()
         collectionView.register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-        statusLabel.isHidden = true
+        statusLabel.isHidden = false
         statusLabel.text = "Loading your datasets!"
         let currentUserId = Auth.auth().currentUser!.uid
         let databaseReference = Database.database().reference().child("Users").child(currentUserId)
@@ -63,29 +66,20 @@ class MainViewController: UIViewController {
             print(error.localizedDescription)
             self.welcomeLabel.text = "Welcome"
         }
-        /*databaseReference.observe(.value) { (snapshot) in
-            print("changedCollection")
-            self.updateCollection()
-            self.collectionView.reloadData()
-        }*/
-        //tableView.rowHeight = 60
         
-        
-        //TODO - CHECK IF CAMERA WORKS WITH THIS
         databaseReference.observe(.value) { (snapshot) in
             self.updateCollection()
         }
         
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        //updateCollection() //Could make more efficient by only calling it when Users/currentUserId values have changed (ie: only when database has been changed -- observe)
-        //collectionView.reloadData()
     }
     func updateCollection(){
+       // self.updateGroup.enter()
+//        statusLabel.isHidden = false
+//        statusLabel.text = "Loading your datasets!"
+        print("update Collection")
         videos.removeAll()
-        let group = DispatchGroup()
+        
+        
         let currentUserId = Auth.auth().currentUser!.uid
         print("currentUserId", currentUserId)
         let databaseReference = Database.database().reference().child("Users").child(currentUserId)
@@ -96,23 +90,17 @@ class MainViewController: UIViewController {
             if snapshot.value is [AnyObject] {
                 let videoIds = snapshot.value as! [String]
                 print(videoIds)
-                
-                /* MUST FIND A WAY TO ENSURE THAT THESE VIDEOS ARE ADDED TO THE ARRAY IN THE ORDER
-                  BECAUSE THESE SYNCHRONOUS CALLS SOMEWHAT JUMBLE THE ORDER AND USERS WANT THE MOST
-                    RECENT DATA ON THE TOP */
-                
-                /*Also must find a way to say when all thumbnails are loaded*/
+                self.group = DispatchGroup()
                 for (index,vidId) in videoIds.reversed().enumerated() {
-                    group.enter()
+                    self.group.enter()
                     storageReference.child("\(vidId).jpg").getData(maxSize: 1 * 1024 * 1024) { data, error in
                       if let error = error {
                         // Uh-oh, an error occurred!
                         print("\(vidId).jpg not found")
                       } else {
-                        // Data for "images/island.jpg" is returned
                         let image = UIImage(data: data!)
-                        let ref = Database.database().reference().child("Videos").child(vidId).child("objects_selected")
-                        group.enter()
+                        /*let ref = Database.database().reference().child("Videos").child(vidId).child("objects_selected")
+                        self.group.enter()
                         ref.observeSingleEvent(of: .value) { (snapshot) in
                             if snapshot.value is [AnyObject] {
                                 let objects_selected = snapshot.value as! [String]
@@ -122,20 +110,18 @@ class MainViewController: UIViewController {
                             else{
                                 self.videos.append(Video(id: vidId, thumbnail: image!, objects_selected: []))
                             }
-                            group.leave()
+                            self.group.leave()
                             
-                        }
-                        
-                        
-                        //self.thumbnails.append(image!)
-                        
+                        }*/
+                        self.videos.append(Video(id: vidId, thumbnail: image!))
                         print("\(vidId).jpg found")
                       }
-                      group.leave()
+                        self.group.leave()
                     }
                 }
-                group.notify(queue: DispatchQueue.main) {
-                    // MAKE SURE THE SORTING WORKS WITH ADDING VIDEOS
+                self.group.notify(queue: DispatchQueue.main) {
+                    // ALL VIDEOS ARE LOADED AS INTO ARRAY
+                    print("group notify")
                     self.videos.sort { (a, b) -> Bool in
                         for i in 0...videoIds.reversed().count {
                             if a.id == videoIds.reversed()[i] {
@@ -147,7 +133,50 @@ class MainViewController: UIViewController {
                         }
                         return false
                     }
+                    
+                    //DispatchQueue.main.async{
+                        print("update text notify")
+                        self.loading.isHidden = true
+                        self.loading.stopAnimating()
+                        print(self.videos.count)
+                        if self.videos.count == 0 {
+                            self.statusLabel.isHidden = false
+                            self.statusLabel.text = "You have no datasets\nClick the camera above to begin!"
+                        }
+                        else{
+                            self.statusLabel.isHidden = true
+                        }
+                        
+                        print("reloaded")
+                        self.logOutButton.isEnabled = true
+                        self.selectButton.isEnabled = true
+                        self.collectionView.isUserInteractionEnabled = true
+                        self.cameraButton.isEnabled = true
+                    //}
+                    print("reload data")
                     self.collectionView.reloadData()
+                    self.loading.isHidden = true
+                    self.loading.stopAnimating()
+                    self.logOutButton.isEnabled = true
+                    self.selectButton.isEnabled = true
+                    self.collectionView.isUserInteractionEnabled = true
+                    self.cameraButton.isEnabled = true
+                    //self.updateGroup.leave()
+                    print(self.videos[0].objects_selected)
+                    if self.shouldSegue {
+                        self.shouldSegue = false
+                        self.video = self.videos[0]
+                        self.loading.isHidden = false
+                        self.loading.startAnimating()
+                        self.video?.construct(completion: {
+                            
+                            DispatchQueue.main.async {
+                                self.loading.isHidden = true
+                                self.loading.stopAnimating()
+                                self.performSegue(withIdentifier: "MainToVideo", sender: self)
+                            }
+                        })
+                    }
                 }
                     
                 
@@ -290,9 +319,6 @@ class MainViewController: UIViewController {
 
     }
     
-    /*@IBAction func chartButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "MainToVideo", sender: self)
-    }*/
     override func viewWillTransition(to: CGSize, with: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: to, with: with)
         collectionView.reloadData()
