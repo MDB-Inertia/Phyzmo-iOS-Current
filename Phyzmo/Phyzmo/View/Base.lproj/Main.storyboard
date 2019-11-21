@@ -428,7 +428,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bYD-r3-UBn">
-                                <rect key="frame" x="20" y="108" width="374" height="630"/>
+                                <rect key="frame" x="20" y="159" width="374" height="579"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="objectCell" id="HeX-lO-AY7">
@@ -441,11 +441,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kSS-T7-fTY">
+                                <rect key="frame" x="133.5" y="108" width="147" height="32"/>
+                                <segments>
+                                    <segment title="Objects"/>
+                                    <segment title="Distance"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="kSS-T7-fTY" firstAttribute="centerX" secondItem="zGS-IW-YtA" secondAttribute="centerX" id="4QP-WZ-yaU"/>
                             <constraint firstItem="CUS-NS-9sr" firstAttribute="trailing" secondItem="KBr-wG-SAv" secondAttribute="trailing" constant="20" id="8Ax-gN-gpM"/>
-                            <constraint firstItem="bYD-r3-UBn" firstAttribute="top" secondItem="CUS-NS-9sr" secondAttribute="top" constant="20" id="9R0-4C-1Ie"/>
+                            <constraint firstItem="bYD-r3-UBn" firstAttribute="top" secondItem="kSS-T7-fTY" secondAttribute="bottom" constant="20" id="9R0-4C-1Ie"/>
+                            <constraint firstItem="kSS-T7-fTY" firstAttribute="top" secondItem="CUS-NS-9sr" secondAttribute="top" constant="20" id="UbZ-gS-ZMg"/>
                             <constraint firstItem="KBr-wG-SAv" firstAttribute="top" secondItem="bYD-r3-UBn" secondAttribute="bottom" constant="20" id="Ubu-bx-hE1"/>
                             <constraint firstItem="KBr-wG-SAv" firstAttribute="centerX" secondItem="zGS-IW-YtA" secondAttribute="centerX" id="Yk1-jK-WhL"/>
                             <constraint firstItem="CUS-NS-9sr" firstAttribute="bottom" secondItem="KBr-wG-SAv" secondAttribute="bottom" constant="20" id="aW6-cb-agF"/>
