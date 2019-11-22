@@ -47,16 +47,18 @@ class ObjectViewController: UIViewController {
 //        let size: CGFloat = 64
 //        imageView.frame = CGRect(x: view.bounds.width/2, y: view.bounds.height/2, width: 500, height: 500)
         
-        imageWidth = 15*view.frame.width/16
-        imageHeight = 10*view.frame.height/16
+//        imageWidth = 15*view.frame.width/16
+//        imageHeight = 10*view.frame.height/16
+        imageWidth = image.size.width
+        imageHeight = image.size.height
         imageView.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageWidth!, height: imageHeight!)
-        imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         canvas.tag = 100
         imageView.tag = 101
-//        canvas.frame = imageView.frame
-        canvas.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageView.image!.size.width, height: imageView.image!.size.height)
+        canvas.frame = imageView.frame
+//        canvas.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageView.image!.size.width, height: imageView.image!.size.height)
         imageView.backgroundColor = UIColor.purple.withAlphaComponent(0.3)
+        
         
         
         //Imageview on Top of View
