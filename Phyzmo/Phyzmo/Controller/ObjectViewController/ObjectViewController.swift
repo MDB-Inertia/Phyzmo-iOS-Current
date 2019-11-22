@@ -197,11 +197,10 @@ class ObjectViewController: UIViewController {
         if tableView != nil {
             tableView.reloadData()
         }
-        imageWidth = 15*to.width/16
-        imageHeight = 10*to.height/16
-        imageView.frame = CGRect(x: to.width/2-imageWidth!/2, y: to.height/2-imageHeight!/2, width: imageWidth!, height: imageHeight!)
-        imageView.contentMode = .scaleAspectFit
-        //canvas.frame = imageView.frame
-        canvas.frame = CGRect(x: to.width/2-imageWidth!/2, y: to.height/2-imageHeight!/2, width: imageView.image!.size.width, height: imageView.image!.size.height)
+        let image = (self.tabBarController as! DataViewController).video!.thumbnail
+        imageWidth = image.size.width
+        imageHeight = image.size.height
+        imageView.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageWidth!, height: imageHeight!)
+        canvas.frame = imageView.frame
     }
 }
