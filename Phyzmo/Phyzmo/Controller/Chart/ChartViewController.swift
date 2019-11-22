@@ -39,6 +39,8 @@ class ChartViewController: UIViewController {
         chartSpreadsheetView.register(HeaderCell.self, forCellWithReuseIdentifier: String(describing: HeaderCell.self))
         chartSpreadsheetView.register(TextCell.self, forCellWithReuseIdentifier: String(describing: TextCell.self))
         
+        chartSpreadsheetView.bounces = false
+        
         
     }
     /*override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +59,9 @@ class ChartViewController: UIViewController {
     
     //EXPORT
     @objc func export(sender: UIButton) {
-        let fileName = "\((self.tabBarController as! DataViewController).video?.id)"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "yyyy-MM-dd-HH:mm"
+        let fileName = "Phyzmo-\(dateFormatterPrint.string(from: Date.init())).csv"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         var csvText = "Time,Displacement,Velocity,Acceleration\n" //FIXME
         for i in 0..<time!.count {

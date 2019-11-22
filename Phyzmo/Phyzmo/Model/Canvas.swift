@@ -18,22 +18,21 @@ class Canvas: UIView {
         for (i, p) in line.enumerated() {
             if i == 0 {
                 context.move(to: p)
+                
             } else {
                 context.addLine(to: p)
             }
         }
-        
         context.setStrokeColor(UIColor.green.cgColor)
         context.setLineWidth(8)
         context.setLineCap(.butt)
-        
         context.strokePath()
     }
     
     var line = [CGPoint]()
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let point = touches.first?.location(in: nil) else {return}
+        guard let point = touches.first?.location(in: self) else {return}
         
         if !isInArray(point: point, line: line) {
             if line.count > 1 {
@@ -47,11 +46,18 @@ class Canvas: UIView {
     
     func isInArray(point: CGPoint, line: [CGPoint]) -> Bool {
         for e in line {
-            if (point.x == e.x && point.y == e.y) {
+            if (e.x-self.frame.size.width/50 <= point.x && point.x <= e.x+self.frame.size.width/50 && e.y-self.frame.size.height/50 <= point.y && point.y <= e.y+self.frame.size.height/50) {
                 return true
             }
         }
+        if point.x < 0 || point.y < 0 || point.x > self.frame.size.width || point.y > self.frame.size.height {
+            return true
+        }
         return false
+    }
+    
+    func getArray() -> [CGPoint] {
+        return line
     }
 }
 

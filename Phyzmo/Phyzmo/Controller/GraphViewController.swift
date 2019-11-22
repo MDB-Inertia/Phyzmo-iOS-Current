@@ -34,13 +34,10 @@ class GraphViewController: UIViewController {
     var rawVelocity : [Double]?
     var rawAcceleration : [Double]?
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpGraph()
         updateGraph()
-        
-
     }
 
     /*override func viewWillAppear(_ animated: Bool) {
@@ -77,11 +74,46 @@ class GraphViewController: UIViewController {
     @IBAction func segmentedViewPressed(_ sender: Any) {
         updateGraph()
     }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
     
     @objc func export(sender: UIButton) {
         let image = chartView.getChartImage(transparent: false)
-        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+        
+       // UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "yyyy-MM-dd-HH:mm"
+        let fileName = "Phyzmo-\(dateFormatterPrint.string(from: Date.init())).png"
+        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        /*var csvText = "Time,Displacement,Velocity,Acceleration\n" //FIXME
+        for i in 0..<time!.count {
+            let newLine = "\(time![i]),\(rawDisplacement![i]),\(rawVelocity![i]),\(rawAcceleration![i])\n" //FIXME
+            csvText += newLine
+        }*/
+        
+        do {
+            try image!.pngData()!.write(to: path!)
+            
+            let vc = UIActivityViewController(activityItems: [path], applicationActivities: [])
+            /*vc.excludedActivityTypes = [
+                UIActivity.ActivityType.assignToContact,
+                UIActivity.ActivityType.saveToCameraRoll,
+                UIActivity.ActivityType.postToFlickr,
+                UIActivity.ActivityType.postToVimeo,
+                UIActivity.ActivityType.postToTencentWeibo,
+                UIActivity.ActivityType.postToTwitter,
+                UIActivity.ActivityType.postToFacebook,
+                UIActivity.ActivityType.openInIBooks
+            ]*/
+            present(vc, animated: true, completion: nil)
+            
+        } catch {
+            
+            print("Failed to create file")
+            print("\(error)")
+        }
     }
     
 

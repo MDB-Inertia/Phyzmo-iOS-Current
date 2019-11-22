@@ -15,7 +15,14 @@ class HeaderCell: Cell{
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        if #available(iOS 13.0, *) {
+            backgroundColor = .systemBackground
+            BorderStyle.solid(width: 1, color: .label)
+        } else {
+            backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+            BorderStyle.solid(width: 1, color: .black)
+            // Fallback on earlier versions
+        }//
         
         label.frame = bounds
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -41,7 +48,20 @@ class TextCell: Cell {
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textAlignment = .center
-        label.textColor = .black
+        
+        
+        
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+            backgroundColor = .systemBackground
+            BorderStyle.solid(width: 1, color: .label)
+        } else {
+            label.textColor = .black
+            backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+            BorderStyle.solid(width: 1, color: .black)
+            // Fallback on earlier versions
+        }
+        //
         contentView.addSubview(label)
     }
 

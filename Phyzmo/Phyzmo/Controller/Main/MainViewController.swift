@@ -34,15 +34,30 @@ class MainViewController: UIViewController {
     var group = DispatchGroup()
     //var updateGroup = DispatchGroup()
     var shouldSegue = false
+    let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !UIAccessibility.isReduceTransparencyEnabled {
+            //view.backgroundColor = .clear
+
+            
+            //always fill the view
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            view.addSubview(blurEffectView)
+            view.bringSubviewToFront(statusLabel)
+            view.bringSubviewToFront(loading)
+             //if you have more UIViews, use an insertSubview API to place it where needed
+        }
         
         selectButton.setTitle("Cancel", for: .selected)
         selectButton.backgroundColor = .clear
         selectButton.setTitle("Select", for: .normal)
         trashButton.addConstraint(trashButton.heightAnchor.constraint(equalToConstant: 0))
         
+        blurEffectView.isHidden = false
         loading.isHidden = false
         loading.startAnimating()
         collectionView.register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -148,30 +163,34 @@ class MainViewController: UIViewController {
                         }
                         
                         print("reloaded")
-                        self.logOutButton.isEnabled = true
+                        /*self.logOutButton.isEnabled = true
                         self.selectButton.isEnabled = true
                         self.collectionView.isUserInteractionEnabled = true
-                        self.cameraButton.isEnabled = true
+                        self.cameraButton.isEnabled = true*/
                     //}
                     print("reload data")
                     self.collectionView.reloadData()
                     self.loading.isHidden = true
                     self.loading.stopAnimating()
-                    self.logOutButton.isEnabled = true
+                    self.blurEffectView.isHidden = true
+                    /*self.logOutButton.isEnabled = true
                     self.selectButton.isEnabled = true
                     self.collectionView.isUserInteractionEnabled = true
-                    self.cameraButton.isEnabled = true
+                    self.cameraButton.isEnabled = true*/
+                    self.toggleEnableAll(true)
                     //self.updateGroup.leave()
                     if self.shouldSegue {
                         self.shouldSegue = false
                         self.video = self.videos[0]
                         self.loading.isHidden = false
                         self.loading.startAnimating()
+                        self.blurEffectView.isHidden = false
                         self.video?.construct(completion: {
                             
                             DispatchQueue.main.async {
                                 self.loading.isHidden = true
                                 self.loading.stopAnimating()
+                                self.blurEffectView.isHidden = true
                                 self.performSegue(withIdentifier: "MainToVideo", sender: self)
                             }
                         })
@@ -323,6 +342,11 @@ class MainViewController: UIViewController {
         collectionView.reloadData()
     }
     
-    
+    func toggleEnableAll(_ isEnabled: Bool){
+        self.logOutButton.isEnabled = isEnabled
+        self.selectButton.isEnabled = isEnabled
+        self.collectionView.isUserInteractionEnabled = isEnabled
+        self.cameraButton.isEnabled = isEnabled
+    }
     
 }

@@ -15,7 +15,14 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+
     @IBOutlet var backgroundView: UIView!
+
+    var keyboardAdjusted = false
+    var lastKeyboardOffset: CGFloat = 0.0
+    
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -29,6 +36,17 @@ class SignUpViewController: UIViewController {
         backgroundView.layer.addSublayer(layer)
         
 
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     func hideKeyboardWhenTappedAround() {
      let tap: UITapGestureRecognizer =     UITapGestureRecognizer(target: self, action:    #selector(SignInViewController.dismissKeyboard))
@@ -86,6 +104,27 @@ class SignUpViewController: UIViewController {
         handleSignUp()
     }
     
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if keyboardAdjusted == false {
+            lastKeyboardOffset = getKeyboardHeight(notification: notification)
+            view.frame.origin.y -= lastKeyboardOffset
+            keyboardAdjusted = true
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if keyboardAdjusted == true {
+            view.frame.origin.y += lastKeyboardOffset
+            keyboardAdjusted = false
+        }
+    }
+
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.height
+    }
     
 }
 
