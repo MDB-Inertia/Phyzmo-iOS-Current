@@ -54,13 +54,25 @@ class ObjectViewController: UIViewController {
 //        imageHeight = 10*view.frame.height/16
         imageWidth = image.size.width
         imageHeight = image.size.height
-        imageView.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageWidth!, height: imageHeight!)
+        /*imageView.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageWidth!, height: imageHeight!)*/
+        let proportion = Float(imageWidth!)/Float(imageHeight!)
+        var width = Float(view.frame.height - 275)*proportion
+        var height = width/proportion
+        if width > Float(view.frame.width) {
+            height = Float(view.frame.width)/proportion
+            width = height*proportion
+        }
+        
+        
+        
+        imageView.frame = CGRect(x: view.frame.width/2-CGFloat(width)/2, y: view.frame.height/2-CGFloat(height)/2, width: CGFloat(width), height: CGFloat(height))
+        canvas.frame = imageView.frame
         view.addSubview(imageView)
         canvas.tag = 100
         imageView.tag = 101
         canvas.frame = imageView.frame
 //        canvas.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageView.image!.size.width, height: imageView.image!.size.height)
-        imageView.backgroundColor = UIColor.purple.withAlphaComponent(0.3)
+        //imageView.backgroundColor = UIColor.purple.withAlphaComponent(0.3)
         
 //        distanceTextField.addTarget(self, action: #selector(ViewController.textFieldDidChange(_:)),
 //        for: UIControl.Event.editingChanged)
@@ -75,6 +87,7 @@ class ObjectViewController: UIViewController {
         
         view.viewWithTag(100)!.isHidden = true
         view.viewWithTag(101)!.isHidden = true
+        distanceTextField.isHidden = true
     }
     
     @IBAction func editChanged(_ sender: Any) {
@@ -115,10 +128,12 @@ class ObjectViewController: UIViewController {
             view.viewWithTag(100)!.isHidden = true
             view.viewWithTag(101)!.isHidden = true
             tableView.isHidden = false
+            distanceTextField.isHidden = true
         case 1:
             view.viewWithTag(100)!.isHidden = false
             view.viewWithTag(101)!.isHidden = false
             tableView.isHidden = true
+            distanceTextField.isHidden = false
         default:
             break
         }
@@ -200,7 +215,18 @@ class ObjectViewController: UIViewController {
         let image = (self.tabBarController as! DataViewController).video!.thumbnail
         imageWidth = image.size.width
         imageHeight = image.size.height
-        imageView.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageWidth!, height: imageHeight!)
+        
+        let proportion = Float(imageWidth!)/Float(imageHeight!)
+        var width = Float(to.height - 275)*proportion
+        var height = width/proportion
+        if width > Float(to.width) {
+            height = Float(to.width)/proportion
+            width = height*proportion
+        }
+        
+        
+        
+        imageView.frame = CGRect(x: to.width/2-CGFloat(width)/2, y: to.height/2-CGFloat(height)/2, width: CGFloat(width), height: CGFloat(height))
         canvas.frame = imageView.frame
     }
 }

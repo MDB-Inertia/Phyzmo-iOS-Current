@@ -44,6 +44,7 @@ class APIClient {
         print("unit", unit)
         let ref_list = [[line[0].x/max_coor[0], line[0].y/max_coor[1]], [line[1].x/max_coor[0], line[1].y/max_coor[1]], unit] as [Any]
             //[[0.121,0.215],[0.9645,0.446], 0.60] as [Any]
+        print("ref_list", ref_list)
 
         let request = "objectsDataUri=\(objectsDataUri)&obj_descriptions=\("\(obj_descriptions)".replacingOccurrences(of: "&", with: "%26"))&ref_list=\(ref_list)"
         var requestURL = "https://us-central1-phyzmo.cloudfunctions.net/data-computation?\(request)"
