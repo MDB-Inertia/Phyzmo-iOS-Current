@@ -81,6 +81,10 @@ class ObjectViewController: UIViewController {
         updateSelectButton()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func updateSelectButton() {
         if (self.tabBarController as! DataViewController).video!.objects_selected == [] || distanceTextField.text == "" || canvas.getArray().count < 2 {
             selectButton.isHighlighted = true
@@ -93,6 +97,7 @@ class ObjectViewController: UIViewController {
         if selectedObjects == []{
             (self.tabBarController as! DataViewController).disableAllButObjects()
         }
+        print("line", canvas.getArray())
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -151,7 +156,15 @@ class ObjectViewController: UIViewController {
         let videoReference = Database.database().reference().child("Videos").child("\((self.tabBarController as! DataViewController).video!.id)")
         videoReference.setValue(["objects_selected": (self.tabBarController as! DataViewController).video!.objects_selected])
         print((self.tabBarController as! DataViewController).video!.id)
-        APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\((self.tabBarController as! DataViewController).video!.id).json", obj_descriptions: (self.tabBarController as! DataViewController).video!.objects_selected) { (data) in
+        print("line input", canvas.getArray())
+        print("unit input", Float(distanceTextField.text!)!)
+        
+        let line = canvas.getArray()
+        videoReference.updateChildValues(["line": [[line[0].x, line[0].y], [line[0].x, line[0].y]]])
+        videoReference.updateChildValues(["unit": Float(distanceTextField.text!)!])
+        
+        print("1")
+        APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\((self.tabBarController as! DataViewController).video!.id).json", obj_descriptions: (self.tabBarController as! DataViewController).video!.objects_selected, line: canvas.getArray(), unit: Float( distanceTextField.text!)!, max_coor: [imageWidth!, imageHeight!]) { (data) in
             
             //(self.tabBarController as! DataViewController).video!.data = data as? [String:Any]
             //print((self.tabBarController as! DataViewController).video!.data)

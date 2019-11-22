@@ -17,11 +17,15 @@ class Video{
     var data : [String: Any]? // stays null until collection view is clicked or objects is set
     var objects_selected : [String] // The objects to be detected (will be read from firebase)
     var objects_detected : [String]? // The objects in the video
+    var line : [CGPoint]?
+    var unit : Float?
     
     init(id: String, thumbnail: UIImage){//}, objects_selected: [String]) {
         self.id = id
         self.thumbnail = thumbnail
         self.objects_selected = []
+        self.line = nil
+        self.unit = nil
     }
     
     func construct(completion: @escaping () -> ()) {
@@ -42,7 +46,8 @@ class Video{
                 else{
                     self.objects_selected = []
                 }
-                APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\(self.id).json", obj_descriptions: self.objects_selected ?? []) { (data) in
+                print("2")
+                APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\(self.id).json", obj_descriptions: self.objects_selected ?? [], line: self.line ?? [CGPoint(x: 0, y: 0), CGPoint(x: 1, y: 0)], unit: self.unit ?? 1, max_coor: [CGFloat(5), CGFloat(5)]) { (data) in
                     self.data = data as! [String : Any]
                     APIClient.getExistingVidData(id: self.id, completion: { (objectsData) in
                         print("keys\(objectsData.keys)")
