@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+ 
 
 
 class SignInViewController: UIViewController {
@@ -18,13 +18,24 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var enterButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var backgroundView: UIView!
     
     //Variables
     var userEmail : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let layer = CAGradientLayer()
+        layer.frame = view.bounds
+        layer.colors = [UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor, UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor
+        ]
+        layer.shouldRasterize = true
+        //layer.startPoint = CGPoint(x: 0,y: 0.5)
+        //layer.startPoint = CGPoint(x: 1,y: 1)
+        backgroundView.layer.addSublayer(layer)
+        
         self.hideKeyboardWhenTappedAround()
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {

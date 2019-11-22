@@ -15,10 +15,19 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
+    @IBOutlet var backgroundView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        let layer = CAGradientLayer()
+        layer.frame = view.bounds
+        layer.colors = [UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor, UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor
+        ]
+        layer.shouldRasterize = true
+        //layer.startPoint = CGPoint(x: 0,y: 0.5)
+        //layer.startPoint = CGPoint(x: 1,y: 1)
+        backgroundView.layer.addSublayer(layer)
+        
 
     }
     func hideKeyboardWhenTappedAround() {
