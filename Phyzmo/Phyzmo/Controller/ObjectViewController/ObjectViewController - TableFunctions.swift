@@ -33,17 +33,7 @@ extension ObjectViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var index = indexPath[1]
         checkPressed(cell: tableView.cellForRow(at: indexPath) as! ObjectTableViewCell)
-        if (self.tabBarController as! DataViewController).video!.objects_selected == []{
-            selectButton.isHighlighted = true
-            selectButton.isEnabled = false
-        }
-        else{
-            selectButton.isHighlighted = false
-            selectButton.isEnabled = true
-        }
-        if selectedObjects == []{
-            (self.tabBarController as! DataViewController).disableAllButObjects()
-        }
+        updateSelectButton()
 
         //selectedEvent = events[index]
         //performSegue(withIdentifier: "showDetails", sender: self)

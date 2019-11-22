@@ -56,6 +56,10 @@ class Canvas: UIView {
         }
         return false
     }
+    
+    func getArray() -> [CGPoint] {
+        return line
+    }
 }
 
 //class ViewController: UIViewController {

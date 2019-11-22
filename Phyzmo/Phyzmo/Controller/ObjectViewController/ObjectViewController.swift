@@ -19,6 +19,7 @@ class ObjectViewController: UIViewController {
     var imageView: UIImageView!
     var imageWidth : CGFloat?
     var imageHeight : CGFloat?
+    @IBOutlet weak var distanceTextField: UITextField!
     
     @IBOutlet weak var segmented: UISegmentedControl!
     
@@ -34,6 +35,8 @@ class ObjectViewController: UIViewController {
         //updateTable()
         load()
     
+        self.distanceTextField.keyboardType = UIKeyboardType.decimalPad
+        
         view.addSubview(canvas)
         canvas.backgroundColor = UIColor(white: 1, alpha: 0.1)
         canvas.frame = view.frame
@@ -59,7 +62,12 @@ class ObjectViewController: UIViewController {
 //        canvas.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageView.image!.size.width, height: imageView.image!.size.height)
         imageView.backgroundColor = UIColor.purple.withAlphaComponent(0.3)
         
-        
+//        distanceTextField.addTarget(self, action: #selector(ViewController.textFieldDidChange(_:)),
+//        for: UIControl.Event.editingChanged)
+//
+//        @objc func textFieldDidChange(_ textField: UITextField) {
+//
+//        }
         
         //Imageview on Top of View
         self.view.bringSubviewToFront(canvas)
@@ -67,6 +75,32 @@ class ObjectViewController: UIViewController {
         
         view.viewWithTag(100)!.isHidden = true
         view.viewWithTag(101)!.isHidden = true
+    }
+    
+    @IBAction func editChanged(_ sender: Any) {
+        updateSelectButton()
+    }
+    
+    func updateSelectButton() {
+        if (self.tabBarController as! DataViewController).video!.objects_selected == [] || distanceTextField.text == "" || canvas.getArray().count < 2 {
+            selectButton.isHighlighted = true
+            selectButton.isEnabled = false
+        }
+        else{
+            selectButton.isHighlighted = false
+            selectButton.isEnabled = true
+        }
+        if selectedObjects == []{
+            (self.tabBarController as! DataViewController).disableAllButObjects()
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        updateSelectButton()
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        updateSelectButton()
     }
     
     @IBAction func segmented(_ sender: Any) {
@@ -87,15 +121,14 @@ class ObjectViewController: UIViewController {
     
     func load(){
         selectedObjects = (self.tabBarController as! DataViewController).video!.objects_selected
-        if (self.tabBarController as! DataViewController).video!.objects_selected == []{
+        if (self.tabBarController as! DataViewController).video!.objects_selected == [] || distanceTextField.text == "" || canvas.getArray().count < 2 {
             selectButton.isHighlighted = true
             selectButton.isEnabled = false
-            
-            
         }
         if selectedObjects == []{
             (self.tabBarController as! DataViewController).disableAllButObjects()
         }
+        //updateSelectButton()
         tableView.reloadData()
     }
     override func viewDidAppear(_ animated: Bool) {
