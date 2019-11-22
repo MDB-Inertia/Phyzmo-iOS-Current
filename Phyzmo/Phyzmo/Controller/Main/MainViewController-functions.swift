@@ -100,16 +100,22 @@ extension MainViewController: UICollectionViewDelegate {
             
         }
         else{
+            self.blurEffectView.isHidden = false
             self.video = videos[indexPath.item]
             self.loading.isHidden = false
             self.loading.startAnimating()
+            self.toggleEnableAll(false)
             self.video?.construct(completion: {
                 DispatchQueue.main.async {
                     self.loading.isHidden = true
                     self.loading.stopAnimating()
+                    self.blurEffectView.isHidden = true
                     self.performSegue(withIdentifier: "MainToVideo", sender: self)
+                    self.toggleEnableAll(true)
                 }
+                
             })
+            
         }
         if videosSelected.count == 0 {
             trashButton.isEnabled = false

@@ -37,12 +37,13 @@ class APIClient {
         task.resume()
     }
 
-    static func getObjectData(objectsDataUri: String, obj_descriptions: [String], line: [CGPoint], unit: Float, max_coor: [CGFloat], completion: @escaping ([String:Any]) -> ()) {
+    static func getObjectData(objectsDataUri: String, obj_descriptions: [String], line: [CGPoint], unit: Float, completion: @escaping ([String:Any]) -> ()) {
         //ref_list hard coded for now
         print("function started")
         print("line", line)
         print("unit", unit)
-        let ref_list = [[line[0].x/max_coor[0], line[0].y/max_coor[1]], [line[1].x/max_coor[0], line[1].y/max_coor[1]], unit] as [Any]
+        //let ref_list = [[line[0].x/max_coor[0], line[0].y/max_coor[1]], [line[1].x/max_coor[0], line[1].y/max_coor[1]], unit] as [Any]
+        let ref_list = [[line[0].x, line[0].y], [line[1].x, line[1].y], unit] as [Any]
             //[[0.121,0.215],[0.9645,0.446], 0.60] as [Any]
         print("ref_list", ref_list)
 

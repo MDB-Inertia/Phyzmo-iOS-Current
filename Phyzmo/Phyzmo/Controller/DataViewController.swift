@@ -15,14 +15,14 @@ class DataViewController: UITabBarController {
         super.viewDidLoad()
         print("hi")
         if video != nil{
-            if video?.objects_selected == []{
+            if video?.objects_selected == [] || video?.line == nil || video?.line == [] || video?.unit == nil{
                 disableAllButObjects()
             }
         }
         // Do any additional setup after loading the view.
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         if self.isMovingFromParent{
             video?.deconstruct()
             print(video?.objects_selected)

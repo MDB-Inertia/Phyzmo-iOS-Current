@@ -29,14 +29,14 @@ extension MainViewController: UIImagePickerControllerDelegate {
         // Handle a movie capture
         print("url.path", url.path)
         print("info", info)
-        UISaveVideoAtPathToSavedPhotosAlbum(
+        /*UISaveVideoAtPathToSavedPhotosAlbum(
           url.path,
           self,
           #selector(video(_:didFinishSavingWithError:contextInfo:)),
-          nil)
+          nil)*/
         loading.isHidden = false
         loading.startAnimating()
-
+        blurEffectView.isHidden = false
         encodeVideo(at: url, completionHandler: uploadToFirebase)
         
     }
@@ -99,6 +99,7 @@ extension MainViewController: UIImagePickerControllerDelegate {
     func uploadToFirebase(url: URL?, error: Error?) {
         //updateGroup.enter()
         DispatchQueue.main.async {
+            self.blurEffectView.isHidden = false
             self.logOutButton.isEnabled = false
             self.selectButton.isEnabled = false
             self.collectionView.isUserInteractionEnabled = false

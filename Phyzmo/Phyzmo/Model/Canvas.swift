@@ -18,15 +18,14 @@ class Canvas: UIView {
         for (i, p) in line.enumerated() {
             if i == 0 {
                 context.move(to: p)
+                
             } else {
                 context.addLine(to: p)
             }
         }
-        
         context.setStrokeColor(UIColor.green.cgColor)
         context.setLineWidth(8)
         context.setLineCap(.butt)
-        
         context.strokePath()
     }
     

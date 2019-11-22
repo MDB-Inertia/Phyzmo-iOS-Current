@@ -39,6 +39,8 @@ class ChartViewController: UIViewController {
         chartSpreadsheetView.register(HeaderCell.self, forCellWithReuseIdentifier: String(describing: HeaderCell.self))
         chartSpreadsheetView.register(TextCell.self, forCellWithReuseIdentifier: String(describing: TextCell.self))
         
+        chartSpreadsheetView.bounces = false
+        
         
     }
     /*override func viewWillAppear(_ animated: Bool) {

@@ -54,6 +54,10 @@ extension ObjectViewController: UITableViewDelegate, UITableViewDataSource{
             }
             else{
                 (self.tabBarController as! DataViewController).video!.objects_selected.append(cell.object!)
+                if (distanceTextField.text == "" || canvas.getArray().count < 2) && (self.tabBarController as! DataViewController).video!.objects_selected.count == 1{
+                    segmented.selectedSegmentIndex = 1
+                    segmented(self)
+                }
             }
         }
         print((self.tabBarController as! DataViewController).video!.objects_selected)

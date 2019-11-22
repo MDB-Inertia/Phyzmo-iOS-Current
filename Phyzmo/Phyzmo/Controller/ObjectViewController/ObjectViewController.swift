@@ -15,10 +15,13 @@ class ObjectViewController: UIViewController {
     
     @IBOutlet weak var selectButton: UIButton!
     var selectedObjects: [String]?
+    
     let canvas = Canvas()
     var imageView: UIImageView!
     var imageWidth : CGFloat?
     var imageHeight : CGFloat?
+    var keyboardAdjusted = false
+    var lastKeyboardOffset: CGFloat = 0.0
     @IBOutlet weak var distanceTextField: UITextField!
     
     @IBOutlet weak var segmented: UISegmentedControl!
@@ -34,24 +37,8 @@ class ObjectViewController: UIViewController {
         tableView.rowHeight = 60
         //updateTable()
         load()
-    
-        self.distanceTextField.keyboardType = UIKeyboardType.decimalPad
-        
-        view.addSubview(canvas)
-        canvas.backgroundColor = UIColor(white: 1, alpha: 0.1)
-        canvas.frame = view.frame
-        
         let image = (self.tabBarController as! DataViewController).video!.thumbnail
         imageView = UIImageView(image: image)
-        //Format ImageView
-//        imageView.frame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.contentSize.width, height: tableView.contentSize.height)
-//        let midX = self.view.bounds.midX
-//        let midY = self.view.bounds.midY
-//        let size: CGFloat = 64
-//        imageView.frame = CGRect(x: view.bounds.width/2, y: view.bounds.height/2, width: 500, height: 500)
-        
-//        imageWidth = 15*view.frame.width/16
-//        imageHeight = 10*view.frame.height/16
         imageWidth = image.size.width
         imageHeight = image.size.height
         /*imageView.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageWidth!, height: imageHeight!)*/
@@ -71,6 +58,32 @@ class ObjectViewController: UIViewController {
         canvas.tag = 100
         imageView.tag = 101
         canvas.frame = imageView.frame
+        canvas.backgroundColor = UIColor(white: 1, alpha: 0.1)
+        //canvas.frame = view.frame
+        self.distanceTextField.keyboardType = UIKeyboardType.decimalPad
+        if (self.tabBarController as! DataViewController).video!.line != nil{
+            let line = (self.tabBarController as! DataViewController).video!.line!
+            canvas.line = [CGPoint(x: Double(line[0].x)*Double(width), y: Double(line[0].y)*Double(height)), CGPoint(x: Double(line[1].x)*Double(width), y: Double(line[1].y)*Double(height))]
+            
+        }
+        if (self.tabBarController as! DataViewController).video!.unit != nil{
+            distanceTextField.text = ("\((self.tabBarController as! DataViewController).video!.unit!)")
+        }
+        view.addSubview(canvas)
+
+        
+        
+        //Format ImageView
+//        imageView.frame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.contentSize.width, height: tableView.contentSize.height)
+//        let midX = self.view.bounds.midX
+//        let midY = self.view.bounds.midY
+//        let size: CGFloat = 64
+//        imageView.frame = CGRect(x: view.bounds.width/2, y: view.bounds.height/2, width: 500, height: 500)
+        
+//        imageWidth = 15*view.frame.width/16
+//        imageHeight = 10*view.frame.height/16
+        
+        
 //        canvas.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageView.image!.size.width, height: imageView.image!.size.height)
         //imageView.backgroundColor = UIColor.purple.withAlphaComponent(0.3)
         
@@ -85,9 +98,10 @@ class ObjectViewController: UIViewController {
         self.view.bringSubviewToFront(canvas)
         print("view success")
         
-        view.viewWithTag(100)!.isHidden = true
+        toggleObjects()
+        /*view.viewWithTag(100)!.isHidden = true
         view.viewWithTag(101)!.isHidden = true
-        distanceTextField.isHidden = true
+        distanceTextField.isHidden = true*/
     }
     
     @IBAction func editChanged(_ sender: Any) {
@@ -107,7 +121,10 @@ class ObjectViewController: UIViewController {
             selectButton.isHighlighted = false
             selectButton.isEnabled = true
         }
-        if selectedObjects == []{
+        if selectedObjects == [] ||
+            (self.tabBarController as! DataViewController).video!.line == nil ||
+            (self.tabBarController as! DataViewController).video!.line == [] ||
+            (self.tabBarController as! DataViewController).video!.unit == nil {
             (self.tabBarController as! DataViewController).disableAllButObjects()
         }
         print("line", canvas.getArray())
@@ -125,15 +142,17 @@ class ObjectViewController: UIViewController {
         switch segmented.selectedSegmentIndex
         {
         case 0:
-            view.viewWithTag(100)!.isHidden = true
+            /*view.viewWithTag(100)!.isHidden = true
             view.viewWithTag(101)!.isHidden = true
             tableView.isHidden = false
-            distanceTextField.isHidden = true
+            distanceTextField.isHidden = true*/
+            toggleObjects()
         case 1:
-            view.viewWithTag(100)!.isHidden = false
+            /*view.viewWithTag(100)!.isHidden = false
             view.viewWithTag(101)!.isHidden = false
             tableView.isHidden = true
-            distanceTextField.isHidden = false
+            distanceTextField.isHidden = false*/
+            toggleDistance()
         default:
             break
         }
@@ -141,13 +160,28 @@ class ObjectViewController: UIViewController {
     
     func load(){
         selectedObjects = (self.tabBarController as! DataViewController).video!.objects_selected
-        if (self.tabBarController as! DataViewController).video!.objects_selected == [] || distanceTextField.text == "" || canvas.getArray().count < 2 {
+        if (self.tabBarController as! DataViewController).video!.line != nil && imageView != nil{
+            let line = (self.tabBarController as! DataViewController).video!.line!
+            canvas.line = [CGPoint(x: Double(line[0].x)*Double(imageView.frame.width), y: Double(line[0].y)*Double(imageView.frame.height)), CGPoint(x: Double(line[1].x)*Double(imageView.frame.width), y: Double(line[1].y)*Double(imageView.frame.height))]
+            canvas.setNeedsDisplay()
+            
+        }
+        if (self.tabBarController as! DataViewController).video!.unit != nil{
+            distanceTextField.text = ("\((self.tabBarController as! DataViewController).video!.unit!)")
+        }
+        
+        updateSelectButton()
+        /*if (self.tabBarController as! DataViewController).video!.objects_selected == [] || distanceTextField.text == "" || canvas.getArray().count < 2 {
             selectButton.isHighlighted = true
             selectButton.isEnabled = false
         }
-        if selectedObjects == []{
+        if selectedObjects == [] ||
+            (self.tabBarController as! DataViewController).video!.line == nil ||
+            (self.tabBarController as! DataViewController).video!.line == [] ||
+            (self.tabBarController as! DataViewController).video!.unit == nil {
             (self.tabBarController as! DataViewController).disableAllButObjects()
-        }
+        }*/
+        
         //updateSelectButton()
         tableView.reloadData()
     }
@@ -167,19 +201,23 @@ class ObjectViewController: UIViewController {
             return
         }*/
         print("updating object selection")
+        let line = canvas.getArray()
         selectedObjects = (self.tabBarController as! DataViewController).video!.objects_selected
+        (self.tabBarController as! DataViewController).video!.line = [CGPoint(x: line[0].x/imageView.frame.width, y: line[0].y/imageView.frame.height), CGPoint(x: line[1].x/imageView.frame.width, y: line[1].y/imageView.frame.height)]
+        
+        (self.tabBarController as! DataViewController).video!.unit = Float(distanceTextField.text!)
         let videoReference = Database.database().reference().child("Videos").child("\((self.tabBarController as! DataViewController).video!.id)")
         videoReference.setValue(["objects_selected": (self.tabBarController as! DataViewController).video!.objects_selected])
         print((self.tabBarController as! DataViewController).video!.id)
         print("line input", canvas.getArray())
         print("unit input", Float(distanceTextField.text!)!)
         
-        let line = canvas.getArray()
-        videoReference.updateChildValues(["line": [[line[0].x, line[0].y], [line[0].x, line[0].y]]])
+        
+        videoReference.updateChildValues(["line": [[line[0].x/imageView.frame.width, line[0].y/imageView.frame.height], [line[1].x/imageView.frame.width, line[1].y/imageView.frame.height]]])
         videoReference.updateChildValues(["unit": Float(distanceTextField.text!)!])
         
         print("1")
-        APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\((self.tabBarController as! DataViewController).video!.id).json", obj_descriptions: (self.tabBarController as! DataViewController).video!.objects_selected, line: canvas.getArray(), unit: Float( distanceTextField.text!)!, max_coor: [imageWidth!, imageHeight!]) { (data) in
+        APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\((self.tabBarController as! DataViewController).video!.id).json", obj_descriptions: (self.tabBarController as! DataViewController).video!.objects_selected, line: [CGPoint(x: line[0].x/imageView.frame.width, y: line[0].y/imageView.frame.height), CGPoint(x: line[1].x/imageView.frame.width, y: line[1].y/imageView.frame.height)], unit: Float( distanceTextField.text!)!) { (data) in
             
             //(self.tabBarController as! DataViewController).video!.data = data as? [String:Any]
             //print((self.tabBarController as! DataViewController).video!.data)
@@ -196,16 +234,24 @@ class ObjectViewController: UIViewController {
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         
     }
+     
     
     override var shouldAutorotate: Bool {
         return false
         
     }*/
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
     
     // TO ensure that check boxes are always on the right side of the screen
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         (self.tabBarController as! DataViewController).video!.objects_selected = selectedObjects!
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     override func viewWillTransition(to: CGSize, with: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: to, with: with)
@@ -225,8 +271,77 @@ class ObjectViewController: UIViewController {
         }
         
         
+        if self.tabBarController?.selectedIndex == 3 {
+            imageView.frame = CGRect(x: to.width/2-CGFloat(width)/2, y: to.height/2-CGFloat(height)/2, width: CGFloat(width), height: CGFloat(height))
+            canvas.frame = imageView.frame
+        }
+    }
+    
+    
+    func toggleObjects(){
+        view.viewWithTag(100)!.isHidden = true
+        view.viewWithTag(101)!.isHidden = true
+        tableView.isHidden = false
+        distanceTextField.isHidden = true
+        for c in distanceTextField.constraints {
+            if c.constant == (view.frame.width-60)/2 {
+                distanceTextField.removeConstraint(c)
+            }
+        }
+        distanceTextField.widthAnchor.constraint(equalToConstant: CGFloat(100)).isActive = false
+        distanceTextField.addConstraint(distanceTextField.widthAnchor.constraint(equalToConstant: CGFloat(0)))
+       
+        for c in view.constraints {
+            if c.constant == 21 {
+                view.removeConstraint(c)
+            }
+        }
+        view.addConstraint(view.trailingAnchor.constraint(equalTo: distanceTextField.trailingAnchor, constant: -1))
+    }
+    func toggleDistance(){
+        view.viewWithTag(100)!.isHidden = false
+        view.viewWithTag(101)!.isHidden = false
+        tableView.isHidden = true
+        distanceTextField.isHidden = false
+        for c in distanceTextField.constraints {
+            if c.constant == 0 {
+                distanceTextField.removeConstraint(c)
+            }
+        }
+        distanceTextField.addConstraint(distanceTextField.widthAnchor.constraint(equalToConstant: CGFloat((view.frame.width-60)/2)))
+        for c in view.constraints {
+            if c.constant == -1{
+                view.removeConstraint(c)
+            }
+        }
         
-        imageView.frame = CGRect(x: to.width/2-CGFloat(width)/2, y: to.height/2-CGFloat(height)/2, width: CGFloat(width), height: CGFloat(height))
-        canvas.frame = imageView.frame
+        view.addConstraint(view.trailingAnchor.constraint(equalTo: distanceTextField.trailingAnchor, constant: 21))
+
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if keyboardAdjusted == false {
+            lastKeyboardOffset = getKeyboardHeight(notification: notification)
+            view.frame.origin.y -= lastKeyboardOffset
+            keyboardAdjusted = true
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if keyboardAdjusted == true {
+            view.frame.origin.y += lastKeyboardOffset
+            keyboardAdjusted = false
+        }
+    }
+
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.height
     }
 }
+
+
+
+
+
+

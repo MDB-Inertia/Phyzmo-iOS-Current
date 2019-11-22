@@ -81,6 +81,7 @@ class GraphViewController: UIViewController {
     
     @objc func export(sender: UIButton) {
         let image = chartView.getChartImage(transparent: false)
+        
        // UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "yyyy-MM-dd-HH:mm"

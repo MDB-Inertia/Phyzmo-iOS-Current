@@ -28,7 +28,7 @@ extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegat
     }
     
     func numberOfRows(in spreadsheetView: SpreadsheetView) -> Int {
-        return 1 + time!.count
+        return 1+time!.count
     }
 
     func frozenRows(in spreadsheetView: SpreadsheetView) -> Int {
@@ -63,25 +63,25 @@ extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegat
             cell.gridlines.left = .none
             cell.gridlines.right = .default
             return cell
-        case (0, 1..<time!.count):
+        case (0, 1...time!.count):
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TextCell.self), for: indexPath) as! TextCell
             cell.label.text =  String(time![indexPath.row - 1].rounded(toPlaces: 3))
-            cell.gridlines.left = .none
+            cell.gridlines.left = .default
             cell.gridlines.right = .default
             return cell
-        case (1, 1..<time!.count):
+        case (1, 1...time!.count):
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TextCell.self), for: indexPath) as! TextCell
             cell.label.text =  String(rawDisplacement![indexPath.row - 1].rounded(toPlaces: 3))
             cell.gridlines.left = .none
             cell.gridlines.right = .default
             return cell
-        case (2, 1..<time!.count):
+        case (2, 1...time!.count):
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TextCell.self), for: indexPath) as! TextCell
             cell.label.text =  String(rawVelocity![indexPath.row - 1].rounded(toPlaces: 3))
             cell.gridlines.left = .none
             cell.gridlines.right = .default
             return cell
-        case (3, 1..<time!.count):
+        case (3, 1...time!.count):
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TextCell.self), for: indexPath) as! TextCell
             cell.label.text =  String(rawAcceleration![indexPath.row - 1].rounded(toPlaces: 3))
             cell.gridlines.left = .none
