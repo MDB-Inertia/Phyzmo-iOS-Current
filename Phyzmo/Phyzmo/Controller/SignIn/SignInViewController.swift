@@ -37,6 +37,11 @@ class SignInViewController: UIViewController {
         backgroundView.layer.addSublayer(layer)
         self.hideKeyboardWhenTappedAround()
     
+//        emailTextField.leftViewMode = UITextField.ViewMode.always
+//        let imageView = UIImageView(image: UIImage(named: "envelope"))
+//        //imageView.frame.size = CGSize(width: 500, height: 500)
+//        emailTextField.leftView = imageView
+//        emailTextField.leftView?.frame = CGRect(x: 0, y:0, width: 10, height: 10)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
