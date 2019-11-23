@@ -27,6 +27,7 @@ class VideoViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         tabBarController!.navigationItem.rightBarButtonItem = nil
+        tabBarController!.navigationItem.title = "Video"
     }
     
     @IBAction func playPressed(_ sender: Any) {

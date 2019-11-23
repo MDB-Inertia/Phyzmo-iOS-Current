@@ -249,6 +249,7 @@ class ObjectViewController: UIViewController {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        toggleObjects()
     }
     
     // TO ensure that check boxes are always on the right side of the screen
@@ -285,6 +286,7 @@ class ObjectViewController: UIViewController {
     
     func toggleObjects(){
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+        tabBarController!.navigationItem.title = "Objects"
         view.viewWithTag(100)!.isHidden = true
         view.viewWithTag(101)!.isHidden = true
         tableView.isHidden = false
@@ -306,6 +308,7 @@ class ObjectViewController: UIViewController {
     }
     func toggleDistance(){
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+        tabBarController!.navigationItem.title = "Distance"
 
         view.viewWithTag(100)!.isHidden = false
         view.viewWithTag(101)!.isHidden = false
