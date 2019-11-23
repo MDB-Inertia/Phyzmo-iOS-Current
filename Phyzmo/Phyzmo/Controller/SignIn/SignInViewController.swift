@@ -120,15 +120,15 @@ class SignInViewController: UIViewController {
             })
     }
     
-    
-    @IBAction func enterButtonPressed(_ sender: Any) {
+    @IBAction func signInPressed(_ sender: Any) {
         handleSignIn()
     }
     
-    @IBAction func signUpButtonPressed(_ sender: Any) {
+    
+    @IBAction func signUpPressed(_ sender: Any) {
+        print("segue")
         self.performSegue(withIdentifier: "SignInToSignUp", sender: self)
     }
-    
     @objc func keyboardWillShow(notification: NSNotification) {
         if keyboardAdjusted == false {
             lastKeyboardOffset = getKeyboardHeight(notification: notification) - (view.frame.height - signUpButton.frame.maxY)
