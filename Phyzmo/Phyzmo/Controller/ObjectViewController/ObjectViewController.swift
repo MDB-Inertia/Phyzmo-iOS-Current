@@ -271,7 +271,9 @@ class ObjectViewController: UIViewController {
         
         with.animate(alongsideTransition: nil, completion: {
             _ in
-            self.selectButton.applyGradient(colors: self.gradient)
+            if self.selectButton != nil {
+                self.selectButton.applyGradient(colors: self.gradient)
+            }
             // Your code here
         })
         if tableView != nil {

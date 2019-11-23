@@ -164,7 +164,6 @@ class GraphViewController: UIViewController {
         data.addDataSet(currentLine)
         chartView.data = data
         chartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeInSine)
-
     }
     
     
