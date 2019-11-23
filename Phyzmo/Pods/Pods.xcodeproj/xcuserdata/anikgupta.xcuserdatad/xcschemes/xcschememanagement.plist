@@ -147,12 +147,12 @@
 		<key>SkyFloatingLabelTextField.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>22</integer>
 		</dict>
 		<key>SpreadsheetView.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>23</integer>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>

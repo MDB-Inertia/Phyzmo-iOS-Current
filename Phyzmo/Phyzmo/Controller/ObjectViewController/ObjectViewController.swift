@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SkyFloatingLabelTextField
 
 class ObjectViewController: UIViewController {
     
@@ -15,14 +16,14 @@ class ObjectViewController: UIViewController {
     
     @IBOutlet weak var selectButton: UIButton!
     var selectedObjects: [String]?
-    
+    let gradient = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]
     let canvas = Canvas()
     var imageView: UIImageView!
     var imageWidth : CGFloat?
     var imageHeight : CGFloat?
     var keyboardAdjusted = false
     var lastKeyboardOffset: CGFloat = 0.0
-    @IBOutlet weak var distanceTextField: UITextField!
+    @IBOutlet weak var distanceTextField: SkyFloatingLabelTextFieldWithIcon!
     
     @IBOutlet weak var segmented: UISegmentedControl!
     
@@ -30,7 +31,7 @@ class ObjectViewController: UIViewController {
         super.viewDidLoad()
         //let tabController = self.tabBarController as! DataViewController
         //self.video = tabController.video
-        self.selectButton.applyGradient(colors: [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor])
+        self.selectButton.applyGradient(colors: gradient)
         
        
         tableView.register(ObjectTableViewCell.self, forCellReuseIdentifier: "objectCell")
@@ -74,6 +75,7 @@ class ObjectViewController: UIViewController {
         if (self.tabBarController as! DataViewController).video!.unit != nil{
             distanceTextField.text = ("\((self.tabBarController as! DataViewController).video!.unit!)")
         }
+        
         view.addSubview(canvas)
 
         
@@ -266,6 +268,12 @@ class ObjectViewController: UIViewController {
     }
     override func viewWillTransition(to: CGSize, with: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: to, with: with)
+        
+        with.animate(alongsideTransition: nil, completion: {
+            _ in
+            self.selectButton.applyGradient(colors: self.gradient)
+            // Your code here
+        })
         if tableView != nil {
             tableView.reloadData()
         }
@@ -286,6 +294,8 @@ class ObjectViewController: UIViewController {
             imageView.frame = CGRect(x: to.width/2-CGFloat(width)/2, y: to.height/2-CGFloat(height)/2, width: CGFloat(width), height: CGFloat(height))
             canvas.frame = imageView.frame
         }
+        
+
     }
     
     
@@ -310,6 +320,7 @@ class ObjectViewController: UIViewController {
             }
         }
         view.addConstraint(view.trailingAnchor.constraint(equalTo: distanceTextField.trailingAnchor, constant: -1))
+        self.selectButton.applyGradient(colors: gradient)
     }
     func toggleDistance(){
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
@@ -332,6 +343,7 @@ class ObjectViewController: UIViewController {
         }
         
         view.addConstraint(view.trailingAnchor.constraint(equalTo: distanceTextField.trailingAnchor, constant: 21))
+        self.selectButton.applyGradient(colors: gradient)
 
     }
     @objc func keyboardWillShow(notification: NSNotification) {

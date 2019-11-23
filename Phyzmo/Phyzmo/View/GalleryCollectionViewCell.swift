@@ -76,6 +76,8 @@ class GalleryCollectionViewCell : UICollectionViewCell {
         imageTint.backgroundColor = UIColor(white: 0, alpha: 0.4)
         imageTint.frame = videoThumbnail.frame
         imageTint.isHidden = true
+        imageTint.layer.cornerRadius = 7
+        imageTint.layer.masksToBounds = true
         contentView.addSubview(imageTint)
         
         checkMark = CheckMarkView(frame: CGRect(x: size.width-30, y: size.height-30, width: 30, height: 30))

@@ -73,6 +73,28 @@ extension UIButton {
         gradientLayer.shadowOpacity = 0.3
         gradientLayer.masksToBounds = false
 
+        //self.layer.sublayers = [gradientLayer]
+        if self.layer.sublayers != nil{
+            /*for sublayer in self.layer.sublayers! {
+                //if sublayer
+                print(sublayer)
+            }*/
+            //print(self.layer.sublayers?[0])
+            for layer in self.layer.sublayers! {
+                if layer.name == "gradient" {
+                    layer.removeFromSuperlayer()
+                }
+            }
+            /*if self.layer.sublayers![0] != nil {
+                (self.layer.sublayers![0]).removeFromSuperlayer()
+            }*/
+        }
+        /*self.layer.sublayers?.removeAll()
+        if self.layer.*/
+        //self.layer.addSublayer(gradientLayer)
+        //self.layer = gradientLayer
+        //self.setNeedsDisplay()
+        gradientLayer.name = "gradient"
         self.layer.insertSublayer(gradientLayer, at: 0)
         self.contentVerticalAlignment = .center
         self.setTitleColor(UIColor.white, for: .normal)
