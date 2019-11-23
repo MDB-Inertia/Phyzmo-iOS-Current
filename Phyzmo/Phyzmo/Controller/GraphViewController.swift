@@ -150,9 +150,9 @@ class GraphViewController: UIViewController {
         }
         
 
-        currentLine.colors = [UIColor(red:0.01, green:0.38, blue:0.93, alpha:1.0)]
+        currentLine.colors = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0)]
         currentLine.lineWidth = 2.0
-        //currentLine.circleColors = [UIColor(red:0.93, green:0.66, blue:0.01, alpha:1.0)]
+        currentLine.circleColors = [UIColor(red:0.44, green:0.80, blue:0.92, alpha:1.0)]
         currentLine.circleRadius = 4.0
         let data = LineChartData()
         data.addDataSet(currentLine)

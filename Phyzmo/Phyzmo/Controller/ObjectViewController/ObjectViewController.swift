@@ -30,7 +30,9 @@ class ObjectViewController: UIViewController {
         super.viewDidLoad()
         //let tabController = self.tabBarController as! DataViewController
         //self.video = tabController.video
+        self.selectButton.applyGradient(colors: [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor])
         
+       
         tableView.register(ObjectTableViewCell.self, forCellReuseIdentifier: "objectCell")
         tableView.delegate = self
         tableView.dataSource = self
@@ -49,6 +51,8 @@ class ObjectViewController: UIViewController {
             height = Float(view.frame.width)/proportion
             width = height*proportion
 
+
+        
         }
         
         
