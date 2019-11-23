@@ -65,7 +65,7 @@ class Video{
                         print(self.line)
                         let distance = (value as! [String: AnyObject])["unit"]
                         if distance != nil {
-                            let distance_found = distance as! Float
+                            let distance_found = Float(distance as! NSNumber)
                             self.unit = distance_found
                         }
                         
