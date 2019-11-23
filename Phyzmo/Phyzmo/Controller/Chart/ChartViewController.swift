@@ -86,6 +86,11 @@ class ChartViewController: UIViewController {
                 UIActivity.ActivityType.openInIBooks
             ]
             present(vc, animated: true, completion: nil)
+            if let popOver = vc.popoverPresentationController {
+              popOver.sourceView = self.view
+              //popOver.sourceRect =
+              popOver.barButtonItem = tabBarController!.navigationItem.rightBarButtonItem
+            }
             
         } catch {
             print("Failed to create file")
