@@ -144,10 +144,15 @@
 			<key>orderHint</key>
 			<integer>21</integer>
 		</dict>
-		<key>SpreadsheetView.xcscheme_^#shared#^_</key>
+		<key>SkyFloatingLabelTextField.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>23</integer>
+		</dict>
+		<key>SpreadsheetView.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>24</integer>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>
