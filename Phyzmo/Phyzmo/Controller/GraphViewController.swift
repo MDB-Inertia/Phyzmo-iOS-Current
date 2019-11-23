@@ -147,9 +147,10 @@ class GraphViewController: UIViewController {
         
         else if segmentedView.selectedSegmentIndex == 2 {
               currentLine = LineChartDataSet(entries: chartAcceleration, label: "Acceleration" )
+            
         }
         
-
+        
         currentLine.colors = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0)]
         currentLine.lineWidth = 2.0
         currentLine.circleColors = [UIColor(red:0.44, green:0.80, blue:0.92, alpha:1.0)]
@@ -157,6 +158,7 @@ class GraphViewController: UIViewController {
         let data = LineChartData()
         data.addDataSet(currentLine)
         chartView.data = data
+        chartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeInSine)
 
     }
     
