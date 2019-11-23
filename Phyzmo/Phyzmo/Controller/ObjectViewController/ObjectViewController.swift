@@ -48,6 +48,7 @@ class ObjectViewController: UIViewController {
         if width > Float(view.frame.width) {
             height = Float(view.frame.width)/proportion
             width = height*proportion
+
         }
         
         

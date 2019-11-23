@@ -15,11 +15,11 @@ class MainViewController: UIViewController {
     @IBOutlet weak var trashButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var logOutButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var welcomeLabel: GradientLabel!
     
     let reuseIdentifier = "GalleryCell"
     let sectionInsets = UIEdgeInsets(top: 10.0,
@@ -73,9 +73,10 @@ class MainViewController: UIViewController {
             if snapshot.value is AnyObject {
                 let name = snapshot.value as! String
                 self.welcomeLabel.text = "Welcome, \(name.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)[0])"
+                self.welcomeLabel.gradientColors = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.84, green:0.07, blue:0.72, alpha:1.0).cgColor,UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor,UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]
             } else {
                 self.welcomeLabel.text = "Welcome"
-                //print(snapshot.value)
+                self.welcomeLabel.gradientColors = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.84, green:0.07, blue:0.72, alpha:1.0).cgColor,UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor,UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]
             }
           }) { (error) in
             print(error.localizedDescription)
@@ -85,6 +86,13 @@ class MainViewController: UIViewController {
         databaseReference.observe(.value) { (snapshot) in
             self.updateCollection()
         }
+        
+        self.navigationController?.navigationBar.setGradientBackground(colors: [
+        UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor,
+        UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor,
+        UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor
+        ])
+
         
     }
     func updateCollection(){
@@ -350,3 +358,4 @@ class MainViewController: UIViewController {
     }
     
 }
+

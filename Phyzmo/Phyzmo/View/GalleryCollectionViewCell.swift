@@ -14,6 +14,7 @@ class GalleryCollectionViewCell : UICollectionViewCell {
         didSet {
             if let thumbnail = thumbnail {
                 //videoThumbnail.image = thumbnail
+
                 videoThumbnail.image = thumbnail.scaleImageToSize(newSize: CGSize(width: self.frame.size.width * 5, height: self.frame.size.height * 5))
             }
         }
@@ -65,7 +66,9 @@ class GalleryCollectionViewCell : UICollectionViewCell {
         videoThumbnail = UIImageView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         //videoThumbnail.contentMode = .scaleAspectFit
         //videoThumbnail = UIImageView()
-        
+        videoThumbnail.layer.cornerRadius = 7
+        videoThumbnail.layer.masksToBounds = true
+
         contentView.addSubview(videoThumbnail)
         
         imageTint = UIView()

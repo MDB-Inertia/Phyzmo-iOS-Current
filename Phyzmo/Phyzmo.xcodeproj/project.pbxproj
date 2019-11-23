@@ -17,6 +17,7 @@
 		97FC58E023790B1D0038BBD8 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC58DF23790B1D0038BBD8 /* DataViewController.swift */; };
 		97FC58E32379354D0038BBD8 /* ObjectViewController - TableFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC58E22379354D0038BBD8 /* ObjectViewController - TableFunctions.swift */; };
 		97FC58E5237935CD0038BBD8 /* ObjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC58E4237935CD0038BBD8 /* ObjectTableViewCell.swift */; };
+		AC464D842388D97D00E90E2D /* UIextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464D832388D97D00E90E2D /* UIextension.swift */; };
 		AC4EFA58237DB71A001677A0 /* ChartExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4EFA57237DB71A001677A0 /* ChartExtension.swift */; };
 		AC4EFA5A237DBA43001677A0 /* ChartCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4EFA59237DBA43001677A0 /* ChartCells.swift */; };
 		ACCBBD6C2377549D00863F24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCBBD6B2377549D00863F24 /* AppDelegate.swift */; };
@@ -80,6 +81,7 @@
 		97FC58DF23790B1D0038BBD8 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		97FC58E22379354D0038BBD8 /* ObjectViewController - TableFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObjectViewController - TableFunctions.swift"; sourceTree = "<group>"; };
 		97FC58E4237935CD0038BBD8 /* ObjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewCell.swift; sourceTree = "<group>"; };
+		AC464D832388D97D00E90E2D /* UIextension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIextension.swift; sourceTree = "<group>"; };
 		AC4EFA57237DB71A001677A0 /* ChartExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartExtension.swift; sourceTree = "<group>"; };
 		AC4EFA59237DBA43001677A0 /* ChartCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCells.swift; sourceTree = "<group>"; };
 		ACCBBD682377549D00863F24 /* Phyzmo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phyzmo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,6 +253,7 @@
 				ACCBBD6F2377549D00863F24 /* Main.storyboard */,
 				97FC58E4237935CD0038BBD8 /* ObjectTableViewCell.swift */,
 				977C102B237C9ACE005B29D4 /* GalleryCollectionViewCell.swift */,
+				AC464D832388D97D00E90E2D /* UIextension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				ACCBBDA32377575200863F24 /* MainViewController.swift in Sources */,
 				977C102A237C8F3B005B29D4 /* MainViewController-functions.swift in Sources */,
 				97FC58E5237935CD0038BBD8 /* ObjectTableViewCell.swift in Sources */,
+				AC464D842388D97D00E90E2D /* UIextension.swift in Sources */,
 				97845B742377C6D600153871 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
