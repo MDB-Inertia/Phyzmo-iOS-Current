@@ -16,6 +16,7 @@ class GalleryCollectionViewCell : UICollectionViewCell {
                 //videoThumbnail.image = thumbnail
 
                 videoThumbnail.image = thumbnail.scaleImageToSize(newSize: CGSize(width: self.frame.size.width * 5, height: self.frame.size.height * 5))
+                
             }
         }
     }

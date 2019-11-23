@@ -19,6 +19,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var enterButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var logo: UIImageView!
     
     //Variables
     var userEmail : String?
@@ -34,7 +35,6 @@ class SignInViewController: UIViewController {
         //layer.startPoint = CGPoint(x: 0,y: 0.5)
         //layer.startPoint = CGPoint(x: 1,y: 1)
         backgroundView.layer.addSublayer(layer)
-        
         self.hideKeyboardWhenTappedAround()
     
     }
@@ -44,8 +44,13 @@ class SignInViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -57,8 +62,9 @@ class SignInViewController: UIViewController {
         }
     }
     func hideKeyboardWhenTappedAround() {
-     let tap: UITapGestureRecognizer =     UITapGestureRecognizer(target: self, action:    #selector(SignInViewController.dismissKeyboard))
-      tap.cancelsTouchesInView = false
+     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:    #selector(SignInViewController.dismissKeyboard))
+        //tap.
+      tap.cancelsTouchesInView = true
       view.addGestureRecognizer(tap)
     }
     @objc func dismissKeyboard() {
@@ -125,15 +131,15 @@ class SignInViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if keyboardAdjusted == false {
-            lastKeyboardOffset = getKeyboardHeight(notification: notification)
-            view.frame.origin.y -= lastKeyboardOffset
+            lastKeyboardOffset = getKeyboardHeight(notification: notification) - (view.frame.height - signUpButton.frame.maxY)
+            view.frame.origin.y -= max(lastKeyboardOffset, 0)
             keyboardAdjusted = true
         }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
         if keyboardAdjusted == true {
-            view.frame.origin.y += lastKeyboardOffset
+            view.frame.origin.y += max(lastKeyboardOffset, 0)
             keyboardAdjusted = false
         }
     }
