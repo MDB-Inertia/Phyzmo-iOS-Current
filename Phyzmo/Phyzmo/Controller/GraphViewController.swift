@@ -164,6 +164,20 @@ class GraphViewController: UIViewController {
         data.addDataSet(currentLine)
         chartView.data = data
         chartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeInSine)
+        
+        let xAxis = chartView.xAxis
+        let yAxis1 = chartView.rightAxis
+        let yAxis2 = chartView.leftAxis
+        let dataPoints = chartView.marker
+        if #available(iOS 13.0, *) {
+            xAxis.labelTextColor = .label
+            yAxis1.labelTextColor = .label
+            yAxis2.labelTextColor = .label
+        }
+        /**else {
+            xAxis.labelTextColor = .default
+        }**/
+        
     }
     
     
