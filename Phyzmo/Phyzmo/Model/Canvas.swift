@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 class Canvas: UIView {
+    let lightBlue = UIColor(red:0.44, green:0.80, blue:0.92, alpha:1.0).cgColor
+    let purple = UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor
+    let blue = UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -18,14 +21,14 @@ class Canvas: UIView {
         for (i, p) in line.enumerated() {
             if i == 0 {
                 context.move(to: p)
-                
             } else {
                 context.addLine(to: p)
             }
         }
-        context.setStrokeColor(UIColor.green.cgColor)
+
+        context.setStrokeColor(lightBlue)
         context.setLineWidth(8)
-        context.setLineCap(.butt)
+        context.setLineCap(.round)
         context.strokePath()
     }
     

@@ -90,7 +90,8 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.setGradientBackground(colors: [
         UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor,
         UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor,
-        UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor
+        UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor
+        //UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor
         ])
 
         
