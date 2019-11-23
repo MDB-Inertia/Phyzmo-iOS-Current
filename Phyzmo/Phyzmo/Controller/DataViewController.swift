@@ -45,6 +45,10 @@ class DataViewController: UITabBarController {
             button.isEnabled = true
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationItem.title = "Video"
+    }
 
     /*
     // MARK: - Navigation
