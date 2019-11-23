@@ -17,7 +17,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
 
     @IBOutlet var backgroundView: UIView!
-
+    @IBOutlet weak var cancelButton: UIButton!
+    
     var keyboardAdjusted = false
     var lastKeyboardOffset: CGFloat = 0.0
     
@@ -54,11 +55,14 @@ class SignUpViewController: UIViewController {
     }
     func hideKeyboardWhenTappedAround() {
      let tap: UITapGestureRecognizer =     UITapGestureRecognizer(target: self, action:    #selector(SignInViewController.dismissKeyboard))
-      tap.cancelsTouchesInView = false
+      tap.cancelsTouchesInView = true
       view.addGestureRecognizer(tap)
     }
     @objc func dismissKeyboard() {
        view.endEditing(true)
+    }
+    @IBAction func cancelPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     func handleSignUp(){
         guard let fullname = fullNameTextField.text else { return }
@@ -100,26 +104,24 @@ class SignUpViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func cancelButtonPressed(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
-    }
     
-    @IBAction func enterButtonPressed(_ sender: Any) {
+    
+    @IBAction func signUpPressed(_ sender: Any) {
         handleSignUp()
     }
     
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if keyboardAdjusted == false {
-            lastKeyboardOffset = getKeyboardHeight(notification: notification)
-            view.frame.origin.y -= lastKeyboardOffset
+            lastKeyboardOffset = getKeyboardHeight(notification: notification) - (view.frame.height - cancelButton.frame.maxY)
+            view.frame.origin.y -= max(lastKeyboardOffset, 0)
             keyboardAdjusted = true
         }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
         if keyboardAdjusted == true {
-            view.frame.origin.y += lastKeyboardOffset
+            view.frame.origin.y += max(lastKeyboardOffset, 0)
             keyboardAdjusted = false
         }
     }

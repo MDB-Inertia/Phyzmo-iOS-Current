@@ -73,7 +73,10 @@ class MainViewController: UIViewController {
             if snapshot.value is AnyObject {
                 let name = snapshot.value as! String
                 self.welcomeLabel.text = "Welcome, \(name.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)[0])"
-                self.welcomeLabel.gradientColors = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.84, green:0.07, blue:0.72, alpha:1.0).cgColor,UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor,UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]
+                self.welcomeLabel.gradientColors = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor,
+                                                    //UIColor(red:0.84, green:0.07, blue:0.72, alpha:1.0).cgColor,
+                    //UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor,
+                    UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]
             } else {
                 self.welcomeLabel.text = "Welcome"
                 self.welcomeLabel.gradientColors = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.84, green:0.07, blue:0.72, alpha:1.0).cgColor,UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor,UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]
@@ -86,6 +89,8 @@ class MainViewController: UIViewController {
         databaseReference.observe(.value) { (snapshot) in
             self.updateCollection()
         }
+        
+        //self.navigationController?.navigationBar.backgroundColor = UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0)
         
         self.navigationController?.navigationBar.setGradientBackground(colors: [
         UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor,
@@ -226,7 +231,7 @@ class MainViewController: UIViewController {
         return true
     }
 
-    @IBAction func deletePressed(_ sender: Any) {
+    @IBAction func deletePrsessed(_ sender: Any) {
         
         //TODO - delete all references in Firebase, GCP, etc. with the id's in videosSelected
         let ref = Database.database().reference()
