@@ -48,6 +48,7 @@ class GraphViewController: UIViewController {
         setUpGraph()
         updateGraph()
         tabBarController!.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(export))
+        tabBarController!.navigationItem.title = "Graph"
     }
 
     func readVals(){

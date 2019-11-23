@@ -50,6 +50,8 @@ class ChartViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool){
         chartSpreadsheetView.flashScrollIndicators()
         tabBarController!.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(export))
+        tabBarController!.navigationItem.title = "Chart"
+
         
     }
     /**
