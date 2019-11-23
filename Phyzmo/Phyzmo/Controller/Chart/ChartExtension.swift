@@ -14,9 +14,16 @@ extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegat
     //FIXME
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, widthForColumn column: Int) -> CGFloat {
-        let size = (UIScreen.main.bounds.height * 0.75) / 4
-        print(size)
-        return size
+        if UIDevice.current.orientation.isLandscape {
+            let size = (UIScreen.main.bounds.height) / 4
+            print(size)
+            return size
+        }
+        else{
+            let size = (UIScreen.main.bounds.width) / 4
+            print(size)
+            return size
+        }
     }
     
      func spreadsheetView(_ spreadsheetView: SpreadsheetView, heightForRow row: Int) -> CGFloat {

@@ -25,13 +25,8 @@ class ChartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         readVals()
-        
-        
-
-        
         chartSpreadsheetView.dataSource = self
         chartSpreadsheetView.delegate = self
-        
         let hairline = 1 / UIScreen.main.scale
                chartSpreadsheetView.intercellSpacing = CGSize(width: hairline, height: hairline)
                chartSpreadsheetView.gridStyle = .solid(width: hairline, color: .lightGray)
@@ -40,8 +35,8 @@ class ChartViewController: UIViewController {
         chartSpreadsheetView.register(TextCell.self, forCellWithReuseIdentifier: String(describing: TextCell.self))
         
         chartSpreadsheetView.bounces = false
-        
-        
+               
+       
     }
     /*override func viewWillAppear(_ animated: Bool) {
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
@@ -53,6 +48,14 @@ class ChartViewController: UIViewController {
         tabBarController!.navigationItem.title = "Chart"
 
         
+    }
+
+    override func viewWillTransition(to size: CGSize,
+                            with coordinator: UIViewControllerTransitionCoordinator){
+        print("ORIENTATION: \(UIDevice.current.orientation.isLandscape)")
+        if chartSpreadsheetView != nil{
+            chartSpreadsheetView.reloadData()
+        }
     }
     /**
     override var shouldAutorotate: Bool {
@@ -114,6 +117,4 @@ class ChartViewController: UIViewController {
     }
     
     
-    
-
 }
