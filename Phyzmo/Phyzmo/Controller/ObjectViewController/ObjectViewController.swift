@@ -16,7 +16,8 @@ class ObjectViewController: UIViewController {
     
     @IBOutlet weak var selectButton: UIButton!
     var selectedObjects: [String]?
-    let gradient = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]
+    
+    var gradient = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]
     let canvas = Canvas()
     var imageView: UIImageView!
     var imageWidth : CGFloat?
@@ -121,12 +122,16 @@ class ObjectViewController: UIViewController {
     
     func updateSelectButton() {
         if (self.tabBarController as! DataViewController).video!.objects_selected == [] || distanceTextField.text == "" || canvas.getArray().count < 2 {
-            selectButton.isHighlighted = true
+            //selectButton.isHighlighted = true
             selectButton.isEnabled = false
+            gradient = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:0.7).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:0.7).cgColor]
+            selectButton.applyGradient(colors: gradient)
         }
         else{
-            selectButton.isHighlighted = false
+            //selectButton.isHighlighted = false
             selectButton.isEnabled = true
+            gradient = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]
+            selectButton.applyGradient(colors: gradient)
         }
         if selectedObjects == [] ||
             (self.tabBarController as! DataViewController).video!.line == nil ||
@@ -146,6 +151,10 @@ class ObjectViewController: UIViewController {
     }
     
     @IBAction func segmented(_ sender: Any) {
+        segment()
+    }
+    
+    func segment(){
         switch segmented.selectedSegmentIndex
         {
         case 0:
@@ -164,7 +173,6 @@ class ObjectViewController: UIViewController {
             break
         }
     }
-    
     func load(){
         selectedObjects = (self.tabBarController as! DataViewController).video!.objects_selected
         if (self.tabBarController as! DataViewController).video!.line != nil && imageView != nil{
@@ -178,6 +186,7 @@ class ObjectViewController: UIViewController {
         }
         
         updateSelectButton()
+        //segmented.selectedSegmentIndex = 0
         /*if (self.tabBarController as! DataViewController).video!.objects_selected == [] || distanceTextField.text == "" || canvas.getArray().count < 2 {
             selectButton.isHighlighted = true
             selectButton.isEnabled = false
@@ -195,6 +204,7 @@ class ObjectViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         tabBarController!.navigationItem.rightBarButtonItem = nil
         load()
+        segmented(self)
     }
     
     @IBAction func objectSelectionPressed(_ sender: Any) {

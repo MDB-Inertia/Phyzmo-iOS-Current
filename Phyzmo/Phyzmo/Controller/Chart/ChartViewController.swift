@@ -15,6 +15,7 @@ class ChartViewController: UIViewController {
     var rawDisplacement : [Double]?
     var rawVelocity : [Double]?
     var rawAcceleration : [Double]?
+    var cellWidth : Double?
 
     @IBOutlet weak var chartSpreadsheetView: SpreadsheetView!
     
@@ -24,6 +25,13 @@ class ChartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if UIDevice.current.orientation.isLandscape {
+            cellWidth = Double(view.frame.height/4)
+        }
+        else{
+            cellWidth = Double(view.frame.width/4)
+        }
         readVals()
         chartSpreadsheetView.dataSource = self
         chartSpreadsheetView.delegate = self
@@ -35,6 +43,7 @@ class ChartViewController: UIViewController {
         chartSpreadsheetView.register(TextCell.self, forCellWithReuseIdentifier: String(describing: TextCell.self))
         
         chartSpreadsheetView.bounces = false
+        
                
        
     }
@@ -53,9 +62,19 @@ class ChartViewController: UIViewController {
     override func viewWillTransition(to size: CGSize,
                             with coordinator: UIViewControllerTransitionCoordinator){
         print("ORIENTATION: \(UIDevice.current.orientation.isLandscape)")
-        if chartSpreadsheetView != nil{
-            chartSpreadsheetView.reloadData()
+        coordinator.animate(alongsideTransition: nil) { (context) in
+//            if UIDevice.current.orientation.isLandscape {
+//                self.cellWidth = Double(size.height/4)
+//            }
+//            else{
+//                self.cellWidth = Double(size.width/4)
+//            }
+            self.cellWidth = Double(size.width/4)
+            if self.chartSpreadsheetView != nil{
+                self.chartSpreadsheetView.reloadData()
+            }
         }
+        
     }
     /**
     override var shouldAutorotate: Bool {

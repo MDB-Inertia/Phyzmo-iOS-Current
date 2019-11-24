@@ -97,8 +97,8 @@ extension UIButton {
         gradientLayer.name = "gradient"
         self.layer.insertSublayer(gradientLayer, at: 0)
         self.contentVerticalAlignment = .center
-        self.setTitleColor(UIColor.white, for: .normal)
+        //self.setTitleColor(UIColor.white, for: .normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17.0)
-        self.titleLabel?.textColor = UIColor.white
+        //self.titleLabel?.textColor = UIColor.white
     }
 }

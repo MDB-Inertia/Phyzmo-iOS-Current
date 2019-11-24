@@ -36,6 +36,7 @@ class GraphViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setUpGraph()
         updateGraph()
     }
@@ -140,9 +141,33 @@ class GraphViewController: UIViewController {
         
     }
     func updateGraph(){
-
+//        print(xAxisLabel.frame.origin)
+//        xAxisLabel.frame.origin.x = 0
+//        xAxisLabel.bounds.origin.x = 0
+//        var temp = xAxisLabel.bounds.size.width
+//        xAxisLabel.bounds.size.width = xAxisLabel.bounds.size.height
+//        xAxisLabel.bounds.size.height = temp
+//
+//        temp = xAxisLabel.frame.size.width
+//        xAxisLabel.frame.size.width = xAxisLabel.frame.size.height
+//        xAxisLabel.frame.size.height = temp
+//
+//        xAxisLabel.frame.origin.x = 0
+//        xAxisLabel.bounds.origin.x = 0
+//        print(xAxisLabel.frame.origin)
+        //xAxisLabel.addConstraint(xAxisLabel.leadingAnchor.constrain)
+        
+        //xAxisLabel.frame = CGRect(origin: xAxisLabel.frame.origin, size: CGSize(width: xAxisLabel.frame.height, height: xAxisLabel.frame.width))
+        //xAxisLabel.backgroundColor = .brown
+//        xAxisLabel.frame.origin.x = 0
+//        xAxisLabel.bounds.origin.x = 0
+//
+//        print(xAxisLabel.frame.size.width)
+//        print(xAxisLabel.frame.size.height)
+        //xAxisLabel.frame = CGRect(
+        //xAxisLabel.frame.origin = CGPoint(x: 0, y: 0)
         var currentLine = LineChartDataSet(entries: chartDisplacement, label: "Displacement" )
-    
+        
         if segmentedView.selectedSegmentIndex == 0 {
             var currentLine = LineChartDataSet(entries: chartDisplacement, label: "Displacement" )
         }
@@ -154,6 +179,14 @@ class GraphViewController: UIViewController {
               currentLine = LineChartDataSet(entries: chartAcceleration, label: "Acceleration" )
             
         }
+        for c in view.constraints{
+            if c.identifier == "x-Axis constraint" {
+                view.removeConstraint(c)
+            }
+        }
+
+        
+        //xAxisLabel.transform = CGAffineTransform( rotationAngle: CGFloat(( 270 * M_PI ) / 180) )
         
         
         currentLine.colors = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0)]
@@ -173,7 +206,13 @@ class GraphViewController: UIViewController {
             xAxis.labelTextColor = .label
             yAxis1.labelTextColor = .label
             yAxis2.labelTextColor = .label
+            currentLine.valueTextColor = .label
+            chartView.legend.textColor = .label
+
         }
+        chartView.pinchZoomEnabled = true
+        chartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
+        
         /**else {
             xAxis.labelTextColor = .default
         }**/

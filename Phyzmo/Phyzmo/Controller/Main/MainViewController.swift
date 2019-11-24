@@ -231,7 +231,7 @@ class MainViewController: UIViewController {
         return true
     }
 
-    @IBAction func deletePrsessed(_ sender: Any) {
+    @IBAction func deletePressed(_ sender: Any) {
         
         //TODO - delete all references in Firebase, GCP, etc. with the id's in videosSelected
         let ref = Database.database().reference()
@@ -354,6 +354,12 @@ class MainViewController: UIViewController {
     override func viewWillTransition(to: CGSize, with: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: to, with: with)
         collectionView.reloadData()
+        /*self.welcomeLabel.gradientColors = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor,
+                                        //UIColor(red:0.84, green:0.07, blue:0.72, alpha:1.0).cgColor,
+        //UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor,
+        UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]*/
+        
+        
     }
     
     func toggleEnableAll(_ isEnabled: Bool){

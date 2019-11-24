@@ -14,7 +14,7 @@ extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegat
     //FIXME
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, widthForColumn column: Int) -> CGFloat {
-        if UIDevice.current.orientation.isLandscape {
+       /*if UIDevice.current.orientation.isLandscape {
             let size = (UIScreen.main.bounds.height) / 4
             print(size)
             return size
@@ -23,7 +23,8 @@ extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegat
             let size = (UIScreen.main.bounds.width) / 4
             print(size)
             return size
-        }
+        }*/
+        return CGFloat(cellWidth ?? Double((UIScreen.main.bounds.height) / 4))
     }
     
      func spreadsheetView(_ spreadsheetView: SpreadsheetView, heightForRow row: Int) -> CGFloat {
@@ -46,26 +47,30 @@ extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegat
         switch (indexPath.column, indexPath.row) {
         case (0, 0):
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: HeaderCell.self), for: indexPath) as! HeaderCell
-            cell.label.text = "Time"
+            cell.label.text = "Time\n(s)"
+            cell.label.numberOfLines = 0
             cell.gridlines.left = .default
             cell.gridlines.right = .none
             return cell
         case (1, 0):
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: HeaderCell.self), for: indexPath) as! HeaderCell
-            cell.label.text = "Displacement"
+            cell.label.text = "Displacement\n(m)"
+            cell.label.numberOfLines = 0
             cell.gridlines.left = .solid(width: 1 / UIScreen.main.scale, color: cell.backgroundColor!)
             cell.gridlines.right = cell.gridlines.left
             return cell
         case (2, 0):
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: HeaderCell.self), for: indexPath) as! HeaderCell
-            cell.label.text = "Velocity"
+            cell.label.text = "Velocity\n(m/s)"
+            cell.label.numberOfLines = 0
             //cell.label.textColor = .gray
             cell.gridlines.left = .none
             cell.gridlines.right = .default
             return cell
         case (3, 0):
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: HeaderCell.self), for: indexPath) as! HeaderCell
-            cell.label.text = "Acceleration"
+            cell.label.text = "Acceleration\n(m/s\u{00B2})"
+            cell.label.numberOfLines = 0
             //cell.label.textColor = .gray
             cell.gridlines.left = .none
             cell.gridlines.right = .default
