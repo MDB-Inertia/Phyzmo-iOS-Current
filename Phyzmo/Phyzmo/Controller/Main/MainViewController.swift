@@ -65,6 +65,7 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         statusLabel.isHidden = false
         statusLabel.text = "Loading your datasets!"
+        statusLabel.textColor = .white
         let currentUserId = Auth.auth().currentUser!.uid
         let databaseReference = Database.database().reference().child("Users").child(currentUserId)
         databaseReference.child("fullname").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -105,6 +106,9 @@ class MainViewController: UIViewController {
         // self.updateGroup.enter()
         //        statusLabel.isHidden = false
         //        statusLabel.text = "Loading your datasets!"
+        if self.parent == nil {
+            return;
+        }
         print("update Collection")
         videos.removeAll()
         
@@ -171,9 +175,17 @@ class MainViewController: UIViewController {
                     if self.videos.count == 0 {
                         self.statusLabel.isHidden = false
                         self.statusLabel.text = "You have no datasets\nClick the camera above to begin!"
+                        self.selectButton.isHidden = true
+                        if #available(iOS 13.0, *) {
+                            self.statusLabel.textColor = .label
+                        } else {
+                            // Fallback on earlier versions
+                            self.statusLabel.textColor = .black
+                        }
                     }
                     else{
                         self.statusLabel.isHidden = true
+                        self.selectButton.isHidden = false
                     }
                     
                     print("reloaded")
@@ -221,6 +233,12 @@ class MainViewController: UIViewController {
                 if self.videos.count == 0 {
                     self.statusLabel.isHidden = false
                     self.statusLabel.text = "You have no datasets\nClick the camera above to begin!"
+                    if #available(iOS 13.0, *) {
+                        self.statusLabel.textColor = .label
+                    } else {
+                        // Fallback on earlier versions
+                        self.statusLabel.textColor = .black
+                    }
                 }
                 else{
                     self.statusLabel.isHidden = true
@@ -345,6 +363,7 @@ class MainViewController: UIViewController {
     }
     @IBAction func logOutButtonPressed(_ sender: Any) {
         try! Auth.auth().signOut()
+        self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: false, completion: nil)
     }
     

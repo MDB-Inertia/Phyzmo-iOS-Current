@@ -124,7 +124,7 @@ class ObjectViewController: UIViewController {
         if (self.tabBarController as! DataViewController).video!.objects_selected == [] || distanceTextField.text == "" || canvas.getArray().count < 2 {
             //selectButton.isHighlighted = true
             selectButton.isEnabled = false
-            gradient = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:0.7).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:0.7).cgColor]
+            gradient = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:0.5).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:0.5).cgColor]
             selectButton.applyGradient(colors: gradient)
         }
         else{

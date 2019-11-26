@@ -82,7 +82,7 @@ class SignUpViewController: UIViewController {
                 //self.dismiss(animated: false, completion: nil)
             }
             else {
-                self.displayAlert(title: "Error", message : "Error creating user. Please try again." )
+                self.displayAlert(title: "Error", message : error!.localizedDescription )
             }
         }
          

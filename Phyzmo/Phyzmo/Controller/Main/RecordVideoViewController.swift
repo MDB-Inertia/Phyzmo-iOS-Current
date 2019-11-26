@@ -106,6 +106,7 @@ extension MainViewController: UIImagePickerControllerDelegate {
             self.cameraButton.isEnabled = false
             self.statusLabel.isHidden = false
             self.statusLabel.text = "Uploading video"
+            self.statusLabel.textColor = .white
         }
         
         if error != nil {
