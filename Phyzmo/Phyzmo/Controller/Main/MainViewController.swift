@@ -120,7 +120,8 @@ class MainViewController: UIViewController {
         databaseReference.child("videoId").observeSingleEvent(of: .value, with: { (snapshot) in
             print("key", snapshot.key)
             print("value", snapshot.value)
-            if snapshot.value is [AnyObject] {
+            if snapshot.value is [AnyObject]{
+                print(snapshot.value)
                 let videoIds = snapshot.value as! [String]
                 print(videoIds)
                 self.group = DispatchGroup()
