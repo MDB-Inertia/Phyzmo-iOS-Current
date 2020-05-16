@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
     var videos: [Video] = []
     var videoId : String?
     var video: Video?
-    var videosSelected: [String] = []
+    var  videosSelected: [String] = []
     var group = DispatchGroup()
     //var updateGroup = DispatchGroup()
     var shouldSegue = false
