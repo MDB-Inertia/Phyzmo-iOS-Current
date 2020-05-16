@@ -16,11 +16,9 @@ class VideoViewController: UIViewController {
     let playerViewController = AVPlayerViewController()
     override func viewDidLoad(){
        super.viewDidLoad()
+        
         image.image = (self.tabBarController as! DataViewController).video?.thumbnail
-       
-        //playButton.frame(forAlignmentRect: CGRect(x: 0, y: 0, width: 50, height: 50))
         playButton.frame = image.frame
-        //playButton.imageView?.frame(forAlignmentRect: CGRect(x: 0, y: 0, width: 50, height: 50))
         playerViewController.player = (self.tabBarController as! DataViewController).video?.video
         
         
@@ -36,14 +34,4 @@ class VideoViewController: UIViewController {
             (self.tabBarController as! DataViewController).video?.video!.play()
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-         //UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
-    }
-    
-    /*override var shouldAutorotate: Bool {
-        return true
-    }*/
-    
-    
-
 }

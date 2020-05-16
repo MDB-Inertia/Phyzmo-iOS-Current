@@ -10,20 +10,8 @@ import Foundation
 import SpreadsheetView
 
 extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegate{
-    
-    //FIXME
-    
+        
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, widthForColumn column: Int) -> CGFloat {
-       /*if UIDevice.current.orientation.isLandscape {
-            let size = (UIScreen.main.bounds.height) / 4
-            print(size)
-            return size
-        }
-        else{
-            let size = (UIScreen.main.bounds.width) / 4
-            print(size)
-            return size
-        }*/
         return CGFloat(cellWidth ?? Double((UIScreen.main.bounds.height) / 4))
     }
     
@@ -63,7 +51,6 @@ extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegat
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: HeaderCell.self), for: indexPath) as! HeaderCell
             cell.label.text = "Velocity\n(m/s)"
             cell.label.numberOfLines = 0
-            //cell.label.textColor = .gray
             cell.gridlines.left = .none
             cell.gridlines.right = .default
             return cell
@@ -71,7 +58,6 @@ extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegat
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: HeaderCell.self), for: indexPath) as! HeaderCell
             cell.label.text = "Acceleration\n(m/s\u{00B2})"
             cell.label.numberOfLines = 0
-            //cell.label.textColor = .gray
             cell.gridlines.left = .none
             cell.gridlines.right = .default
             return cell
@@ -105,7 +91,7 @@ extension ChartViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegat
     }
 }
 extension Double {
-    /// Rounds the double to decimal places value
+    // Rounds the double to decimal places value
     func rounded(toPlaces places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor

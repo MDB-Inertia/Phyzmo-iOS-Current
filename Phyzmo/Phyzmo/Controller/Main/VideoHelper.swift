@@ -23,9 +23,5 @@ class VideoHelper {
         mediaUI.delegate = delegate
         delegate.present(mediaUI, animated: true, completion: nil)
     }
-    
-    
-    
-    
 }
 

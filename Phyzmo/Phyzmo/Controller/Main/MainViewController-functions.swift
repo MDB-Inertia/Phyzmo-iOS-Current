@@ -21,7 +21,7 @@ extension MainViewController: UICollectionViewDataSource{
     
     //3
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      let cell = collectionView
+        let cell = collectionView
         .dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GalleryCollectionViewCell
         cell.awakeFromNib()
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
@@ -34,23 +34,8 @@ extension MainViewController: UICollectionViewDataSource{
         cell.isSelectionMode = selectButton.isSelected
         print(selectButton.isSelected)
         cell.isSelectedCell = videosSelected.contains(videos[indexPath.row].id)
-      //cell.backgroundColor = .black
-      // Configure the cell
-        
-        /*var index = indexPath[1]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "objectCell", for: indexPath) as! ObjectTableViewCell
-        cell.checkMark = nil
-        cell.awakeFromNib()
-        let size = CGSize(width: tableView.frame.width, height: height(for: indexPath))
-        cell.initCellFrom(size: size)
-        cell.object = (self.tabBarController as! DataViewController).video!.objects_detected![indexPath.row]
-        cell.objects_detected = (self.tabBarController as! DataViewController).video!.objects_detected!
-        cell.objects_selected = (self.tabBarController as! DataViewController).video!.objects_selected
-        
-        cell.selectionStyle = .none
-        
-        return cell*/
-      return cell
+    
+        return cell
     }
 }
 

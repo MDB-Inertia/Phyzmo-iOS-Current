@@ -29,11 +29,6 @@ extension MainViewController: UIImagePickerControllerDelegate {
         // Handle a movie capture
         print("url.path", url.path)
         print("info", info)
-        /*UISaveVideoAtPathToSavedPhotosAlbum(
-          url.path,
-          self,
-          #selector(video(_:didFinishSavingWithError:contextInfo:)),
-          nil)*/
         loading.isHidden = false
         loading.startAnimating()
         blurEffectView.isHidden = false
@@ -97,7 +92,6 @@ extension MainViewController: UIImagePickerControllerDelegate {
         })
     }
     func uploadToFirebase(url: URL?, error: Error?) {
-        //updateGroup.enter()
         DispatchQueue.main.async {
             self.blurEffectView.isHidden = false
             self.logOutButton.isEnabled = false
@@ -106,6 +100,7 @@ extension MainViewController: UIImagePickerControllerDelegate {
             self.cameraButton.isEnabled = false
             self.statusLabel.isHidden = false
             self.statusLabel.text = "Uploading video"
+            self.statusLabel.textColor = .white
         }
         
         if error != nil {
@@ -126,70 +121,30 @@ extension MainViewController: UIImagePickerControllerDelegate {
             if error == nil {
                 print("Successful video upload")
                 
-                
             } else {
                 print(error?.localizedDescription)
             }
             print("api call starting")
-            
-            /*DispatchQueue.main.async {
-            
-                print("detecting objects")
-            }*/
             self.statusLabel.text = "Detecting Objects"
-            //self.updateGroup.enter()
             print("detecting objects")
             APIClient.getAllPositionCV(videoPath: "gs://phyzmo.appspot.com/\(self.videoId!).mp4") { (objectsData) in
+                // API call done
                 print("api call done")
                 databaseReference.child("videoId").observeSingleEvent(of: .value, with: { (snapshot) in
                     print("key", snapshot.key)
                     print("value", snapshot.value)
                     if snapshot.value is [AnyObject] {
-                        print("not nil", snapshot.value)
                         databaseReference.updateChildValues(["videoId":(snapshot.value as! [String]) + [self.videoId!]])
-                        //videoReference.updateChildValues()
                         videoReference.setValue(["objects_selected": []])
                         
                     } else {
-                        print("nil")
                         databaseReference.updateChildValues(["videoId":[self.videoId!]])
                     }
                     self.shouldSegue = true
                 }) { (error) in
                     print(error.localizedDescription)
                 }
-                
-                //DispatchQueue.main.async {
-                    //self.loading.isHidden = true
-                    //self.loading.stopAnimating()
-                    //self.objectsData = objectsData
-                    /*Storage.storage().reference().child("\(self.videoId!).jpg").getData(maxSize: 1 * 1024 * 1024) { data, error in
-                        if let error = error {
-                          // Uh-oh, an error occurred!
-                          //print("\(vidId).jpg not found")
-                            self.video = Video(id: self.videoId!, thumbnail: UIImage(), objects_selected: [])
-                            self.video?.contruct(completion: {
-                                DispatchQueue.main.async {
-                                    print("\(self.video!.objects_detected!) \(self.video?.objects_selected)")
-                                    self.performSegue(withIdentifier: "MainToVideo", sender: self)
-                                }
-                            })
-                        } else {
-                          // Data for "images/island.jpg" is returned
-                          let image = UIImage(data: data!)
-                            self.video = Video(id: self.videoId!, thumbnail: image!, objects_selected: [])
-                            self.video?.contruct(completion: {
-                                DispatchQueue.main.async {
-                                    self.performSegue(withIdentifier: "MainToVideo", sender: self)
-                                }
-                            })
-                          
-                        }
-                    }*/
-                    
-                    
-                    
-                
+    
             }
         })
         
@@ -199,28 +154,18 @@ extension MainViewController: UIImagePickerControllerDelegate {
         //segue to detailed view
         if segue.identifier == "MainToVideo" {
             let controller =  segue.destination as! DataViewController
-            /*var vid = Video(id: self.videoId!, thumbnail: UIImage(), objects_selected: [])
-            vid.contruct()*/
             controller.video = self.video
-            //controller.selectedIndex = controller.index(ofAccessibilityElement: ObjectViewController.self)
-            //controller.selectedViewController = ObjectViewController.init()
-            
-            
         }
     }
+    
     @objc func video(_ videoPath: String, didFinishSavingWithError error: Error?, contextInfo info: AnyObject) {
       let title = (error == nil) ? "Success" : "Error"
       let message = (error == nil) ? "Video was saved" : "Video failed to save"
       
       let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
-      //present(alert, animated: true, completion: nil)
     }
-    
-    
-    
 }
-
 
 
 extension MainViewController: UINavigationControllerDelegate {

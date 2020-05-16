@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Smt-GT-gUO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Smt-GT-gUO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -621,7 +621,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e4p-d7-0mR"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Video" image="video" catalog="system" id="Mqo-xV-xkz"/>
+                    <tabBarItem key="tabBarItem" title="Video" image="video" catalog="system" selectedImage="video.fill" id="Mqo-xV-xkz">
+                        <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="image" destination="3tS-nA-6jD" id="yJC-dv-E8F"/>
                         <outlet property="playButton" destination="ycF-uy-T0d" id="TbD-Ob-Czi"/>
@@ -650,6 +652,7 @@
                                     <segment title="Velocity"/>
                                     <segment title="Acceleration"/>
                                 </segments>
+                                <color key="tintColor" red="0.0078431372550000003" green="0.50588235290000005" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="segmentedViewPressed:" destination="Fc9-pq-onl" eventType="valueChanged" id="SHy-jK-gdu"/>
                                 </connections>
@@ -667,7 +670,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VqB-dv-C9E"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Graph" image="chart.bar" catalog="system" id="mig-LO-fnC"/>
+                    <tabBarItem key="tabBarItem" title="Graph" image="chart.bar" catalog="system" selectedImage="chart.bar.fill" id="mig-LO-fnC">
+                        <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="chartView" destination="Cxb-bO-FSJ" id="kfs-7F-H6Y"/>
                         <outlet property="segmentedView" destination="5CX-z1-ISe" id="JSJ-OF-Wms"/>
@@ -700,7 +705,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7oO-L6-Jhw"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chart" image="table" catalog="system" id="mRj-kH-D3K"/>
+                    <tabBarItem key="tabBarItem" title="Chart" image="table" catalog="system" selectedImage="table.fill" id="mRj-kH-D3K">
+                        <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -726,9 +733,6 @@
                                     <constraint firstAttribute="height" constant="35" id="SU3-Us-kq5"/>
                                 </constraints>
                                 <state key="normal" title="Select"/>
-                                <state key="disabled">
-                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
                                 <state key="selected">
                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -770,12 +774,15 @@
                                     <segment title="Objects"/>
                                     <segment title="Distance"/>
                                 </segments>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="segmented:" destination="TMz-Ev-sNd" eventType="valueChanged" id="qa3-av-7Dg"/>
                                 </connections>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Distance (meters)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z7w-aV-eIY" userLabel="Distance" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="236" y="758" width="158" height="35"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.0078431372550000003" green="0.50588235290000005" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="XOn-TZ-dmZ"/>
                                 </constraints>
@@ -828,6 +835,18 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedIconColor">
                                         <color key="value" red="0.0078431372550000003" green="0.50588235290000005" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lineErrorColor">
+                                        <color key="value" red="0.0078431372550000003" green="0.50588235290000005" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textErrorColor">
+                                        <color key="value" red="0.0078431372550000003" green="0.50588235290000005" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleErrorColor">
+                                        <color key="value" red="0.0078431372550000003" green="0.50588235290000005" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="disabledColor">
+                                        <color key="value" red="0.0078431372550000003" green="0.50588235290000005" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="editChanged:" destination="TMz-Ev-sNd" eventType="editingChanged" id="5nf-If-bgH"/>
@@ -850,7 +869,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CUS-NS-9sr"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Objects" image="tag" catalog="system" id="PSD-Aa-NXg"/>
+                    <tabBarItem key="tabBarItem" title="Objects" image="tag" catalog="system" selectedImage="tag.fill" id="PSD-Aa-NXg">
+                        <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="kyt-q3-exA"/>
                     <connections>
                         <outlet property="distanceTextField" destination="z7w-aV-eIY" id="QW5-d9-p0h"/>
@@ -907,10 +928,10 @@
                                 <color key="textColor" red="0.0078431372549019607" green="0.50588235294117645" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading your datasets!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Z6-i6-sdz">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading your datasets!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Z6-i6-sdz">
                                 <rect key="frame" x="20" y="398" width="374" height="20"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyG-67-sWR">
@@ -927,6 +948,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POO-DV-Yll">
                                 <rect key="frame" x="370" y="836" width="24" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="trash" catalog="system"/>
                                 <connections>
@@ -958,7 +980,7 @@
                         <viewLayoutGuide key="safeArea" id="hdQ-ZI-aNz"/>
                     </view>
                     <navigationItem key="navigationItem" title="Gallery" id="udK-Ne-giS">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="camera" catalog="system" id="6bj-ga-V93">
+                        <barButtonItem key="leftBarButtonItem" title="Camera" image="camera" catalog="system" style="plain" id="6bj-ga-V93">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cameraButtonPressed:" destination="Qsf-8q-nls" id="TyB-fi-1r7"/>
@@ -1012,22 +1034,26 @@
             <point key="canvasLocation" x="749" y="-463"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Phyzmo-Squad-Out-90" width="469" height="471"/>
-        <image name="camera" catalog="system" width="64" height="48"/>
-        <image name="chart.bar" catalog="system" width="64" height="44"/>
-        <image name="envelope" catalog="system" width="64" height="46"/>
-        <image name="lock.fill" catalog="system" width="64" height="64"/>
-        <image name="pencil" catalog="system" width="64" height="56"/>
-        <image name="phyzmofont" width="394" height="116"/>
-        <image name="play.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="table" catalog="system" width="64" height="46"/>
-        <image name="tag" catalog="system" width="64" height="58"/>
-        <image name="trash" catalog="system" width="60" height="64"/>
-        <image name="video" catalog="system" width="64" height="40"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SGy-Em-TjG"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+    <resources>
+        <image name="Phyzmo-Squad-Out-90" width="469" height="471"/>
+        <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="chart.bar" catalog="system" width="128" height="90"/>
+        <image name="chart.bar.fill" catalog="system" width="128" height="89"/>
+        <image name="envelope" catalog="system" width="128" height="93"/>
+        <image name="lock.fill" catalog="system" width="128" height="128"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="phyzmofont" width="394" height="116"/>
+        <image name="play.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="table" catalog="system" width="128" height="93"/>
+        <image name="table.fill" catalog="system" width="128" height="93"/>
+        <image name="tag" catalog="system" width="128" height="116"/>
+        <image name="tag.fill" catalog="system" width="128" height="116"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
+        <image name="video" catalog="system" width="128" height="83"/>
+        <image name="video.fill" catalog="system" width="128" height="82"/>
+    </resources>
 </document>

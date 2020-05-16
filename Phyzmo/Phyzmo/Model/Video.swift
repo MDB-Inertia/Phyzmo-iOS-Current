@@ -87,21 +87,14 @@ class Video{
                         completion()
                     })
                 }
-                
             }
-            
-            
           }
         }
         
         
        
     }
-    
-    func getData(){
-        
-    }
-    
+
     func deconstruct(){
         self.video = nil
         self.data = nil

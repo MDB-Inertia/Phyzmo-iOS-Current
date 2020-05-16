@@ -23,8 +23,6 @@ class GraphViewController: UIViewController {
     
     var chatStatus = 0
 
-    
-
     var chartDisplacement = [ChartDataEntry]()
     var chartVelocity = [ChartDataEntry]()
     var chartAcceleration = [ChartDataEntry]()
@@ -41,10 +39,7 @@ class GraphViewController: UIViewController {
         updateGraph()
     }
 
-    /*override func viewWillAppear(_ animated: Bool) {
-        UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
-        
-    }*/
+
     override func viewDidAppear(_ animated: Bool) {
         setUpGraph()
         updateGraph()
@@ -65,13 +60,6 @@ class GraphViewController: UIViewController {
         print("\n\(rawVelocity)")
         print("\n\(rawAcceleration)")
     }
-    /***override var shouldAutorotate: Bool {
-        return true
-    }***/
-
-    override func viewWillDisappear(_ animated: Bool) {
-        //UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-    }
     
     @IBAction func segmentedViewPressed(_ sender: Any) {
         updateGraph()
@@ -84,35 +72,18 @@ class GraphViewController: UIViewController {
     @objc func export(sender: UIButton) {
         let image = chartView.getChartImage(transparent: false)
         
-       // UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "yyyy-MM-dd-HH:mm"
         let fileName = "Phyzmo-\(dateFormatterPrint.string(from: Date.init())).png"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-        /*var csvText = "Time,Displacement,Velocity,Acceleration\n" //FIXME
-        for i in 0..<time!.count {
-            let newLine = "\(time![i]),\(rawDisplacement![i]),\(rawVelocity![i]),\(rawAcceleration![i])\n" //FIXME
-            csvText += newLine
-        }*/
-        
+      
         do {
             try image!.pngData()!.write(to: path!)
             
             let vc = UIActivityViewController(activityItems: [path], applicationActivities: [])
-            /*vc.excludedActivityTypes = [
-                UIActivity.ActivityType.assignToContact,
-                UIActivity.ActivityType.saveToCameraRoll,
-                UIActivity.ActivityType.postToFlickr,
-                UIActivity.ActivityType.postToVimeo,
-                UIActivity.ActivityType.postToTencentWeibo,
-                UIActivity.ActivityType.postToTwitter,
-                UIActivity.ActivityType.postToFacebook,
-                UIActivity.ActivityType.openInIBooks
-            ]*/
             present(vc, animated: true, completion: nil)
             if let popOver = vc.popoverPresentationController {
               popOver.sourceView = self.view
-              //popOver.sourceRect =
               popOver.barButtonItem = tabBarController!.navigationItem.rightBarButtonItem
             }
             
@@ -141,31 +112,6 @@ class GraphViewController: UIViewController {
         
     }
     func updateGraph(){
-//        print(xAxisLabel.frame.origin)
-//        xAxisLabel.frame.origin.x = 0
-//        xAxisLabel.bounds.origin.x = 0
-//        var temp = xAxisLabel.bounds.size.width
-//        xAxisLabel.bounds.size.width = xAxisLabel.bounds.size.height
-//        xAxisLabel.bounds.size.height = temp
-//
-//        temp = xAxisLabel.frame.size.width
-//        xAxisLabel.frame.size.width = xAxisLabel.frame.size.height
-//        xAxisLabel.frame.size.height = temp
-//
-//        xAxisLabel.frame.origin.x = 0
-//        xAxisLabel.bounds.origin.x = 0
-//        print(xAxisLabel.frame.origin)
-        //xAxisLabel.addConstraint(xAxisLabel.leadingAnchor.constrain)
-        
-        //xAxisLabel.frame = CGRect(origin: xAxisLabel.frame.origin, size: CGSize(width: xAxisLabel.frame.height, height: xAxisLabel.frame.width))
-        //xAxisLabel.backgroundColor = .brown
-//        xAxisLabel.frame.origin.x = 0
-//        xAxisLabel.bounds.origin.x = 0
-//
-//        print(xAxisLabel.frame.size.width)
-//        print(xAxisLabel.frame.size.height)
-        //xAxisLabel.frame = CGRect(
-        //xAxisLabel.frame.origin = CGPoint(x: 0, y: 0)
         var currentLine = LineChartDataSet(entries: chartDisplacement, label: "Displacement" )
         
         if segmentedView.selectedSegmentIndex == 0 {
@@ -184,10 +130,6 @@ class GraphViewController: UIViewController {
                 view.removeConstraint(c)
             }
         }
-
-        
-        //xAxisLabel.transform = CGAffineTransform( rotationAngle: CGFloat(( 270 * M_PI ) / 180) )
-        
         
         currentLine.colors = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0)]
         currentLine.lineWidth = 2.0
@@ -212,11 +154,6 @@ class GraphViewController: UIViewController {
         }
         chartView.pinchZoomEnabled = true
         chartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
-        
-        /**else {
-            xAxis.labelTextColor = .default
-        }**/
-        
     }
     
     

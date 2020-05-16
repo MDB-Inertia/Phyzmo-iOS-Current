@@ -32,8 +32,6 @@ class SignUpViewController: UIViewController {
         layer.colors = [UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor, UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor
         ]
         layer.shouldRasterize = true
-        //layer.startPoint = CGPoint(x: 0,y: 0.5)
-        //layer.startPoint = CGPoint(x: 1,y: 1)
         backgroundView.layer.addSublayer(layer)
         
 
@@ -79,14 +77,11 @@ class SignUpViewController: UIViewController {
                 userNode.updateChildValues(["fullname": fullname, "email": email])
                 UserDefaults.standard.set(currentID, forKey: "user")
                 self.sendVerificationMail()
-                //self.dismiss(animated: false, completion: nil)
             }
             else {
-                self.displayAlert(title: "Error", message : "Error creating user. Please try again." )
+                self.displayAlert(title: "Error", message : error!.localizedDescription )
             }
         }
-         
-        
     }
     
 

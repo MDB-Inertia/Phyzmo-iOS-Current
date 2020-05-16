@@ -30,34 +30,27 @@ class ObjectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let tabController = self.tabBarController as! DataViewController
-        //self.video = tabController.video
+        
+        // Render Select Button
         self.selectButton.applyGradient(colors: gradient)
         
-       
+        // Render Table View
         tableView.register(ObjectTableViewCell.self, forCellReuseIdentifier: "objectCell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 60
-        //updateTable()
         load()
         let image = (self.tabBarController as! DataViewController).video!.thumbnail
         imageView = UIImageView(image: image)
         imageWidth = image.size.width
         imageHeight = image.size.height
-        /*imageView.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageWidth!, height: imageHeight!)*/
         let proportion = Float(imageWidth!)/Float(imageHeight!)
         var width = Float(view.frame.height - 275)*proportion
         var height = width/proportion
         if width > Float(view.frame.width) {
             height = Float(view.frame.width)/proportion
             width = height*proportion
-
-
-        
         }
-        
-        
         
         imageView.frame = CGRect(x: view.frame.width/2-CGFloat(width)/2, y: view.frame.height/2-CGFloat(height)/2, width: CGFloat(width), height: CGFloat(height))
         canvas.frame = imageView.frame
@@ -66,7 +59,6 @@ class ObjectViewController: UIViewController {
         imageView.tag = 101
         canvas.frame = imageView.frame
         canvas.backgroundColor = UIColor(white: 1, alpha: 0.1)
-        //canvas.frame = view.frame
         self.distanceTextField.keyboardType = UIKeyboardType.decimalPad
         if (self.tabBarController as! DataViewController).video!.line != nil{
             let line = (self.tabBarController as! DataViewController).video!.line!
@@ -80,36 +72,11 @@ class ObjectViewController: UIViewController {
         view.addSubview(canvas)
 
         
-        
-        //Format ImageView
-//        imageView.frame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.contentSize.width, height: tableView.contentSize.height)
-//        let midX = self.view.bounds.midX
-//        let midY = self.view.bounds.midY
-//        let size: CGFloat = 64
-//        imageView.frame = CGRect(x: view.bounds.width/2, y: view.bounds.height/2, width: 500, height: 500)
-        
-//        imageWidth = 15*view.frame.width/16
-//        imageHeight = 10*view.frame.height/16
-        
-        
-//        canvas.frame = CGRect(x: view.frame.width/2-imageWidth!/2, y: view.frame.height/2-imageHeight!/2, width: imageView.image!.size.width, height: imageView.image!.size.height)
-        //imageView.backgroundColor = UIColor.purple.withAlphaComponent(0.3)
-        
-//        distanceTextField.addTarget(self, action: #selector(ViewController.textFieldDidChange(_:)),
-//        for: UIControl.Event.editingChanged)
-//
-//        @objc func textFieldDidChange(_ textField: UITextField) {
-//
-//        }
-        
         //Imageview on Top of View
         self.view.bringSubviewToFront(canvas)
         print("view success")
         
         toggleObjects()
-        /*view.viewWithTag(100)!.isHidden = true
-        view.viewWithTag(101)!.isHidden = true
-        distanceTextField.isHidden = true*/
     }
     
     @IBAction func editChanged(_ sender: Any) {
@@ -122,13 +89,11 @@ class ObjectViewController: UIViewController {
     
     func updateSelectButton() {
         if (self.tabBarController as! DataViewController).video!.objects_selected == [] || distanceTextField.text == "" || canvas.getArray().count < 2 {
-            //selectButton.isHighlighted = true
             selectButton.isEnabled = false
-            gradient = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:0.7).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:0.7).cgColor]
+            gradient = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:0.5).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:0.5).cgColor]
             selectButton.applyGradient(colors: gradient)
         }
         else{
-            //selectButton.isHighlighted = false
             selectButton.isEnabled = true
             gradient = [UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor, UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor]
             selectButton.applyGradient(colors: gradient)
@@ -158,16 +123,8 @@ class ObjectViewController: UIViewController {
         switch segmented.selectedSegmentIndex
         {
         case 0:
-            /*view.viewWithTag(100)!.isHidden = true
-            view.viewWithTag(101)!.isHidden = true
-            tableView.isHidden = false
-            distanceTextField.isHidden = true*/
             toggleObjects()
         case 1:
-            /*view.viewWithTag(100)!.isHidden = false
-            view.viewWithTag(101)!.isHidden = false
-            tableView.isHidden = true
-            distanceTextField.isHidden = false*/
             toggleDistance()
         default:
             break
@@ -186,19 +143,6 @@ class ObjectViewController: UIViewController {
         }
         
         updateSelectButton()
-        //segmented.selectedSegmentIndex = 0
-        /*if (self.tabBarController as! DataViewController).video!.objects_selected == [] || distanceTextField.text == "" || canvas.getArray().count < 2 {
-            selectButton.isHighlighted = true
-            selectButton.isEnabled = false
-        }
-        if selectedObjects == [] ||
-            (self.tabBarController as! DataViewController).video!.line == nil ||
-            (self.tabBarController as! DataViewController).video!.line == [] ||
-            (self.tabBarController as! DataViewController).video!.unit == nil {
-            (self.tabBarController as! DataViewController).disableAllButObjects()
-        }*/
-        
-        //updateSelectButton()
         tableView.reloadData()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -208,15 +152,7 @@ class ObjectViewController: UIViewController {
     }
     
     @IBAction func objectSelectionPressed(_ sender: Any) {
-        /*if (self.tabBarController as! DataViewController).video!.objects_selected == []{
-            let title = "Error"
-            let message = "Please select at least one object"
-            
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-              alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
-            present(alert, animated: true, completion: nil)
-            return
-        }*/
+        
         print("updating object selection")
         let line = canvas.getArray()
         selectedObjects = (self.tabBarController as! DataViewController).video!.objects_selected
@@ -233,11 +169,8 @@ class ObjectViewController: UIViewController {
         videoReference.updateChildValues(["line": [[line[0].x/imageView.frame.width, line[0].y/imageView.frame.height], [line[1].x/imageView.frame.width, line[1].y/imageView.frame.height]]])
         videoReference.updateChildValues(["unit": Float(distanceTextField.text!)!])
         
-        print("1")
         APIClient.getObjectData(objectsDataUri: "https://storage.googleapis.com/phyzmo-videos/\((self.tabBarController as! DataViewController).video!.id).json", obj_descriptions: (self.tabBarController as! DataViewController).video!.objects_selected, line: [CGPoint(x: line[0].x/imageView.frame.width, y: line[0].y/imageView.frame.height), CGPoint(x: line[1].x/imageView.frame.width, y: line[1].y/imageView.frame.height)], unit: Float( distanceTextField.text!)!) { (data) in
             
-            //(self.tabBarController as! DataViewController).video!.data = data as? [String:Any]
-            //print((self.tabBarController as! DataViewController).video!.data)
             DispatchQueue.main.async {
                 (self.tabBarController as! DataViewController).video?.data = data as? [String : Any]
                 (self.tabBarController as! DataViewController).enableAll()
@@ -247,16 +180,6 @@ class ObjectViewController: UIViewController {
             
         }
     }
-    /*override func viewWillAppear(_ animated: Bool) {
-        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-        
-    }
-     
-    
-    override var shouldAutorotate: Bool {
-        return false
-        
-    }*/
     
     override func viewWillDisappear(_ animated: Bool) {
         AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
@@ -284,7 +207,6 @@ class ObjectViewController: UIViewController {
             if self.selectButton != nil {
                 self.selectButton.applyGradient(colors: self.gradient)
             }
-            // Your code here
         })
         if tableView != nil {
             tableView.reloadData()
@@ -306,8 +228,6 @@ class ObjectViewController: UIViewController {
             imageView.frame = CGRect(x: to.width/2-CGFloat(width)/2, y: to.height/2-CGFloat(height)/2, width: CGFloat(width), height: CGFloat(height))
             canvas.frame = imageView.frame
         }
-        
-
     }
     
     

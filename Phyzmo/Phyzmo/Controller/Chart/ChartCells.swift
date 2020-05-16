@@ -51,8 +51,6 @@ class TextCell: Cell {
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = .center
         
-        
-        
         if #available(iOS 13.0, *) {
             label.textColor = .label
             backgroundColor = .systemBackground

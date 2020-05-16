@@ -19,10 +19,6 @@ class ChartViewController: UIViewController {
 
     @IBOutlet weak var chartSpreadsheetView: SpreadsheetView!
     
-    let colors = [UIColor(red: 0.314, green: 0.698, blue: 0.337, alpha: 1),
-    UIColor(red: 1.000, green: 0.718, blue: 0.298, alpha: 1),
-    UIColor(red: 0.180, green: 0.671, blue: 0.796, alpha: 1)]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +28,8 @@ class ChartViewController: UIViewController {
         else{
             cellWidth = Double(view.frame.width/4)
         }
+        
+        // Render Spreadsheet
         readVals()
         chartSpreadsheetView.dataSource = self
         chartSpreadsheetView.delegate = self
@@ -43,13 +41,10 @@ class ChartViewController: UIViewController {
         chartSpreadsheetView.register(TextCell.self, forCellWithReuseIdentifier: String(describing: TextCell.self))
         
         chartSpreadsheetView.bounces = false
-        
-               
+    
        
     }
-    /*override func viewWillAppear(_ animated: Bool) {
-        UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
-    }*/
+
     
     override func viewDidAppear(_ animated: Bool){
         chartSpreadsheetView.flashScrollIndicators()
@@ -63,12 +58,6 @@ class ChartViewController: UIViewController {
                             with coordinator: UIViewControllerTransitionCoordinator){
         print("ORIENTATION: \(UIDevice.current.orientation.isLandscape)")
         coordinator.animate(alongsideTransition: nil) { (context) in
-//            if UIDevice.current.orientation.isLandscape {
-//                self.cellWidth = Double(size.height/4)
-//            }
-//            else{
-//                self.cellWidth = Double(size.width/4)
-//            }
             self.cellWidth = Double(size.width/4)
             if self.chartSpreadsheetView != nil{
                 self.chartSpreadsheetView.reloadData()
@@ -76,10 +65,6 @@ class ChartViewController: UIViewController {
         }
         
     }
-    /**
-    override var shouldAutorotate: Bool {
-        return true
-    }**/
     
     //EXPORT
     @objc func export(sender: UIButton) {
@@ -120,7 +105,7 @@ class ChartViewController: UIViewController {
         }
     }
     
-    
+    //Update Values
     func readVals(){
         guard let data = (self.tabBarController as! DataViewController).video?.data else{
             return

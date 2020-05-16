@@ -32,16 +32,8 @@ class SignInViewController: UIViewController {
         layer.colors = [UIColor(red:0.55, green:0.27, blue:0.92, alpha:1.0).cgColor, UIColor(red:0.01, green:0.51, blue:0.93, alpha:1.0).cgColor
         ]
         layer.shouldRasterize = true
-        //layer.startPoint = CGPoint(x: 0,y: 0.5)
-        //layer.startPoint = CGPoint(x: 1,y: 1)
         backgroundView.layer.addSublayer(layer)
         self.hideKeyboardWhenTappedAround()
-    
-//        emailTextField.leftViewMode = UITextField.ViewMode.always
-//        let imageView = UIImageView(image: UIImage(named: "envelope"))
-//        //imageView.frame.size = CGSize(width: 500, height: 500)
-//        emailTextField.leftView = imageView
-//        emailTextField.leftView?.frame = CGRect(x: 0, y:0, width: 10, height: 10)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -68,7 +60,6 @@ class SignInViewController: UIViewController {
     }
     func hideKeyboardWhenTappedAround() {
      let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:    #selector(SignInViewController.dismissKeyboard))
-        //tap.
       tap.cancelsTouchesInView = true
       view.addGestureRecognizer(tap)
     }

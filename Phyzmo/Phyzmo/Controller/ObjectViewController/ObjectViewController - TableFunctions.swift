@@ -34,9 +34,6 @@ extension ObjectViewController: UITableViewDelegate, UITableViewDataSource{
         var index = indexPath[1]
         checkPressed(cell: tableView.cellForRow(at: indexPath) as! ObjectTableViewCell)
         updateSelectButton()
-
-        //selectedEvent = events[index]
-        //performSegue(withIdentifier: "showDetails", sender: self)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return height(for: indexPath)
